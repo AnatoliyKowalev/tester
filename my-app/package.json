@@ -29,6 +29,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "source-map": "^0.7.3"
   },
   "scripts": {

@@ -1,6 +1,8 @@
 import React from 'react';
 import Tabs from './components/menuTop/MenuTop';
 import ChartContent from './components/chartContent/ChartContent';
+import { Provider } from 'react-redux';
+import store from './store/store';
 // import {BrowserRouter as Router} from 'react-router-dom'
 // import {Route, Switch} from 'react-router-dom'
 import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -19,25 +21,25 @@ class App extends React.Component {
 
   render() {
     return (
-	<div>
-			
-	      	<div id="topMenu"> 
-      			<Tabs /> 	    
-	        </div>
+    	<Provider store={store}>
+	   		<div>
+		      	<div id="topMenu"> 
+	      			<Tabs /> 	    
+		        </div>
+		        <div className="chart">
+		        	<div className="row">
+			      		<div className="col-lg-3">
+			      			left bar
+			      		</div>
+			      		<div className="col-lg-9">
+			      			 <ChartContent /> 
+			      		</div>
+			      	</div>
+		        </div>
 
-	        <div className="chart">
-	        	<div className="row">
-		      		<div className="col-lg-3">
-		      			left bar
-		      		</div>
-		      		<div className="col-lg-9">
-		      			 <ChartContent /> 
-		      		</div>
-		      	</div>
-	        </div>
-
-	    </div>
-	 
+		    </div>
+  		</Provider>
+	
     );
   }
 }

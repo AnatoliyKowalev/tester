@@ -28,11 +28,6 @@ class TabCharts extends Component {
 		})
 	}
 
-hello = (e) => {
-   chartState.options.theme.mode = 'light'
-   alert(chartState.options.theme.mode)
-}
-
     render () {
 	
 	const addNewChartDropDown	= <Button className="nav-item__toolsList horizontalList">
