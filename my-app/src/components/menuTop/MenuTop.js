@@ -53,7 +53,7 @@ class Tabs extends Component {
 	    	  {listTabs.map((value, index) =>{
 	    	  	let active = this.state.active === index ? 'activeTab' : '';
 	    	    return (<li key={index}>
-	    	    			<a href="#" onClick={this.select(index)} 
+	    	    			<a href="#/" onClick={this.select(index)} 
 	    	    				className={`${active} tab`}>
 	    	    					{value}
 	    	    			</a>

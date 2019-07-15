@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Dropdown,Button } from 'react-materialize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartLine, faCaretDown, faList, faPlusSquare, faSyncAlt, faCubes } from '@fortawesome/pro-solid-svg-icons';
 
 class TabIndicators extends Component {
 
@@ -12,61 +14,75 @@ class TabIndicators extends Component {
 	
     render () {
 	
-     const allDropDown				= <Button className="nav-item__toolsList flex-column">				
-										<i className="fa fa-chart-line fa-2x"></i>
-				   	 					<p>All</p>
-						   	 			<i className="fa fa-caret-down"></i>
-									</Button> 
+     const allDropDown				= <Button className="nav-item__toolsList flex-column">
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>All</p>
+																	</div>	
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button> 
 
-	const trendDropDown				= <Button className="nav-item__toolsList flex-column">				
-										<i className="fa fa-chart-line fa-2x"></i>
-				   	 					<p>Trend</p>
-						   	 			<i className="fa fa-caret-down"></i>
-									</Button>
+	const trendDropDown					= <Button className="nav-item__toolsList flex-column">
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>Trend</p>
+																	</div>
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button>
 
-	const volumeDropDown			= <Button className="nav-item__toolsList flex-column">				
-										<i className="fa fa-chart-line fa-2x"></i>
-				   	 					<p>Volume</p>
-						   	 			<i className="fa fa-caret-down"></i>
-									</Button>	
+	const volumeDropDown				= <Button className="nav-item__toolsList flex-column">		
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>Volume</p>
+																	</div>
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button>	
 
-	const oscillatorsDropDown		= <Button className="nav-item__toolsList flex-column">				
-											<i className="fa fa-chart-line fa-2x"></i>
-					   	 					<p>Oscillators</p>
-							   	 			<i className="fa fa-caret-down"></i>
-									</Button>
+	const oscillatorsDropDown		= <Button className="nav-item__toolsList flex-column">
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>Oscillators</p>
+																	</div>
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button>
 
-	const adaptiveDropDown			= <Button className="nav-item__toolsList flex-column">				
-											<i className="fa fa-chart-line fa-2x"></i>
-					   	 					<p>Adaptive</p>
-							   	 			<i className="fa fa-caret-down"></i>
-									</Button>
+	const adaptiveDropDown			= <Button className="nav-item__toolsList flex-column">	
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>Adaptive</p>
+																	</div>	
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button>
 
-	const volatilityDropDown		= <Button className="nav-item__toolsList flex-column">				
-										<i className="fa fa-chart-line fa-2x"></i>
-				   	 					<p>Volatility</p>
-						   	 			<i className="fa fa-caret-down"></i>
-									</Button>
+	const volatilityDropDown		= <Button className="nav-item__toolsList flex-column">		
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>Volatility</p>
+																	</div>
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button>
 
-	const customDropDown			= <Button className="nav-item__toolsList flex-column">				
-										<i className="fa fa-chart-line fa-2x"></i>
-				   	 					<p>Custom</p>
-						   	 			<i className="fa fa-caret-down"></i>
-									</Button>
+	const customDropDown				= <Button className="nav-item__toolsList flex-column">			
+																	<div className="d-flex flex-row align-items-center">
+																		<FontAwesomeIcon icon={faChartLine} size="2x" />
+																		<p>Custom</p>
+																	</div>
+																	<FontAwesomeIcon icon={faCaretDown} />
+																</Button>
 
 	return (
 	   	<div className="scroll">
 	   	 	
-	   	 	<div className="nav-item pt-2">
+	   	 	<div className="nav-item">
 	   	 		<div className="d-flex h-100">
-   	 				<div className="nav-item__main d-flex flex-row align-items-start">
+   	 				<div className="nav-item__main d-flex flex-row align-items-center">
 						<button  className="d-flex flex-column align-items-center">
-							<i className="fa fa-list fa-2x"></i>
-			   	 			<p>Curent Chart <br /> Indicators</p>
+							<FontAwesomeIcon icon={faList} size="2x" />
+							<p>Curent Chart <br /> Indicators</p>
 						</button>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -77,7 +93,7 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -88,7 +104,7 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -99,7 +115,7 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -110,7 +126,7 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -121,7 +137,7 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -132,7 +148,7 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-row align-items-start">
+					<div className="nav-item__main d-flex flex-row align-items-center">
 						<Dropdown   options={{
 										coverTrigger: false,
 										constrainWidth: false
@@ -143,14 +159,14 @@ class TabIndicators extends Component {
 						</Dropdown>
 					</div>
 
-					<div className="nav-item__main d-flex flex-column align-items-start">
+					<div className="nav-item__main d-flex flex-column align-items-center">
 						<button type="button" className="d-flex flex-column align-items-center">
-							<i className="fa fa-plus-square fa-3x"></i>
-			   	 			<p>Install New <br /> Indicator</p>
+							<FontAwesomeIcon icon={faPlusSquare} size="3x" />
+							<p>Install New <br /> Indicator</p>
 						</button>
 					</div>
 			   	 
-	   	 		</div>
+				</div>
 			
 				<div className="nav-item__empty"  >
 		   	 		<p>Add Indicator</p>
@@ -158,14 +174,14 @@ class TabIndicators extends Component {
 	   	 	</div> 
 
 	   	 	<div className="nav-item">
-				<div className="nav-item__main d-flex flex-row align-items-start">
+				<div className="nav-item__main d-flex flex-row align-items-center">
 					<button type="button" className="d-flex flex-column align-items-center">
-						<i className="fa fa-sync-alt fa-3x"></i>
-		   	 			<p>MT4 Indicator <br/> Converter</p>
+						<FontAwesomeIcon icon={faSyncAlt} size="3x" />
+						<p>MT4 Indicator <br/> Converter</p>
 					</button>
 					<button type="button" className="d-flex flex-column align-items-center">
-						<i className="fa fa-cubes fa-3x"></i>
-		   	 			<p>Virtual Indicator <br/> Builder</p>
+						<FontAwesomeIcon icon={faCubes} size="3x" />
+						<p>Virtual Indicator <br/> Builder</p>
 					</button>
 				</div>
 

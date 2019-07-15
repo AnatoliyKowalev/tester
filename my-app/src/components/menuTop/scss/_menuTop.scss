@@ -1,33 +1,42 @@
-///// TopMenu
 #topMenu {
-	// height: 400px;
-	z-index: 101;
-	font-size: 12px;
-	border-bottom: 1px solid #000;
+	height: 176px;
+	display: flex;
+	position: absolute;
+	width: 100%;
+	flex-direction: column;
+	top: 28px;
+	z-index: 45;
+	border-bottom: 1px solid $black-color;
 	.Tabs { 
+		position: absolute;
+		top: -28px;
 		margin: 0;
-		padding-top: 8px;
+		height: 28px;
+		// padding-top: 8px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-	    justify-content: flex-start;
-	    border-bottom: 1px solid #424242;
-   		padding-bottom: 3px;
-   		z-index: 4;
-   		.activeTab {
-			background: #fff;
-			border-bottom: 1px solid #fff;
+		justify-content: flex-start;
+		z-index: 4;
+		.activeTab {
+			background: $dark-color;
+		// border-bottom: 1px solid $white-color;
 		}
-		a {
-			color: #000;
-			z-index: 5;
-			border: 1px solid #424242;
-			background: linear-gradient(to bottom, rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%);
-			border-radius: 10px 10px 0 0;
-			margin-right: 1px;
-			text-decoration: none;
-			padding: 5px 10px;
-			cursor: pointer;
+		li {
+			padding: 5px 0;
+			a {
+				color: $white-color;
+				z-index: 5;
+				border-right: 1px solid $menu-btn-vover-color;
+				background: $dark-medium-color;
+				margin-right: 1px;
+				text-decoration: none;
+				padding: 7px 10px;
+				cursor: pointer;
+				&:hover {
+					background: $dark-color;
+				}
+			}
 		}
 	}
 	
@@ -38,9 +47,9 @@
 }
 
 .scroll {
-	height: fit-content;
+	height: 100%;
 	display: flex;
-	padding: 4px 20px 3px;
+	padding: 10px 20px 3px;
 	white-space: nowrap;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
@@ -48,23 +57,29 @@
 }
 
 .setOfTools {
-
-	height: auto;
+	background: $dark-color;
+	height: 100%;
 	width: 100%;
+	color: $white-color
 }
 
 .nav-item {
-	min-height: 25vh;
+	min-height: 160px;
 	height: initial;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-	font-size: 14px;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	font-size: $def-text-size;
 	vertical-align: middle;  
-	.dropdown-content li>a, .dropdown-content li>span {
-		padding: 6px 10px;
+	
+	.dropdown-content {
+		a, span {
+			font-size: $small-text-size;
+		}
+		overflow-y: inherit;
 	}
+
 	&__toolsList {
 		line-height: 16px;
 		height: auto;
@@ -74,13 +89,16 @@
 		align-items: center;
 		text-transform: initial;
 		position: relative;
-		color: #000;
-		&.bottomList .fa-sort-down, 
+		// color: $black-color;
+		&:hover {
+			color: $menu-btn-vover-color;
+		}
+		&.bottomList .fa-sort-down,  
 		&.horizontalList .fa-sort-down {
-	        transform: translateY(-70%);
+	      transform: translateY(-30%);
 		    position: absolute;
 		    right: 5%;
-		    top: 50%;
+		    // top: 50%;
 		}
 		i {
 			height: auto;
@@ -99,12 +117,14 @@
 		}
 		&.bottomList { 
 			padding: 3px 10px!important;
-			bottom: 5%;
-			background: rgba(66, 66, 66, .3);
+			// bottom: 5%;
+			// background: rgba(66, 66, 66, .3);
 			width: 90%;
 		}
 		&.horizontalList {
-			padding: 2px 25px 0 0;
+			margin: 0;
+			min-width: 170px;
+			padding: 2px 25px 2px 4px;
 			background: none;
 			width: 109%;
 			box-shadow: none;
@@ -118,18 +138,36 @@
 		height: 100%;
 		align-items: center;
 		justify-content: center;
-		font-size: 12px;
-		i {
-			margin: 2px 4px;
+		// font-size: 12px;
+		i, svg {
+			color: $light-darker-color;
+			// margin: 5px;
 		}
 		button {
+			font-size: $small-text-size;
+			color: $white-color;
 			padding: 5px;
 			min-width: 70px;
+			transition: all .3s;
+			p {
+				margin: 5px;
+			}
+		}
+		span {
+			&:hover {
+				transition: all .3s;
+				color: $menu-btn-vover-color;
+			}
 		}
 		label {
 			cursor: pointer;
 			margin-left: 5px;
+			[type="checkbox"]+span:not(.lever) {
+				line-height: 19px;
+			}
 		}
+	
+
 		input[type=checkbox] {
 			position: relative;
 			opacity: 1;
@@ -146,16 +184,52 @@
 		}
 	} 
 	&:not(:last-child) &__main {
-		border-right: 1px solid rgba(#727c87, .2); 
+		border-right: 1px solid rgba($light-darker-color, .5); 
 	}  
 	&__bottom {
 		width: 100%;
 		margin: 0 30px; 
+		.includePadding {
+			padding: 10px;
+		}
+		[type=checkbox]+span:not(.lever) {
+			padding-left: 25px;
+			line-height: 30px;
+		}
+		[type=checkbox]+span:not(.lever) {
+			line-height: 22px;
+		}
+		ul {
+			padding: 0;
+			span {
+				color: $dark-darker-color;
+			}
+			// li {
+			// 	&:hover {
+			// 		span {
+			// 			color: $dark-lighter-color;
+			// 		}
+			// 		background: none;
+			// 	}
+			// }
+		}
 		button {
-			background: rgba(66, 66, 66, .3);
+			box-shadow: none;
+			color: $white-color;
+			// background: rgba(66, 66, 66, .3);
+			background: none;
+			&:hover {
+				color: $menu-btn-vover-color;
+				background: none;
+			}
+			&:focus {
+				background: $dark-color;
+			}
+			
 		}
 		ul {
 			li {
+				// min-height: 0;
 				position: relative;
 				a {
 					text-decoration: none;
@@ -163,6 +237,10 @@
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
+					i {
+						width: 10px;
+						margin: 0;
+					}
 				}
 				ul {
 					top: 0!important;
@@ -172,20 +250,37 @@
 		}
 	}
 	&__empty {
-		[type=checkbox]+span:not(.lever) {
-			padding-left: 25px;
-			line-height: 30px;
-		}
+	
 		width: 100%;
 		button {
 			width: 100%;
 			box-shadow: none;
 		}
-		ul {
-			padding: 10px;
+	
+		p, svg { 
+			color: $light-darker-color;
 		}
-		p { 
-			color: gray;
+		li:hover {
+			background: none;
+			span {
+				color: $light-color;
+			}
 		}
+	}
+}
+
+.btn {
+	padding: 5px;
+	box-shadow: none;
+	&:focus {
+		background: $dark-color;
+	}
+	&:active {
+		background: $dark-color;
+	}
+	&:hover {
+		box-shadow: none;
+		color: $white-color;
+		background: $menu-btn-vover-color;
 	}
 }

@@ -27,29 +27,29 @@ gulp.task('sass', function() {
 });
   
  
-gulp.task('prefixM', function() {
-  return gulp.src("./node_modules/materialize-css/dist/css/materialize.css")
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest("./node_modules/materialize-css/dist/css/"));
-});
+// gulp.task('prefixM', function() {
+//   return gulp.src("./node_modules/materialize-css/dist/css/materialize.css")
+//     .pipe(rename({ suffix: '.min' }))
+//     .pipe(gulp.dest("./node_modules/materialize-css/dist/css/"));
+// });
 
-gulp.task('sassM', function() {
-    return gulp.src("./node_modules/materialize-css/sass/*.scss")
-         .pipe(sass({
-            sourceMap: false,
-            errLogToConsole: true,
-            includePaths: ['node_modules']
-        })) 
-        .pipe(cssmin())
-        .pipe(postcss(
-            [autoprefixer({
-                remove:false
-                })
-            ]
-        ))
-        .pipe(gulp.dest("./node_modules/materialize-css/dist/css/"))
-        .pipe(browserSync.stream())
-});
+// gulp.task('sassM', function() {
+//     return gulp.src("./node_modules/materialize-css/sass/*.scss")
+//          .pipe(sass({
+//             sourceMap: false,
+//             errLogToConsole: true,
+//             includePaths: ['node_modules']
+//         })) 
+//         .pipe(cssmin())
+//         .pipe(postcss(
+//             [autoprefixer({
+//                 remove:false
+//                 })
+//             ]
+//         ))
+//         .pipe(gulp.dest("./node_modules/materialize-css/dist/css/"))
+//         .pipe(browserSync.stream())
+// });
 
 // Static server
 gulp.task('server', function() {
@@ -60,7 +60,7 @@ gulp.task('server', function() {
         }
     });
     gulp.watch("./src/**/*.scss").on("change", gulp.series('sass'));
-    gulp.watch("./node_modules/materialize-css/sass/**/*.scss").on("change", gulp.series('sassM'));
+    // gulp.watch("./node_modules/materialize-css/sass/**/*.scss").on("change", gulp.series('sassM'));
     // gulp.watch("./node_modules/materialize-css/sass/**/*.scss").on("change", gulp.series('prefixM'));
 });
 

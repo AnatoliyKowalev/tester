@@ -1,0 +1,127 @@
+.leftBar {
+  position: absolute;
+  top: 204px;
+  left: 0;
+  bottom: 237px;
+  // height: 54%;
+  width: 360px;
+  background: $dark-color;
+  flex-basis: 23%;
+  color: $white-color;
+  border-right: 1px solid $dark-medium-color;
+  display: flex;
+  flex-direction: column;
+  span, input {
+    color: $white-color;
+  }
+  tr {
+    border-bottom: 1px solid $white-color;
+  }
+
+  .tabs-wrapper {
+      transition: all .2s;
+      display: flex;
+      flex-direction: column-reverse;
+      position: relative;
+      width: 100%;
+      min-height: 25px;
+      &:hover {
+        .close-panel {
+          max-height: fit-content;
+          .close-panel__item {
+            max-width: inherit;
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+      .close-panel {
+        max-height: 0;
+        position: absolute;
+        left: 100%;
+        top: 0;
+        padding-top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        z-index: 30;
+
+        .close-panel__item {
+          max-width: 0;
+          top: 0;
+          width: 0;
+          height: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          cursor: pointer;
+          transition: all .2s ease ;
+          background: $dark-medium-color;
+          // &:nth-child(2) {
+          //   transition: all .6s;
+          // }
+            
+        }
+        
+      }
+  
+  }
+
+  .row {
+    overflow-y: scroll;
+    margin: 0;
+    flex-basis: 98%;
+    .col {
+      padding: 0;
+    }
+  }
+  .tabs {
+    box-shadow: -10px 5px 20px 0px rgba(0,0,0,0.75);
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .indicator {
+      display: none;
+    }
+    .tab {
+      line-height: 22px;
+      width: auto;
+      height: fit-content;
+      a {
+        font-size: $small-text-size;
+        text-transform: capitalize;
+        background: $dark-medium-color;
+        padding: 0px 15px;
+        color: $white-color;
+        &:focus {
+          background: $menu-btn-vover-color;
+        }
+      }
+      .active {
+        background: $menu-btn-vover-color;
+      }
+    }
+  }
+}
+
+.rolled {
+  height: 0;
+  .tabs {
+    display: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+.unrolled {
+  height: 100%;
+  .tabs {
+    display: flex;
+  }
+}
+

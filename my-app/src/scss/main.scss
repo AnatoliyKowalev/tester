@@ -1,28 +1,52 @@
-@import "variables";
-// @import "./menuTop/menuTop";
+@import "./variables";
+@import "./responsive";
 @import "../components/menuTop/scss/menuTop";
+@import "../components/leftBar/scss/leftBar";
+@import "../components/chartContent/scss/chart";
+@import "../components/bottomMenu/scss/bottomMenu";
 @import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./../../node_modules/normalize.css/normalize.css";
 
 body {
-	// height: 100vh;
 	font-size: $def-text-size;
-	margin: 0;
 	font-family: 'Sans', sans-serif;
 	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
 	overflow: hidden;
 }
 
+.dropdown-content li>a, .dropdown-content li>span {
+	padding: 3px 6px;
+	font-size: $small-text-size;
+} 
+.dropdown-content {
+	font-size: $small-text-size;
+} 
+
+.select-wrapper {
+	svg {
+		fill: $white-color!important;
+	}
+	input {
+		color: $white-color;
+	}
+}
+
+.select-wrapper input.select-dropdown:focus {
+	border-bottom: 1px solid$dark-lighter-color;
+}
+
 ul, li { 
+	min-height: 0!important;
 	padding: 0;
 	list-style: none;
 }
+
+.dropdown-content li>a, .dropdown-content li>span {
+	color: $dark-darker-color;
+}
  
 nav {
-	background: #fff;
+	background: $white-color;
 } 
 
 section {
@@ -35,11 +59,20 @@ input, textarea {
 	padding: 9px 30px;
 	border-radius: 10px;
 	outline: none;
-	border: 1px solid #424242;
+	border: 1px solid $def-border-color;
 	z-index: 30;
+	font-size: $def-text-size;
 	&:hover {
 		cursor: pointer;
 	}
+}
+
+th, tr, td {
+	padding: 5px;
+}
+th {
+	text-align: start;
+
 }
 
 a {
@@ -50,21 +83,47 @@ p,h1,h2,h3,h4,h5,h6, label {
 	padding: 0;
 	margin: 0;
 }
+[type="checkbox"]+span:not(.lever):before, 
+[type="checkbox"]:not(.filled-in)+span:not(.lever):after, 
+[type="checkbox"].filled-in:not(:checked)+span:not(.lever):after, 
+[type="radio"]:not(:checked)+span:before,
+[type="radio"]:not(:checked)+span:after {
+	border: 2px solid $def-border-color;
+}
+span {
+ color: $white-color;
+}
+
+.clsoe {
+	position: absolute;
+	right: 0;
+}
+
+.btn.focus, .btn:focus {
+	box-shadow: none;
+}
 
 button {
+	outline: none;
 	min-width: 40px;
 	border-radius: 5px;
-	outline: none;
 	background: none;
 	border: none;
+	box-shadow: none;
+	
 	i {
 		height: auto;
 	}
+	&:active {
+		outline: none;
+		background: $dark-color;
+	}
 	&:focus {
 		outline: none;
+		background: $dark-color;
 	}
 	&:hover {
-		background: rgba(0, 0, 0, .1);
+		background: $def-border-color;
 	}
 }
 
@@ -77,8 +136,17 @@ input[type=range] {
 	margin: 8px 0;
 	-webkit-appearance: none;
  	width: 100%;
-  	padding: 6px 10px;
- 	border: none;
+  padding: 6px 10px;
+	border: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	background: $white-color;
+}
+
+input[type=range]+.thumb {
+	background: $def-border-color;
+	color: $white-color;
 }
 
 .input-field {
@@ -96,41 +164,188 @@ input[type=range] {
 	opacity: 0;
 }
 
-.chart {
-	height: 50vh; 
-	.chartContainer {
-		// padding: 20px 10px 0 10px;
-		height: 360px;
-		width: 100%;
+#main {
+	height: 100%;
+	width: 100%;
+}
+
+.tableTextCenter {
+	th,tr,td {
 		text-align: center;
-		border: 1px solid #424242;
-		border-top: none;
-		position: relative;
-		#chart {
-			height: 360px;
-			// top:0;
-			// bottom: 0;
-			// right: 0;
-			// left: 0;
-			// position: absolute;
-			// height: 100%;
-			.apexcharts-canvas {
-				
+	}
+}
+
+.modal {
+	height: auto;
+}
+// .modal-content {
+// 	height: 90%;
+// }
+.modal-footer {
+	height: 10%!important;
+}
+
+/* width */
+::-webkit-scrollbar {
+	height: 8px;
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $dark-lighter-color; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 20px;
+	background: $dark-medium-color; 
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	cursor: pointer;
+  background: $dark-medium-color; 
+}
+
+.Section-name {
+	color: $white-color;
+	padding: 0 15px;
+	text-align: left;
+	width: 100%;
+	height: auto;
+	background: $dark-darker-color;
+  border: 1px solid $dark-lighter-color;
+}
+
+.Section {
+	.Section__top, .Section__bottom {
+		padding: 0 10px;
+	}
+	.Section__top {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 1px solid $light-color;
+		label {
+			flex-basis: 50%;
+		}
+		.input-field {
+			input {
+				color: $white-color;
+				height: 2rem;
 			}
-			div {
-				
-				max-height: 360!important;
-			
+			.helper-text {
+				display: none
 			}
 		}
 	}
 }
 
+.filters {
+	padding: 4px;
+	a {
+		margin-right: 10px;
+	}
+	.filters-content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-items: center;
+		.filters-content__item {
+			margin-top: 6px;
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			&:not(:first-child) {
+				margin-left: 15px;
+			} 
+			.datepicker {
+				margin: 0;
+				max-width: 100px;
+				text-align: center;
+			}
+			p {
+				max-width: 120px;
+				margin-right: 5px;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+		}
+		
+		.filterDropDown {
+			min-width: 100px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			padding: 2px 8px;
+			border: 1px solid $white-color;
+			align-items: center;
+		}
+	}
+	
+}
 
-	.modal-content {
-		height: 90%;
+.dataTables_wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	.row {
+		.col-sm-12 {
+			padding: 0;
+		}
+		&:nth-child(3) {
+			display: none;
+		}
+		.dataTables_length {
+			display: none;
+		}
+		height: fit-content;
 	}
-	.modal-footer {
-		height: 10%!important;
+	.dataTables_scrollHead {
+		.dataTables_scrollHeadInner {
+			padding-right: 0!important;
+		}
 	}
+	table {
+    margin: 0;
+  }
+	tbody {
+    tr {
+      background: $light-color;
+    }
+    td, th {
+      padding: 3px 4px;
+    }
+    .table-head {
+      background: $white-color;
+    }
+    
+  }
+
+}
+
+.datepicker-container {
+	tr{
+		border-radius: 0;
+		button {
+			border-radius: 0;
+			background: $menu-btn-vover-color;
+			&:hover {
+				background: $def-border-color;
+				color: $white-color;
+			}
+			
+		}
+	}
+	.datepicker-table td.is-today {
+		color: $black-color;
+	}
+	.datepicker-footer {
+		margin-top: 10px;
+	}
+
+}
 

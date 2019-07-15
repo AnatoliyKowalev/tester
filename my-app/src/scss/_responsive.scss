@@ -1,0 +1,159 @@
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (max-width : 1224px) {
+  #main {
+    #topMenu {
+      transition: all .2s;
+      height: 156px;
+      top: 24px;
+      .nav-item {
+        min-height: 0;
+        .nav-item__main {
+          margin-bottom: 0;
+        }
+      }
+      .Tabs {
+        height: 25px;
+        top: -25px;
+      }
+      p, a, label>span {
+        font-size: 10px;
+      }
+     
+      i, svg {
+        transition: all .2s;
+      }
+      .fa-4x {
+        width: 0.7em;
+      }
+      .fa-3x {
+        font-size: 2.4em;
+      }
+      .fa-2x {
+        font-size: 1.6em;
+      }
+    }
+    .leftBar, .chartContainer {
+      top: 180px;
+    }
+    .bottomMenu {
+      .tabs {
+        .tab {
+          line-height: 32px;
+        }
+      } 
+    }
+  }
+}
+
+/* Large screens ----------- */
+
+
+@media screen and (max-width: 750px) {
+  #main {
+   .leftBar {
+     transition: all .2s;
+     width: 0;
+   }
+   .chartContainer {
+    transition: all .2s;
+    left: 0;
+  }
+ }
+}
+
+@media screen and (max-width: 600px) {
+  #main {
+   .leftBar {
+    //  transition: all .2s;
+    //  width: 0;
+   }
+   .chartContainer {
+    // transition: all .2s;
+    // left: 0;
+    bottom: 0;
+  }
+  .bottomMenu {
+    display: none;
+  }
+ }
+}
+
+
+@media screen and (max-height: 750px) {
+   #main {
+    // .leftBar, .chartContainer {
+    //   height: 48%;
+    // }
+  }
+}
+
+@media screen and (max-height: 400px) {
+  #main {
+   .leftBar {
+     width: 0;
+   }
+   .chartContainer {
+     left: 0;
+   }
+ }
+}
+
+
+
+@media screen and (max-height: 600px) {
+  #main {
+    .bottomMenu {
+      transition: all .2s;
+      height: 0;
+    }
+    .chartContainer {
+      bottom: 0;
+    }
+    .leftBar {
+      bottom: 0;
+    }
+ }
+}
+

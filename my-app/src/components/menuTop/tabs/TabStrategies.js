@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-materialize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList, faChartBar, faBolt, faSyncAlt, faCubes   } from '@fortawesome/pro-solid-svg-icons';
 
 class TabStrategies extends Component {
 
@@ -19,21 +21,25 @@ class TabStrategies extends Component {
     render () {
 	
 	return (
+
 	   	<div className="scroll">
 	   	 	
 	   		<div className="nav-item">
 	   			<div className="d-flex flex-row align-items-start h-100">
 	   				<div className="nav-item__main d-flex">
 						<button type="button">
-							<i className="fa fa-list fa-3x"></i>
-			   	 			<p>List of <br/> Strategies</p>
+							<FontAwesomeIcon icon={faList} size="3x" />
+							<p>List of <br/> Strategies</p>
 						</button>
 					</div>
-					<div className="nav-item__main d-flex">
-						<Switch offLabel="Off" 
-								onLabel="On" 
-								onChange={this.switchStrategiesExecution}
+					<div className="nav-item__main d-flex flex-column align-items-center">
+						<Switch 
+							offLabel="Off" 
+							onLabel="On" 
+							onChange={this.switchStrategiesExecution}
+							className="mb-3"
 						 />
+						 	<p>Enable/disable <br/> strategies' execution</p>
 					</div>
 	   			</div>
 				
@@ -47,23 +53,23 @@ class TabStrategies extends Component {
 
 	   				<div className="nav-item__main d-flex">
 						<button type="button">
-							<i className="fa fa-chart-bar fa-3x"></i>
-			   	 			<p>Strategy Optimizer</p>
+							<FontAwesomeIcon icon={faChartBar} size="3x" />
+							<p>Strategy Optimizer</p>
 						</button>
 						<button type="button">
-							<i className="fa fa-bolt fa-3x"></i>
-			   	 			<p>Quick test</p>
+							<FontAwesomeIcon icon={faBolt} size="3x" />
+							<p>Quick test</p>
 						</button>
 					</div>
 
 					<div className="nav-item__main d-flex">
 						<button type="button">
-							<i className="fa fa-sync-alt fa-3x"></i>
-			   	 			<p>MT4 Strategies <br/> Converter</p>
+							<FontAwesomeIcon icon={faSyncAlt} size="3x" />
+							<p>MT4 Strategies <br/> Converter</p>
 						</button>
 						<button type="button">
-							<i className="fa fa-cubes fa-3x"></i>
-			   	 			<p>Visual Strategy Builder</p>
+							<FontAwesomeIcon icon={faCubes} size="3x" />
+							<p>Visual Strategy Builder</p>
 						</button>
 					</div>
 	   			</div>

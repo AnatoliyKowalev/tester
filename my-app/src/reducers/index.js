@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
-import switchMode from './switchChartMode';
+// import switchMode from './switchChartMode';
 
-export default combineReducers({
-  switchMode
-});
+// export default combineReducers({
+//   switchMode
+// });

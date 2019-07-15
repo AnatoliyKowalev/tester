@@ -1,0 +1,24 @@
+
+.chartContainer>div {
+  width: 100%;
+  height: 100%;
+  label {
+    display: none;
+  }
+  svg {
+    left: 0;
+  }
+}
+.chartContainer {
+  // height: 54%;
+  bottom: 237px;
+  position: absolute;
+  top: 204px;
+  left: 360px;
+  right: 0;
+  text-align: center;
+  border: 1px solid $def-border-color;
+  border-top: none;
+  display: flex;
+  flex-direction: row;
+}
