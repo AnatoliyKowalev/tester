@@ -120,15 +120,6 @@ and (max-width : 1224px) {
  }
 }
 
-
-@media screen and (max-height: 750px) {
-   #main {
-    // .leftBar, .chartContainer {
-    //   height: 48%;
-    // }
-  }
-}
-
 @media screen and (max-height: 400px) {
   #main {
    .leftBar {
@@ -140,9 +131,22 @@ and (max-width : 1224px) {
  }
 }
 
-
-
 @media screen and (max-height: 600px) {
+  #main {
+  
+    .chartContainer {
+      left: 0;
+    }
+    .leftBar {
+    
+      width: 0;
+    }
+ }
+}
+
+
+
+@media screen and (max-height: 800px) {
   #main {
     .bottomMenu {
       transition: all .2s;

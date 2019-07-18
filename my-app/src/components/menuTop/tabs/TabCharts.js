@@ -1,126 +1,122 @@
 import React, { Component } from 'react';
-import {Dropdown, Button, RadioGroup, Modal, Switch } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWrench, faCamera, faSearchPlus, faSearchMinus, faSearch, faSave, faEdit, faTable, faSyncAlt, faDownload,
-				 faAlignCenter, faAlignJustify, faAlignLeft, faAlignRight, faAdjust, faAnchor, faMagnet, faPlusSquare   
-			 } from '@fortawesome/pro-solid-svg-icons';
+import {
+	faCaretDown, faWrench, faCamera, faSearchPlus, faSearchMinus, faSearch, faSave, faEdit, faTable, faSyncAlt, faDownload,
+	faAlignCenter, faAlignJustify, faAlignLeft, faAlignRight, faAdjust, faAnchor, faMagnet, faPlusSquare
+} from '@fortawesome/pro-solid-svg-icons';
+import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 
 class TabCharts extends Component {
 
-	constructor(props){
-	    super(props);
-	    this.state = {
-	    	chartDarkMode: false,
-	    	modeProgect: 'candleMode'
-	    };
+	constructor(props) {
+		super(props);
+		this.state = {
+			modal: false
+		};
 	}
 
-	pickProgectMode = (e) => {
-		let mode = e.target.value
-		this.setState({
-			modeProgect: mode
-		})
-	} 
+	changeChartMode = (e) => this.props.changeChartMode(e.target.checked)
 
-	chartDarkMode = (e) => {
-		this.setState({
-			chartDarkMode: !this.state.chartDarkMode
-		})
-	}
+	toggle = () => this.setState({ modal: !this.state.modal });
 
-    render () {
-	
-	const addNewChartDropDown	= <Button className="nav-item__toolsList horizontalList">
-																<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-																<p>Add New Chart</p>
-																<i className="fa fa-sort-down"></i> 
-															</Button>
+	render() {
 
-	const addRangeBarDropDown	= <Button className="nav-item__toolsList horizontalList">
-															<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-																<p>Add Range Bar Chart</p>
-																<i className="fa fa-sort-down"></i> 
-															</Button>
+		const { chartMode } = this.props
 
-	const addRenkoBarDropDown	= <Button className="nav-item__toolsList horizontalList">
-																<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-																<p>Add Renko Bar Chart</p>
-																<i className="fa fa-sort-down"></i> 
-															</Button>
-
-	const addProfitDropDown		= <Button className="nav-item__toolsList horizontalList">
-															<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-																<p>Add Profit Chart</p>
-																<i className="fa fa-sort-down"></i> 
-															</Button>
-
-	const chartSettings		 		= <Button className="nav-item__toolsList flex-column">
-																<FontAwesomeIcon icon={faWrench} size="3x"/>
-																<p>Chart setting</p>
-															</Button>
-
-	return (
-
-	   	 <div className=" scroll">
-
-	   	 	<div className="nav-item" >
+		return (
+			<div className=" scroll">
+				<div className="nav-item" >
 					<div className="nav-item__main d-flex flex-column align-items-start">
-						<Dropdown   options={{
-										coverTrigger: false
-									}} 
-									trigger={addNewChartDropDown}
-						>
-							<a href="#/">Manage timeframes</a>
-						</Dropdown>
+						<div className="dropDown">
+							<button className="dropTarget">
+								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
+								Add New Chart
+								<FontAwesomeIcon icon={faCaretDown} />
+							</button>
+							<ul>
+								<li><button>Close All Positions and Orders</button></li>
+								<li><button>Open group of orders</button></li>
+								<li><button>Duplicate Position</button></li>
+								<hr />
+								<li><button>Move Stop Loss to Breackeven</button></li>
+							</ul>
+						</div>
 
-						<Dropdown   options={{
-										coverTrigger: false
-									}} 
-									trigger={addRangeBarDropDown}
-						>
-							<a href="#/">Manage timeframes</a>
-						</Dropdown>
+						<div className="dropDown">
+							<button className="dropTarget">
+								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
+								Add New Chart
+								<FontAwesomeIcon icon={faCaretDown} />
+							</button>
+							<ul>
+								<li><button>Close All Positions and Orders</button></li>
+								<li><button>Open group of orders</button></li>
+								<li><button>Duplicate Position</button></li>
+								<hr />
+								<li><button>Move Stop Loss to Breackeven</button></li>
+							</ul>
+						</div>
 
-						<Dropdown   options={{
-										coverTrigger: false
-									}} 
-									trigger={addRenkoBarDropDown}
-						>
-							<a href="#/">Manage timeframes</a>
-						</Dropdown>
+						<div className="dropDown">
+							<button className="dropTarget">
+								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
+								Add New Chart
+								<FontAwesomeIcon icon={faCaretDown} />
+							</button>
+							<ul>
+								<li><button>Close All Positions and Orders</button></li>
+								<li><button>Open group of orders</button></li>
+								<li><button>Duplicate Position</button></li>
+								<hr />
+								<li><button>Move Stop Loss to Breackeven</button></li>
+							</ul>
+						</div>
 
-						<Dropdown   options={{
-										coverTrigger: false
-									}} 
-									trigger={addProfitDropDown}
-						>
-							<a href="#/">Manage timeframes</a>
-						</Dropdown>
+						<div className="dropDown">
+							<button className="dropTarget">
+								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
+								Add New Chart
+								<FontAwesomeIcon icon={faCaretDown} />
+							</button>
+							<ul>
+								<li><button>Close All Positions and Orders</button></li>
+								<li><button>Open group of orders</button></li>
+								<li><button>Duplicate Position</button></li>
+								<hr />
+								<li><button>Move Stop Loss to Breackeven</button></li>
+							</ul>
+						</div>
 					</div>
 
 					<div className="nav-item__empty">
 						<p>New Charts</p>
 					</div>
-				</div>  
+				</div>
 
-	   	 	<div className="nav-item">
+				<div className="nav-item">
 					<div className="nav-item__main hiddenInput d-flex flex-column align-items-start" >
-						<RadioGroup
-							name="size"
-							label="T-Shirt Size"
-							onChange={this.pickProgectMode}
-							options={[{label: 'Candle Mode',value: 'candleMode'},
-										{label: 'Bars Mode',value: 'barsMode'},
-										{label: 'Lines Mode',value: 'linesMode'}]}
-						/>
+
+						<label htmlFor="candleMode">
+							<input type="radio" id="candleMode" name="createProgect" value="candleMode" />
+							Candle Mode
+						</label>
+						<label htmlFor="barsMode">
+							<input type="radio" id="barsMode" name="createProgect" value="barsMode" />
+							Bars Mode
+						</label>
+						<label htmlFor="linesMode">
+							<input type="radio" id="linesMode" name="createProgect" value="linesMode" />
+							Lines Mode
+						</label>
+
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Create Project</p>
-	   	 		</div>
-	   	 	</div> 
+						<p>Create Project</p>
+					</div>
+				</div>
 
-	   	 	<div className="nav-item">
+				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-row">
 						<button type="button">
 							<FontAwesomeIcon icon={faSearchPlus} size="3x" />
@@ -137,13 +133,13 @@ class TabCharts extends Component {
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Zoom & Search</p>
-	   	 		</div>
-	   	 	</div> 
+						<p>Zoom & Search</p>
+					</div>
+				</div>
 
-	   	 	<div className="nav-item">
+				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-column align-items-start">
-	
+
 						<button type="button" className="d-flex flex-row align-items-center">
 							<FontAwesomeIcon icon={faSave} size="2x" />
 							<p>Save template</p>
@@ -156,19 +152,19 @@ class TabCharts extends Component {
 
 						<button type="button" className="d-flex flex-row align-items-center">
 							<FontAwesomeIcon icon={faTable} size="2x" />
-		   	 			<p>Default template</p>
+							<p>Default template</p>
 						</button>
-					
+
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Profiles</p>
-	   	 		</div>
-				</div> 
-	   	 	
-	   		<div className="nav-item">
+						<p>Profiles</p>
+					</div>
+				</div>
+
+				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-column align-items-start" >
-	
+
 						<button type="button" className="d-flex flex-row align-items-center">
 							<FontAwesomeIcon icon={faDownload} size="2x" />
 							<p>Load Project</p>
@@ -183,13 +179,13 @@ class TabCharts extends Component {
 							<FontAwesomeIcon icon={faSyncAlt} size="2x" />
 							<p>Restore Default Profile</p>
 						</button>
-				
+
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Profiles</p>
-	   	 		</div>
-				</div> 
+						<p>Profiles</p>
+					</div>
+				</div>
 
 				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-column align-items-start">
@@ -200,13 +196,13 @@ class TabCharts extends Component {
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Screenshot</p>
-	   	 		</div>
+						<p>Screenshot</p>
+					</div>
 				</div>
 
 				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-column align-items-start">
-	
+
 						<button type="button" className="d-flex flex-row align-items-center">
 							<FontAwesomeIcon icon={faAlignCenter} size="1x" />
 							<p>Tile Vertically</p>
@@ -226,17 +222,17 @@ class TabCharts extends Component {
 							<FontAwesomeIcon icon={faAlignRight} size="1x" />
 							<p>Cascade</p>
 						</button>
-						
+
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Window Swttings</p>
-	   	 		</div>
-				</div> 
+						<p>Window Settings</p>
+					</div>
+				</div>
 
 				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-column align-items-start" >
-	
+
 						<button type="button" className="d-flex flex-row align-items-center">
 							<FontAwesomeIcon icon={faAdjust} size="1x" />
 							<p>Autoscroll</p>
@@ -256,30 +252,41 @@ class TabCharts extends Component {
 							<FontAwesomeIcon icon={faSyncAlt} size="1x" />
 							<p>Sync charts</p>
 						</button>
-						
+
 					</div>
 
 					<div className="nav-item__empty">
-		   	 		<p>Charts</p>
-	   	 		</div>
-				</div> 
+						<p>Charts</p>
+					</div>
+				</div>
 
 				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-column align-items-start">
-						<Modal header="Modal Header" trigger={chartSettings}>
-							<Switch offLabel="light" 
-									onLabel="dark" 
-									onChange={this.chartDarkMode}
-							/>	
-						</Modal>
+						<MDBContainer>
+							<button onClick={this.toggle} className="nav-item__toolsList flex-column">
+								<FontAwesomeIcon icon={faWrench} size="3x" />
+								<p>Chart setting</p>
+							</button>
+							<MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+								<MDBModalHeader toggle={this.toggle}>Chart settings</MDBModalHeader>
+								<MDBModalBody>
+									<label className="switch" style={{ width: '110px' }}>
+										<p>{chartMode ? 'light' : 'dark'}</p>
+										<input type="checkbox" defaultChecked={chartMode} onChange={this.changeChartMode} />
+										<span className="slider round"></span>
+									</label>
+								</MDBModalBody>
+							</MDBModal>
+						</MDBContainer>
 					</div>
-	
 					<div className="nav-item__empty">
-		   	 		<p>Settings</p>
-	   	 		</div>
+						<p>Settings</p>
+					</div>
 				</div>
 			</div>
-	)}
+
+		)
+	}
 }
 
 export default TabCharts

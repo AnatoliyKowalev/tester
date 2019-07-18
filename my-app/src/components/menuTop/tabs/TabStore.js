@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Dropdown, Button } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSortDown, faChartBar, faFileInvoice, faCode, faDollarSign, faRegistered, faCoins, faUpload, faClone ,faCopy, faBook  } from '@fortawesome/pro-solid-svg-icons';
+import { faSortDown, faChartBar, faDollarSign, faRegistered, faCoins, faUpload, faClone ,faCopy, faBook  } from '@fortawesome/pro-solid-svg-icons';
 
 class TabStore extends Component {
 
@@ -13,33 +12,14 @@ class TabStore extends Component {
 	} 
  
     render () {
-	
-	const indicatorsDropDown		= <Button className="nav-item__toolsList flex-column">
-																	<FontAwesomeIcon icon={faChartBar} size="2x" />
-																	<p>Indicators</p>
-																	<FontAwesomeIcon icon={faSortDown} />
-																</Button>
-
-	const strategiesDropDown		= <Button className="nav-item__toolsList flex-column">
-																	<FontAwesomeIcon icon={faFileInvoice} size="2x" />
-																	<p>Strategies</p>
-																	<FontAwesomeIcon icon={faSortDown} />
-																</Button>
-
-	const utilitiesDropDown			= <Button className="nav-item__toolsList flex-column">
-																	<FontAwesomeIcon icon={faCode} size="2x" />
-																	<p>Utilities</p>
-																	<FontAwesomeIcon icon={faSortDown} />
-																</Button>
-
-	return (
+		return (
 	   	<div className="scroll">
 
 	   	 	<div className="nav-item">
 					<div className="nav-item__main d-flex flex-row">
 							<button type="button" >
 								<FontAwesomeIcon icon={faDollarSign} size="3x" />
-								<p>Upgrate <br/> tp FT4</p>
+								<p>Upgrate <br/> to FT4</p>
 							</button>
 							<button type="button" >
 								<FontAwesomeIcon icon={faRegistered} size="3x" />
@@ -55,52 +35,49 @@ class TabStore extends Component {
 	   		<div className="nav-item">
 					<div className="d-flex h-100" > 
 
-						<div className="nav-item__main d-flex flex-column">
-							<Dropdown 
-								options={{
-									coverTrigger: false,
-									constrainWidth: false
-								}} 
-								trigger={indicatorsDropDown}
-							>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-							</Dropdown>
+						<div className="nav-item__main columnDropTarget d-flex flex-column">
+							<div className="dropDown">
+								<button className="dropTarget">
+									<FontAwesomeIcon icon={faChartBar} size="2x" />
+									Indicators
+									<FontAwesomeIcon icon={faSortDown} />
+								</button>
+								<ul>
+									<li><button>Close All Positions and Orders</button></li>
+									<li><button>Open group of orders</button></li>
+								</ul>
+							</div>
+						
 						</div>
 	
-						<div className="nav-item__main d-flex flex-column">
-							<Dropdown 
-								options={{
-									coverTrigger: false,
-									constrainWidth: false
-								}} 
-								trigger={strategiesDropDown}
-							>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-							</Dropdown>
+						<div className="nav-item__main columnDropTarget d-flex flex-column">
+							<div className="dropDown">
+								<button className="dropTarget">
+									<FontAwesomeIcon icon={faChartBar} size="2x" />
+									Strategies
+									<FontAwesomeIcon icon={faSortDown} />
+								</button>
+								<ul>
+									<li><button>Close All Positions and Orders</button></li>
+									<li><button>Open group of orders</button></li>
+								</ul>
+							</div>
+						
 						</div>
 
-						<div className="nav-item__main d-flex flex-column">
-							<Dropdown
-								options={{
-									coverTrigger: false,
-									constrainWidth: false
-								}} 
-								trigger={utilitiesDropDown}
-							>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-								<a href="index.html">Manage timeframes</a>
-							</Dropdown>
+						<div className="nav-item__main columnDropTarget d-flex flex-column">
+							<div className="dropDown">
+								<button className="dropTarget">
+									<FontAwesomeIcon icon={faChartBar} size="2x" />
+									Utilities
+									<FontAwesomeIcon icon={faSortDown} />
+								</button>
+								<ul>
+									<li><button>Close All Positions and Orders</button></li>
+									<li><button>Open group of orders</button></li>
+								</ul>
+							</div>
+						
 						</div>
 					</div>
 
@@ -181,7 +158,8 @@ class TabStore extends Component {
 	   	 		</div>
 	   	 	</div> 
 	   	</div>
-	)}
+		)
+	}
 }
 
 export default TabStore

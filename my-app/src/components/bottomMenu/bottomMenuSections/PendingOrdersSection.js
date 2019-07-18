@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-// import { Table } from 'react-materialize';
 import { MDBDataTable } from 'mdbreact';
 
 export default class PendingOrdersSection extends Component {
 
-  constructor(props){
-		super(props);
-		this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       tableData: {
         columns: [
           {
@@ -75,7 +74,6 @@ export default class PendingOrdersSection extends Component {
     }
   }
 
-
   render(props) {
     return (
       <div className="Section" >
@@ -85,7 +83,7 @@ export default class PendingOrdersSection extends Component {
             searching={false}
             scrollY
             scrollX
-            maxHeight='146px'
+            maxHeight='156px'
             striped
             hover
             bordered
@@ -93,12 +91,7 @@ export default class PendingOrdersSection extends Component {
             data={this.state.tableData}
           />
         </div>
-  
-     
-     </div>
-    
+      </div>
     )
   }
- 
 }
-  

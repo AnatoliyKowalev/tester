@@ -8,123 +8,78 @@ import TabStrategies from './tabs/TabStrategies'
 import TabTools from './tabs/TabTools'
 import TabStore from './tabs/TabStore'
 import TabHelp from './tabs/TabHelp'
-// import MenuTub from './MenuTub'
 
+import { topMenuTabs } from './../../utils/constants';
 
-class Tabs extends Component {
+class MenuTop extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      active: 0
+      activeTab: 0
     }
   }
-  
-  select = (i) => {
-    let _this = this;
-    return function() {
-      _this.setState({
-        active: i
-      });
-    }
-  }
-  
-  renderTabs = () => {
-  	let listTabs = [
-  		'Home',
-  		'Project',
-  		"Charts",
-      "Graphics",
-      "Indicators",
-      "Strategies",
-      "Tools",
-      "Store",
-      "Help"
-  	]
-  	
-    // return React.Children.map(this.props.children, (item, i) => {
-    //   if (i%2 === 0) {
-    //     let active = this.state.active === i ? 'activeTab' : '';
-    //     return <li><a onClick={this.select(i)} className={`${active} tab`}>{item}</a></li>;
-    //   }
-    // }
-    // );
-    return (
-     	<ul className="Tabs">
-	    	  {listTabs.map((value, index) =>{
-	    	  	let active = this.state.active === index ? 'activeTab' : '';
-	    	    return (<li key={index}>
-	    	    			<a href="#/" onClick={this.select(index)} 
-	    	    				className={`${active} tab`}>
-	    	    					{value}
-	    	    			</a>
-    	    			</li>);
-	    	  })}
-	    </ul>
-	    );
-  }
-  
-  renderContent() {
-  	let subTabs = [
-  		{
-  			tab: <TabHome />
-  		},
-  		{
-  			tab: <TabProject />
-  		},
-      {
-        tab: <TabCharts />
-      }
-      ,
-      {
-        tab: <TabGraphics />
-      }
-      ,
-      {
-        tab: <TabIndicators />
-      }
-      ,
-      {
-        tab: <TabStrategies />
-      },
-      {
-        tab: <TabTools />
-      },
-      {
-        tab: <TabStore />
-      },
-      {
-        tab: <TabHelp />
-      }
-  	]
 
-    return subTabs.map((value, index) => {
+  selectTab = event => this.setState({
+    activeTab: +event.currentTarget.dataset.index
+  });
 
-	      if (index === this.state.active) {
-				  let sectionName = value.tab;
-  				return (
-  				  <div key={index} className="setOfTools">{sectionName}</div>
-        )} else {
-	          return true;
-	      }
-	  })
-  }
+  changeChartMode = (checked) => this.props.changeChartMode(checked)
 
   render() {
-  	
+
+    const { chartMode } = this.props
+
+    const getSelectedTab = tabIndex => {
+      switch (tabIndex) {
+        case 0:
+          return <TabHome />;
+        case 1:
+          return <TabProject />;
+        case 2:
+          return <TabCharts changeChartMode={this.changeChartMode} chartMode={chartMode} />;
+        case 3:
+          return <TabGraphics />;
+        case 4:
+          return <TabIndicators />;
+        case 5:
+          return <TabStrategies />;
+        case 6:
+          return <TabTools />;
+        case 7:
+          return <TabStore />;
+        case 8:
+          return <TabHelp />;
+        default:
+          break;
+      }
+    };
+
+    const tabs = topMenuTabs.map((tabName, index) => {
+      let active = this.state.activeTab === index ? 'activeTab' : '';
+      return <li key={index}>
+        <button
+          data-index={index}
+          onClick={this.selectTab}
+          className={`${active} tab`}
+        >
+          {tabName}
+        </button>
+      </li>;
+    });
+
+    const tabContent = getSelectedTab(this.state.activeTab);
+
     return (
-      <>
-	       {this.renderTabs()}
-	  
-       	 {this.renderContent()}
-      </>
+      <div className="menu-top">
+        <ul className="Tabs">
+          {tabs}
+        </ul>
+        <div className="setOfTools">
+          {tabContent}
+        </div>
+      </div>
     );
   }
 }
 
-// export default MenuTop;
-export default Tabs;
-
-
-
-
-
+export default MenuTop;

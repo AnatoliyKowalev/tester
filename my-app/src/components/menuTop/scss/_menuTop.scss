@@ -1,27 +1,28 @@
 #topMenu {
 	height: 176px;
+	top: 0;
 	display: flex;
 	position: absolute;
 	width: 100%;
 	flex-direction: column;
-	top: 28px;
+	// top: 28px;
 	z-index: 45;
 	border-bottom: 1px solid $black-color;
-	.Tabs { 
+
+	.menuTabs { 
 		position: absolute;
-		top: -28px;
+		top: 28px;
 		margin: 0;
-		height: 28px;
+		height: 160px;
+		width: 100%;
 		// padding-top: 8px;
 		display: flex;
 		flex-direction: row;
+		background: $dark-color;
 		align-items: center;
 		justify-content: flex-start;
 		z-index: 4;
-		.activeTab {
-			background: $dark-color;
-		// border-bottom: 1px solid $white-color;
-		}
+	
 		li {
 			padding: 5px 0;
 			a {
@@ -51,16 +52,17 @@
 	display: flex;
 	padding: 10px 20px 3px;
 	white-space: nowrap;
-	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
-	-ms-overflow-style: -ms-autohiding-scrollbar; 
+	overflow-y: auto;
+	overflow-x: scroll;
+	// -webkit-overflow-scrolling: touch;
+	// -ms-overflow-style: -ms-autohiding-scrollbar; 
 }
 
 .setOfTools {
+	height: 176px;
 	background: $dark-color;
-	height: 100%;
 	width: 100%;
-	color: $white-color
+	color: $white-color;
 }
 
 .nav-item {
@@ -139,11 +141,23 @@
 		align-items: center;
 		justify-content: center;
 		// font-size: 12px;
+		.dropDown {
+			margin-bottom: 4px;
+			.dropTarget {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				font-size: 14px;
+				// svg {
+				// 	font-size: 12px;
+				// }
+			}
+		}
 		i, svg {
 			color: $light-darker-color;
 			// margin: 5px;
 		}
-		button {
+		.btn, button {
 			font-size: $small-text-size;
 			color: $white-color;
 			padding: 5px;
@@ -159,30 +173,37 @@
 				color: $menu-btn-vover-color;
 			}
 		}
-		label {
-			cursor: pointer;
-			margin-left: 5px;
-			[type="checkbox"]+span:not(.lever) {
-				line-height: 19px;
-			}
-		}
+		// label {
+		// 	cursor: pointer;
+		// 	margin-left: 5px;
+		// 	[type="checkbox"]+span:not(.lever) {
+		// 		line-height: 19px;
+		// 	}
+		// }
 	
 
-		input[type=checkbox] {
-			position: relative;
-			opacity: 1;
-		}
+		// input[type=checkbox] {
+		// 	position: relative;
+		// 	opacity: 1;
+		// }
 		&:not(:last-child) button {
 			margin-right: 5px;
 		}  
 
-		&.hiddenInput {
-			input {
-				opacity: 0;
-				display: none;
-			}
-		}
+		// &.hiddenInput {
+		// 	input {
+		// 		opacity: 0;
+		// 		display: none;
+		// 	}
+		// }
 	} 
+	.columnDropTarget {
+		.dropTarget {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
 	&:not(:last-child) &__main {
 		border-right: 1px solid rgba($light-darker-color, .5); 
 	}  
@@ -213,7 +234,7 @@
 			// 	}
 			// }
 		}
-		button {
+		.btn {
 			box-shadow: none;
 			color: $white-color;
 			// background: rgba(66, 66, 66, .3);
@@ -261,7 +282,7 @@
 			color: $light-darker-color;
 		}
 		li:hover {
-			background: none;
+			// background: none;
 			span {
 				color: $light-color;
 			}

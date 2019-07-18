@@ -1,76 +1,119 @@
-import React, { Component } from 'react'
-import { Tab, Tabs } from 'react-materialize';
-import Symbols from './leftBarSections/Symbols'
-import Ticks from './leftBarSections/Ticks'
-import Statistic from './leftBarSections/Statistic'
-import DataWindow from './leftBarSections/DataWindow'
-import Scripts from './leftBarSections/Scripts'
+import React, { Component, lazy, Suspense } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowMaximize } from '@fortawesome/pro-solid-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/pro-solid-svg-icons';
+import { leftBarWindows } from '../../utils/constants';
 
+const Symbols = lazy(() => import('./leftBarSections/Symbols'));
+const Ticks = lazy(() => import('./leftBarSections/Ticks'));
+const Statistic = lazy(() => import('./leftBarSections/Statistic'));
+const DataWindow = lazy(() => import('./leftBarSections/DataWindow'));
+const Scripts = lazy(() => import('./leftBarSections/Scripts'));
 
-export default class LeftBar extends Component {
+class LeftBar extends Component {
 
-  // constructor(props){
-	// 	super(props);
-	// 	this.state = {
-			
-	// 	};
-  // }
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      topActiveTab: 'Scripts',
+      bottomActiveTab: 'Symbols',
+      topRolledWindow: false,
+      bottomRolledWindow: false,
+    };
+  }
+
+  rollWindow = (e) => {
+    if(e.currentTarget.dataset.value === 'top') {
+      this.setState({topRolledWindow: !this.state.topRolledWindow})
+    } else {
+      this.setState({bottomRolledWindow: !this.state.bottomRolledWindow})
+    }     
+  }
+
+  selectTopTab = event => this.setState({
+    topActiveTab: event.currentTarget.getAttribute('datatabname'),
+  });
+
+  selectBottomTab = event => this.setState({
+    bottomActiveTab: event.currentTarget.getAttribute('datatabname')
+  });
+
   render() {
-    
+    const windowTabsWindowTop = leftBarWindows[0].map((tabName, index) => {
+      let active = this.state.topActiveTab === tabName
+        ? 'activeTab'
+        : '';
+      return <li key={index}>
+        <button
+          datatabname={tabName}
+          onClick={this.selectTopTab}
+          className={`${active} tab`}
+        >
+          {tabName}
+        </button>
+      </li>;
+    });
+    const windowTabsWindowBottom = leftBarWindows[1].map((tabName, index) => {
+      let active = this.state.bottomActiveTab === tabName
+        ? 'activeTab'
+        : '';
+      return <li key={index}>
+        <button
+          datatabname={tabName}
+          onClick={this.selectBottomTab}
+          className={`${active} tab`}
+        >
+          {tabName}
+        </button>
+      </li>;
+    });
+
     return (
-    
-      <div className="leftBar">
-        <div className="tabs-wrapper unrolled">
-        
-          <div className="close-panel">
-            {/* <div className="close-panel__item leftBarClose">
-              <FontAwesomeIcon icon={faTimes} />
-            </div> */}
-            <div className="close-panel__item leftBarRollUp">
-              <FontAwesomeIcon icon={faWindowMaximize} />
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="leftBar">
+          <div className={`tabs-wrapper ${this.state.bottomRolledWindow? 'rolled' : 'unrolled' }`}>
+            <div className="close-panel">
+              <div className="close-panel__item leftBarRollUp" data-value='top' onClick={this.rollWindow}>
+                {
+                  this.state.topRolledWindow
+                    ? <FontAwesomeIcon icon={faMinus} /> 
+                    : <FontAwesomeIcon icon={faPlus} />
+                }
+              </div>
             </div>
+            <ul className="Tabs">
+              {windowTabsWindowTop}
+            </ul>
+            {
+              this.state.topActiveTab === 'Scripts'
+                ? <Scripts />
+                : <DataWindow />
+            }
           </div>
-          
-
-          <Tabs >
-            <Tab title="Data Window">
-              <DataWindow />
-            </Tab>
-            <Tab title="Scripts">
-              <Scripts />
-            </Tab>
-          </Tabs>
-        </div>
-   
-        <div className="tabs-wrapper unrolled">
-          <div className="close-panel">
-            {/* <div className="close-panel__item leftBarClose">
-              <FontAwesomeIcon icon={faTimes} />
-            </div> */}
-            <div className="close-panel__item leftBarRollUp">
-              <FontAwesomeIcon icon={faWindowMaximize} />
+          <div className={`tabs-wrapper ${this.state.topRolledWindow? 'rolled' : 'unrolled' }`}>
+            <div className="close-panel">
+              <div className="close-panel__item leftBarRollUp" data-value='bottom' onClick={this.rollWindow}>
+                {
+                  this.state.bottomRolledWindow
+                    ? <FontAwesomeIcon icon={faMinus} /> 
+                    : <FontAwesomeIcon icon={faPlus} />
+                }
+              </div>
             </div>
+            <ul className="Tabs">
+              {windowTabsWindowBottom}
+            </ul>
+            {
+              this.state.bottomActiveTab === 'Symbols'
+                ? <Symbols />
+                : this.state.bottomActiveTab === 'Ticks'
+                  ? <Ticks />
+                  : <Statistic/>
+            }
           </div>
-          <Tabs >
-            <Tab title="Symbols">
-              <Symbols />
-            </Tab>
-            <Tab title="Ticks">
-              <Ticks />
-            </Tab>
-            <Tab title="Statistic">
-            <Statistic />
-            </Tab>
-          </Tabs>
-         
         </div>
-        
-
-      </div>
-      
+      </Suspense>
     )
   }
 }
+
+export default LeftBar

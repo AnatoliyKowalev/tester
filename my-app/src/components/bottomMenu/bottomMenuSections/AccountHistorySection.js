@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import { Checkbox, Dropdown, DatePicker, Button } from 'react-materialize';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/pro-solid-svg-icons';    
+import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
+import { faCaretDown } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class AccountHistorySection extends Component {
-  constructor(props){
-		super(props);
-		this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       activeFilters: false,
       tableData: {
         columns: [
@@ -39,13 +38,13 @@ export default class AccountHistorySection extends Component {
             label: 'Open time',
             field: 'openTime',
             sort: 'asc',
-            width: 120
+            width: 160
           },
           {
             label: 'Open Price',
             field: 'openPrice',
             sort: 'asc',
-            width: 150
+            width: 110
           },
           {
             label: 'S/L',
@@ -54,7 +53,7 @@ export default class AccountHistorySection extends Component {
             width: 110
           },
           {
-            label: 'T/P.',
+            label: 'T/P',
             field: 'TP',
             sort: 'asc',
             width: 110
@@ -63,13 +62,13 @@ export default class AccountHistorySection extends Component {
             label: "Current price",
             field: 'currentPrice',
             sort: 'asc',
-            width: 120
+            width: 110
           },
           {
             label: "Comment",
             field: 'comment',
             sort: 'asc',
-            width: 150
+            width: 140
           },
           {
             label: "Swop",
@@ -111,7 +110,7 @@ export default class AccountHistorySection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -127,7 +126,7 @@ export default class AccountHistorySection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -143,7 +142,7 @@ export default class AccountHistorySection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -159,7 +158,7 @@ export default class AccountHistorySection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '1',
@@ -175,9 +174,9 @@ export default class AccountHistorySection extends Component {
             swop: 1.00,
             commission: 0.00,
             points: 2,
-            profit: 10000.00
+            profit: 11000.00
           },
-          
+
         ]
       },
       byDate: {
@@ -202,309 +201,197 @@ export default class AccountHistorySection extends Component {
       filterParameters: {
         openDate: '',
         closeDate: '',
-        symbolsArr: []
+        sellectedSymbols: 'Choose symbols',
       }
     }
   }
 
   componentDidMount = () => {
-    //set bydate parameter
     this.setState({
       byDate: {
+        ...this.state.byDate,
         option: 'Any date',
-        changed: false,
-        openDate: '',
-        closeDate: ''
       },
       byType: {
-        option: 'All',
-        changed: false
+        ...this.state.byType,
+        option: 'All'
       },
       byProfitType: {
-        option: 'All',
-        changed: false
+        ...this.state.byProfitType,
+        option: 'All'
       }
     })
   }
 
   //Hide / show filters
   activeFilters = (e) => {
-    this.setState({
-      activeFilters: !this.state.activeFilters
-      
-    })
+    this.setState({ activeFilters: !this.state.activeFilters })
   }
 
   //Filter parameters-------------------
   //Add open date to filter parameters
   addOpenDateToFilterParameters = (e) => {
-    let openDate = e.toISOString().slice(0, 10)
+    let openDate = e.target.value.replace(/[-.]/g, m => (m === '.' ? '-' : '.'))
     this.setState({
       filterParameters: {
         openDate: openDate
       }
     })
-    // this.state.filterParameters.openDate = openDate
   }
   //Add close date to filter parameters
   addCloseDateToFilterParameters = (e) => {
-    let closeDate = e.toISOString().slice(0, 10)
+    let closeDate = e.target.value.replace(/[-.]/g, m => (m === '.' ? '-' : '.'))
     this.setState({
-        filterParameters: {
-          closeDate: closeDate
-        }
+      filterParameters: {
+        closeDate: closeDate
+      }
     })
-    // this.state.filterParameters.closeDate = closeDate
   }
   //Add symbol to filter parameters
   addSymbolToFilterParameters = (e) => {
-    if(e.target.checked === true) {
+    if (e.target.checked) {
       console.log('+')
     }
   }
-
   //Getting filter parameters
   getFiltersParameter = (e) => {
-    let parametr = e.target.getAttribute('value')
-    let filterParametr = e.target.classList
-    
-    if(filterParametr.contains('byDate')) {
-      this.setState({
-        [filterParametr]: {
-          option: parametr,
+    let filterParameter = e.currentTarget.name;
+    let parameter = e.target.value;
+    this.setState(() => {
+      return {
+        [filterParameter]: {
+          option: parameter,
           changed: false
         }
-      })
-    }
-    
-    if(filterParametr.contains('bySymbol')) {
-      console.log('bySymbol')
-    }
-
-    if(filterParametr.contains('byType')) {
-      this.setState({
-        [filterParametr]: {
-          option: parametr,
-          changed: false
-        }
-      })
-    }
-
-    if(filterParametr.contains('byProfitType')) {
-      this.setState({
-        [filterParametr]: {
-          option: parametr,
-          changed: false
-        }
-      })
-    }
-
-  }  
-  
-  //Clear filters
-  clearFilters = () => {
-    this.setState({
-      filterParameters: {
-        openDate: '',
-        closeDate: '',
-        symbolsArr: []
       }
-    })
-    // console.log(this.state.filterParameters)
+    });
+  }
+  //Clear filters
+  clearFilters = () => this.setState({
+    filterParameters: {
+      openDate: '',
+      closeDate: '',
+      symbolsArr: []
+    }
+  })
+  //multiselect symbols
+  getSymbolsArr = (e) => {
+    
+    let ul = e.target.closest('ul'),
+        ulSize = ul.childElementCount,
+        checkedSymbols = [];
+
+    for (let i = 0; i <= ulSize - 1; i++) {
+
+      let input = ul.children[i].children[0]
+      if (input.checked) {
+        checkedSymbols.push(input.id + ';')
+      }
+    }
+    this.setState({ filterParameters: {
+      ...this.state.filterParameters,
+      sellectedSymbols: checkedSymbols
+    } })
   }
 
-  // gg = (e) => {
-  //   let symbolText = '';
-  //   let max = this.state.bySymbol.symbolsArr.length;
-  //   this.state.bySymbol.symbolsArr.forEach(function(item, index) {
-  //     if(index != max-1) {symbolText += item+';'} else {symbolText += item}
-
-  //   })
-  //  document.getElementById('symbolText').innerHTML = symbolText
-  //   return symbolText
-  // }
-
   render() {
-    
-    const dateDropDown		      =  <div className="filterDropDown">
-                                      <p>{this.state.byDate.option}</p>
-                                      <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-
-    const symbolDropDown	    	=  <div className="filterDropDown">
-                                      <p id="symbolText">{this.state.bySymbol.symbolsArr}</p>
-                                      <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-
-    const typeDropDown	      	=   <div className="filterDropDown">
-                                      <p>{this.state.byType.option}</p>
-                                      <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-
-    const profitTypeDropDown		=  <div className="filterDropDown">
-                                      <p>{this.state.byProfitType.option}</p>
-                                      <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-
     return (
       <div className="Section" >
         <div className="Section-name">Account history</div>
         <div className="Section__top">
           <div className={`filters d-flex align-items-start justify-content-start ${this.state.activeFilters ? 'flex-column ' : 'flex-row'}`}>
-
-            <a href="#/" onClick={ this.activeFilters}>
-              {this.state.activeFilters ? 'Hide filters'  : 'Show filters'}
-            </a>
-
+            <button onClick={this.activeFilters}>
+              {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
+            </button>
             <p>{this.state.activeFilters ? '' : 'no filters applied'}</p>
-          
-            {this.state.activeFilters ? 
-              <div className="filters-content">
-                <div className="filters-content__item">
-                  <p>Filter by date:</p>
-                  <Dropdown 
-                    trigger={ dateDropDown } 
-                    options={{constrainWidth: false}}
-                    onClick={this.getFiltersParameter} 
-                  >
-                    <a href="#/" value="Any date" className="byDate">
-                      Any date
-                    </a>
-                    <a href="#/" value="Open date" className="byDate">
-                      Open date
-                    </a>
-                    <a href="#/" value="Close date" className="byDate">
-                      Close date
-                    </a>
-                    <a href="#/" value="Close date or open date" className="byDate">
-                      Close date or open date
-                    </a>
-                    <a href="#/" value="Close date and open date" className="byDate">
-                      Close date and open date
-                    </a>
-                  </Dropdown>
-                  {this.state.byDate.option === 'Any date' ? '' : 
-                    <>
-                      <div className="filters-content__item">
-                        <p>Period from:</p>
-                        <DatePicker 
-                          options={{
-                            showDaysInNextAndPreviousMonths:true, 
-                            showClearBtn:true, 
-                            format: 'yyyy-mm-dd',    
-                          }} 
-                          onChange={this.addOpenDateToFilterParameters}
-                        />
-                      </div>
-                      <div className="filters-content__item">
-                      <p>Period to:</p>
-                      <DatePicker 
-                        options={{
-                          showDaysInNextAndPreviousMonths:true, 
-                          showClearBtn:true, 
-                          format: 'yyyy-mm-dd',    
-                        }} 
-                        onChange={this.addCloseDateToFilterParameters}
-                      />
-                      </div>
-                    </>
-                  }
+
+            {
+              this.state.activeFilters
+                ? <div className="filters-content">
+                  <div className="filters-content__item">
+                    <p>Filter by date:</p>
+                    <select name="byDate" onChange={this.getFiltersParameter}>
+                      <option>Any date</option>
+                      <option>Open date</option>
+                      <option>Close date</option>
+                      <option>Close date or open date</option>
+                      <option>Close date and open date</option>
+                    </select>
+
+                    {
+                      this.state.byDate.option === 'Any date'
+                        ? ''
+                        : <>
+                            <p className="ml-2">Period from:</p>
+                            <input type="date" onChange={this.addOpenDateToFilterParameters} />
+                            <p className="ml-2">Period to:</p>
+                            <input type="date" onChange={this.addCloseDateToFilterParameters} />
+                          </>
+                    }
+                  </div>
+                  <div className="filters-content__item">
+                    <p>Symbol:</p>
+                    <div className="dropDown multiplySelect">
+                      <button className="dropTarget" >
+                        <p>{this.state.filterParameters.sellectedSymbols}</p>
+                     
+                        <FontAwesomeIcon icon={faCaretDown} />
+                      </button>
+                      <ul onClick={this.getSymbolsArr} >
+                        <li>
+                          <input id="EURUSD" type="checkbox" name="investment" value="stock" />
+                          <label htmlFor="EURUSD" className=' check-item'>EURUSD</label>
+                        </li>
+                        <li>
+                          <input id="YPJUSD" type="checkbox" name="investment" value="realestate" />
+                          <label htmlFor="YPJUSD" className='check-item'>JPYUSD</label>
+                        </li>
+                        <li>
+                          <input id="GBDJPY" type="checkbox" name="investment" value="mutualfund" />
+                          <label htmlFor="GBDJPY" className='check-item'>GBDJPY</label>
+                        </li>
+
+                      </ul>
+                    </div>
+
+
+                  </div>
+
+                  <div className="filters-content__item">
+                    <p>Type:</p>
+                    <select name="byType" onChange={this.getFiltersParameter}>
+                      <option>All</option>
+                      <option>Buy</option>
+                      <option>Sale</option>
+                      <option>Deposit</option>
+                      <option>WithDrawal</option>
+                    </select>
+                  </div>
+                  <div className="filters-content__item">
+                    <p>Type of profit:</p>
+                    <select name="byProfitType" onChange={this.getFiltersParameter}>
+                      <option>
+                        All
+                  </option>
+                      <option>
+                        Profit
+                  </option>
+                      <option>
+                        Lesion
+                  </option>
+                    </select>
+                  </div>
+                  <div className="filters-content__item filterBtn">
+                    <button>
+                      Apply
+                      </button>
+                    <button onClick={this.clearFilters}>
+                      Clear
+                      </button>
+                  </div>
                 </div>
-                <div className="filters-content__item">
-                  <p onClick={this.gg}>Symbol:</p>
-                  <Dropdown 
-                    trigger={ symbolDropDown }
-                    options={{
-                      closeOnClick: false,
-                      coverTrigger: false,
-                      constrainWidth: false
-                    }}
-                  >
-                    <Checkbox
-                      value="EURUSD"
-                      label="EURUSD"
-                      filledIn
-                      checked={true}
-                      className="bySymbol"
-                      onChange={this.getFiltersParameter}
-                    />
-                     <Checkbox
-                      value="GBPUSD"
-                      label="GBPUSD"
-                      filledIn
-                      checked={true}
-                      className="bySymbol"
-                      onChange={this.getFiltersParameter}
-                    />
-                    <Checkbox
-                      value="USDJPY"
-                      label="USDJPY"
-                      filledIn
-                      checked={true}
-                      className="bySymbol"
-                      onChange={this.getFiltersParameter}
-                    />
-                  </Dropdown>
-                 
-                </div>
-                <div className="filters-content__item">
-                  <p>Filter by date:</p>
-                  <Dropdown 
-                    trigger={ typeDropDown } 
-                    options={{constrainWidth: false}}
-                    onClick={this.getFiltersParameter} 
-                  >
-                    <a href="#/" className="byType" value="All">
-                      All
-                    </a>
-                    <a href="#/" className="byType" value="Buy">
-                      Buy
-                    </a>
-                    <a href="#/" className="byType" value="Sale">
-                      Sale
-                    </a>
-                    <a href="#/" className="byType" value="Deposit">
-                      Deposit
-                    </a>
-                    <a href="#/" className="byType" value="WithDrawal">
-                      WithDrawal
-                    </a>
-                  </Dropdown>
-               
-                </div>
-                <div className="filters-content__item">
-                  <p>Filter by date:</p>
-                  <Dropdown 
-                    trigger={ profitTypeDropDown } 
-                    options={{constrainWidth: false}}
-                    onClick={this.getFiltersParameter} 
-                  >
-                    <a href="#/" className="byProfitType" value="All">
-                      All
-                    </a>
-                    <a href="#/" className="byProfitType" value="Profit">
-                      Profit
-                    </a>
-                    <a href="#/" className="byProfitType" value="Lesion">
-                      Lesion
-                    </a>
-              
-                  </Dropdown>
-               
-                </div>
-                <div className="filters-content__item filterBtn">
-                  <Button>
-                    Apply
-                  </Button>
-                  <Button onClick={this.clearFilters}>
-                    Clear
-                  </Button>
-                </div>
-            
-              </div> 
-              :''
+                : ''
             }
-          
           </div>
         </div>
         <div className="Section__bottom column extraMt _30">
@@ -512,7 +399,7 @@ export default class AccountHistorySection extends Component {
             searching={false}
             scrollY
             scrollX
-            maxHeight='117px'
+            maxHeight='126px'
             striped
             hover
             bordered
@@ -521,9 +408,7 @@ export default class AccountHistorySection extends Component {
           />
         </div>
       </div>
-    
     )
   }
-
 
 }

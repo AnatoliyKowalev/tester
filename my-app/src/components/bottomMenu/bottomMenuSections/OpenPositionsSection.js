@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-// import { Table } from 'react-materialize';
 import { MDBDataTable } from 'mdbreact';
 
 export default class OpenPositionsSection extends Component {
 
-  constructor(props){
-		super(props);
-		this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       tableData: {
         columns: [
           {
@@ -37,13 +36,13 @@ export default class OpenPositionsSection extends Component {
             label: 'Open time',
             field: 'openTime',
             sort: 'asc',
-            width: 120
+            width: 140
           },
           {
             label: 'Open Price',
             field: 'openPrice',
             sort: 'asc',
-            width: 150
+            width: 110
           },
           {
             label: 'S/L',
@@ -52,7 +51,7 @@ export default class OpenPositionsSection extends Component {
             width: 110
           },
           {
-            label: 'T/P.',
+            label: 'T/P',
             field: 'TP',
             sort: 'asc',
             width: 110
@@ -61,7 +60,7 @@ export default class OpenPositionsSection extends Component {
             label: "Current price",
             field: 'currentPrice',
             sort: 'asc',
-            width: 120
+            width: 110
           },
           {
             label: "Comment",
@@ -109,7 +108,7 @@ export default class OpenPositionsSection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -125,7 +124,7 @@ export default class OpenPositionsSection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -141,7 +140,7 @@ export default class OpenPositionsSection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -157,7 +156,7 @@ export default class OpenPositionsSection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '0',
@@ -173,7 +172,7 @@ export default class OpenPositionsSection extends Component {
             swop: 0.00,
             commission: 0.00,
             points: 0,
-            profit: 10000.00
+            profit: 11000.00
           },
           {
             order: '1',
@@ -189,15 +188,14 @@ export default class OpenPositionsSection extends Component {
             swop: 1.00,
             commission: 0.00,
             points: 2,
-            profit: 10000.00
+            profit: 11000.00
           },
-          
+
         ]
       }
     }
   }
 
-  
   render() {
     return (
       <div className="Section" >
@@ -207,7 +205,7 @@ export default class OpenPositionsSection extends Component {
             searching={false}
             scrollY
             scrollX
-            maxHeight='146px'
+            maxHeight='156px'
             striped
             hover
             bordered
@@ -215,11 +213,8 @@ export default class OpenPositionsSection extends Component {
             data={this.state.tableData}
           />
         </div>
-
-    
-    </div>
-    
+      </div>
     )
   }
 }
-  
+

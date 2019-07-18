@@ -1,88 +1,132 @@
-import React from 'react'
-import { Table } from 'react-materialize';
+import React, { Component } from 'react'
+import { MDBDataTable } from 'mdbreact';
 
-export default function Symbols() {
-  return (
-    <div className="Section" >
-    <div className="Section-name">Symbols</div>
-    <div className="Section__bottom">
-      <Table>
-        <thead>
-          <tr>
-            <th data-field="Symbol">
-              Symbol
-            </th>
-            <th data-field="Bid">
-              Bid
-            </th>
-            <th data-field="Ask">
-              Ask
-            </th>
-            <th data-field="S">
-              S
-            </th>
-            <th data-field="Progress">
-              Progress
-            </th>
-          </tr>
-        </thead>
+export default class Symbols extends Component {
 
-        <tbody>
-          <tr>
-            <td>
-              EURUSD
-            </td>
-            <td>
-              1.25345
-            </td>
-            <td>
-              1.25123
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              Data is up-to-date
-            </td>
-          </tr>
-          <tr>
-            <td>
-              GBPUSD
-            </td>
-            <td>
-              1.00345
-            </td>
-            <td>
-              1.00123
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              Downloading
-            </td>
-          </tr>
-          <tr>
-            <td>
-              USDJPY
-            </td>
-            <td>
-              1.25345
-            </td>
-            <td>
-              1.25123
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              Download
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
-  </div>
-  
-  )
+  constructor(props) {
+    super(props);
+    this.state = {
+      fixedIndex: false,
+      tableData: {
+        columns: [
+          {
+            label: 'Symbol',
+            field: 'symbol',
+            sort: 'asc',
+            width: 80
+          },
+          {
+            label: 'Bid',
+            field: 'bid',
+            sort: 'asc',
+            width: 80
+          },
+          {
+            label: 'Ask',
+            field: 'ask',
+            sort: 'asc',
+            width: 80
+          },
+          {
+            label: 'S',
+            field: 's',
+            sort: 'asc',
+            width: 40
+          },
+          {
+            label: 'Progress',
+            field: 'progress',
+            sort: 'asc',
+            width: 120,
+          },
+        ],
+        rows: [
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURGPY',
+            bid: 1.25345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+          {
+            symbol: 'EURUSD',
+            bid: 1.32345,
+            ask: 1.25123,
+            s: '-',
+            progress: 'Data is up-to-date'
+          },
+        ]
+      }
+    };
+  }
+
+  render() {
+    return (
+      <div className="Section" >
+        <div className="Section-name">Symbols</div>
+        <div className="Section__bottom">
+          <MDBDataTable
+            searching={false}
+            scrollY
+            scrollX
+            maxHeight='189px'
+            striped
+            hover
+            bordered
+            small
+            data={this.state.tableData}
+          />
+        </div>
+      </div>
+    )
+  }
 }

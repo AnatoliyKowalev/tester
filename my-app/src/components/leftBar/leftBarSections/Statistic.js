@@ -1,78 +1,141 @@
-import React from 'react'
-import { Table } from 'react-materialize';
+import React, { Component } from 'react'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
-export default function Statistic() {
-  return (
-    <div className="Section" >
-      <div className="Section-name">Statistic</div>
-      <div className="Section__bottom">
-        <Table>
-          <tbody>
-            <tr>
-              <td className="w-75">Parametr</td>
-              <td>Value</td>
-            </tr>
-          </tbody>
+export default class Statistic extends Component {
 
-          <tbody>
-            <tr>
-              <th>Time:</th>
-              <th></th>
-            </tr>
-          </tbody>
+  constructor(props) {
+    super(props);
+    this.state = {
+      fixedIndex: false,
+      tableData: {
+        columns: [
+          {
+            label: 'Paramter',
+            field: 'paramter',
+            sort: 'asc',
+            width: 140
+          },
+          {
+            label: 'Value',
+            field: 'value',
+            sort: 'asc',
+            width: 100
+          }
+        ],
+        rows: [
+          {
+            paramter: 'Time:',
+            value: '',
+          },
+          {
+            paramter: 'Days passed',
+            value: '0',
+          },
+          {
+            paramter: 'Months passed',
+            value: '0.02',
+          },
+          {
+            paramter: 'Deals:',
+            value: '',
+          },
+          {
+            paramter: 'All deals',
+            value: '0',
+          },
+          {
+            paramter: 'Profitable deals',
+            value: '0',
+          },
+          {
+            paramter: 'Unprofitable deals',
+            value: '0',
+          },
+          {
+            paramter: 'Profitable deals in a row',
+            value: '0',
+          },
+          {
+            paramter: 'Unprofitable deals in a row',
+            value: '0',
+          },
+          {
+            paramter: 'Deals at day',
+            value: '0',
+          },
+          {
+            paramter: 'Deals at month',
+            value: '0',
+          },
+          {
+            paramter: 'Profitable deals at month',
+            value: '0',
+          },
+          {
+            paramter: 'Unprofitable deals at month',
+            value: '0',
+          },
+          {
+            paramter: 'Max.profitable deal',
+            value: '0.00',
+          },
+          {
+            paramter: 'Max. unprofitable deal',
+            value: '0.00',
+          },
+          {
+            paramter: 'Profit:',
+            value: '',
+          },
+          {
+            paramter: 'Profit/Unprofit',
+            value: '0.00',
+          },
+          {
+            paramter: 'Total profit',
+            value: '0.00',
+          },
+          {
+            paramter: 'Total unprofit',
+            value: '0.00',
+          },
+          {
+            paramter: 'Profit at month',
+            value: '0.00',
+          },
+          {
+            paramter: 'Average profit',
+            value: '0.00',
+          },
+          {
+            paramter: 'Average unprofit',
+            value: '0.00',
+          }
+        ]
+      },
+    };
+  }
 
-          <tbody>
-            <tr>
-              <td>Days passed</td>
-              <td>2400</td>
-            </tr>
-            <tr>
-              <td>Months passed</td>
-              <td>79</td>
-            </tr>
-          </tbody>
-
-          <tbody>
-            <tr>
-              <th>Deals:</th>
-              <th></th>
-            </tr>
-          </tbody>
-
-          <tbody>
-            <tr>
-              <td>All deals</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>Profitable deals</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>Unprofitable deals</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>Profitable deals in a row</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Unprofitable deals in a row</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Deals at day</td>
-              <td>0.00</td>
-            </tr>
-            <tr>
-              <td>Deals at month</td>
-              <td>0</td>
-            </tr>
-          </tbody>
-        </Table>
+  render() {
+    return (
+      <div className="Section" >
+        <div className="Section-name">Statistic</div>
+        <div className="Section__bottom">
+          <div className="dataTables_wrapper">
+            <MDBTable
+              id="dataWindowInfo"
+              fixed
+              scrollY
+              striped
+              maxHeight='219px'
+              bordered
+              small>
+              <MDBTableHead columns={this.state.tableData.columns} />
+              <MDBTableBody rows={this.state.tableData.rows} />
+            </MDBTable>
+          </div>
+        </div>
       </div>
-    </div>
- 
-  )
+    )
+  }
 }
- 

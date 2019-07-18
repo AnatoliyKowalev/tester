@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faVideo, faFileAlt, faFilePdf, faEnvelope, faMedkit, faAmbulance, faQuestionCircle, faDollarSign   } from '@fortawesome/pro-solid-svg-icons';
+import { faBook, faVideo, faFileAlt, faFilePdf, faEnvelope, faMedkit, faAmbulance, faQuestionCircle, faDollarSign } from '@fortawesome/pro-solid-svg-icons';
 
 class TabHelp extends Component {
 
-	constructor(props){
-	    super(props);
-	    this.state = {
-	       
-	    };
-	}
-
 	render () {
-	
 		return (
-
 	   	<div className="scroll">
 
 	   	 	<div className="nav-item">

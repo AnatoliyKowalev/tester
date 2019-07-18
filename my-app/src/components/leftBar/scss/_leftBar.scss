@@ -3,28 +3,37 @@
   top: 204px;
   left: 0;
   bottom: 237px;
-  // height: 54%;
-  width: 360px;
+  width: 360px; 
   background: $dark-color;
-  flex-basis: 23%;
   color: $white-color;
-  border-right: 1px solid $dark-medium-color;
   display: flex;
-  flex-direction: column;
-  span, input {
-    color: $white-color;
-  }
-  tr {
-    border-bottom: 1px solid $white-color;
+  flex-direction: column; 
+  input {
+    margin: 4px;
   }
 
+  // span, input {
+  //   color: $white-color;
+  // }
+  tr {
+    border: 0px solid $white-color;
+  }
+
+  .Tabs {
+    li {
+      background: $def-border-color;
+    }
+    button {
+      padding: 0 10px 4px 10px;
+    }
+  }
   .tabs-wrapper {
       transition: all .2s;
       display: flex;
       flex-direction: column-reverse;
       position: relative;
       width: 100%;
-      min-height: 25px;
+      min-height: 23px;
       &:hover {
         .close-panel {
           max-height: fit-content;
@@ -59,21 +68,22 @@
           overflow: hidden;
           cursor: pointer;
           transition: all .2s ease ;
-          background: $dark-medium-color;
+          background: $def-border-color;
           // &:nth-child(2) {
           //   transition: all .6s;
           // }
-            
-        }
-        
+          // svg {
+          //   width: 100%;
+          //   height: 100%;
+          // }
+        } 
       }
-  
   }
 
   .row {
-    overflow-y: scroll;
+    // overflow-y: scroll;
     margin: 0;
-    flex-basis: 98%;
+    flex-basis: 98%; 
     .col {
       padding: 0;
     }
@@ -110,7 +120,10 @@
 }
 
 .rolled {
-  height: 0;
+
+  overflow: hidden;
+  // max-height: 0;
+  height: 20px;
   .tabs {
     display: none;
   }

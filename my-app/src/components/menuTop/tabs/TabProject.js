@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Checkbox } from 'react-materialize';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync, faPlusSquare, faFolderOpen, faTimesCircle, faSave, faDownload, faInfoCircle, faArrowUp, faArrowDown,
 					faMoneyBillAlt } from '@fortawesome/pro-solid-svg-icons';
@@ -108,14 +108,14 @@ class TabProject extends Component {
 						<button type="button">
 							<span className="d-flex">
 								<FontAwesomeIcon icon={faArrowUp} size="3x"/>
-								<FontAwesomeIcon icon={faMoneyBillAlt} size="3x"/>
+								<FontAwesomeIcon className="ml-2" icon={faMoneyBillAlt} size="3x"/>
 							</span>
 								<p>Deposit money</p>
 						</button>
 						<button type="button">
 							<div className="d-flex">
 								<FontAwesomeIcon icon={faArrowDown} size="3x"/>
-								<FontAwesomeIcon icon={faMoneyBillAlt} size="3x"/>
+								<FontAwesomeIcon className="ml-2"  icon={faMoneyBillAlt} size="3x"/>
 							</div>
 								<p>Withdrow money</p>
 						</button>
@@ -128,15 +128,15 @@ class TabProject extends Component {
 
 				<div className="nav-item">
 					<div className="nav-item__main hiddenInput d-flex">
-						
-						<Checkbox
-							value="testing"
-							onChange={this.switchTestingPreferences}
-							label='Set pause when test started'
-							filledIn
-							checked={this.state.testingPreferences}
+						<input 
+							label="Set pause when test started" 
+							value="testing" 
+							checked={this.state.testingPreferences}  
+							type="checkbox"
+							id="testingCheckbox" 	
+							onChange={this.switchTestingPreferences} 
 						/>
-					
+						<label htmlFor="testingCheckbox">Set pause when test started</label>
 					</div>
 
 					<div className="nav-item__empty">

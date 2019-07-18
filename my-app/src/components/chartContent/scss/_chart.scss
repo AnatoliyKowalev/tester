@@ -8,9 +8,13 @@
   svg {
     left: 0;
   }
+  // text {
+  //   background: red;
+  // }
 }
 .chartContainer {
   // height: 54%;
+  transition: background .2s ease-in-out;
   bottom: 237px;
   position: absolute;
   top: 204px;
@@ -21,4 +25,7 @@
   border-top: none;
   display: flex;
   flex-direction: row;
+  select {
+    display: none;
+  }
 }

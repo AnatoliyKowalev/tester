@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Dropdown, Button, Checkbox } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faSortDown, faCartPlus, faKeyboard, faMusic, faSyncAlt, faLanguage  } from '@fortawesome/pro-solid-svg-icons';
 
@@ -29,161 +28,209 @@ class TabTools extends Component {
 		})
 	}
 
-
     render () {
-
-    const panelsDropDown		= <Button className="nav-item__toolsList flex-column">
-																<FontAwesomeIcon icon={faSortDown} />
-																<p>Panels</p>
-															</Button>
-
 			return (
-		   	 <div className="scroll">
-		   	 	
-					<div className="nav-item">
-						<div className="d-flex nav-item__main">
-							<button>
-								<FontAwesomeIcon icon={faList} size="3x" />
-								<p>Show  Panels</p>
+				<div className="scroll">
+				
+				<div className="nav-item">
+					<div className="d-flex nav-item__main">
+						<button>
+							<FontAwesomeIcon icon={faList} size="3x" />
+							<p>Show  Panels</p>
+						</button>
+					</div>
+					
+					<div className="nav-item__bottom columnDropTarget d-flex flex-row justify-content-center">
+						<div className="dropDown">
+							<button className="dropTarget">
+								<FontAwesomeIcon icon={faSortDown} />
+								Panels
 							</button>
-						</div>
-						
-						<div className="nav-item__bottom">
-								<Dropdown   
-									options={{
-										coverTrigger: false,
-										constrainWidth: false,
-										closeOnClick: false
-									}} 
-									trigger={panelsDropDown}
-									className="includePadding"
-								>
-									<Checkbox
-										value="symbols"
-										label="Symbols"
-										filledIn
-										checked={this.state.symbols}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="tickCharts"
-										label="Tick charts"
-										filledIn
-										checked={this.state.tickCharts}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="statistics"
-										label="Statistics"
-										filledIn
-										checked={this.state.statistics}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="scripts"
-										label="Scripts"
-										filledIn
-										checked={this.state.scripts}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="dataWindow"
-										label="Data window"
-										filledIn
-										checked={this.state.dataWindow}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="openPositions"
-										label="Open positions"
-										filledIn
-										checked={this.state.openPositions}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="pendingOrders"
-										label="Pending orders"
-										filledIn
-										checked={this.state.pendingOrders}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="accountHistory"
-										label="Account history"
-										filledIn
-										checked={this.state.accountHistory}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="journal"
-										label="Journal"
-										filledIn
-										checked={this.state.journal}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="news"
-										label="News"
-										filledIn
-										checked={this.state.news}
-										onChange={this.switchState}
-									/>
-									<Checkbox
-										value="notes"
-										label="Notes"
-										filledIn
-										checked={this.state.notes}
-										onChange={this.switchState}
-									/>
-							</Dropdown>
+							<ul>
+								<li>	
+									<label htmlFor="symbols"> 
+										<input 
+											type="checkbox" 
+											id="symbols" 
+											value="symbols"	
+											checked={this.state.symbols}	
+											onChange={this.switchState} 
+										/>
+										Symbols
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="tickCharts"> 
+										<input 
+											type="checkbox" 
+											id="tickCharts" 
+											value="tickCharts"	
+											checked={this.state.tickCharts}	
+											onChange={this.switchState} 
+										/>
+										Tick charts
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="statistics"> 
+										<input 	
+											type="checkbox" 
+											id="statistics" 
+											value="statistics"	
+											checked={this.state.statistics}	
+											onChange={this.switchState} 
+										/>
+										Statistics
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="scripts"> 
+										<input 
+											type="checkbox" 
+											id="scripts" 
+											value="scripts"	
+											checked={this.state.scripts}	
+											onChange={this.switchState} 
+										/>
+										Scripts
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="dataWindow"> 
+										<input 
+											type="checkbox" 
+											id="dataWindow" 
+											value="dataWindow"
+											checked={this.state.dataWindow}	
+											onChange={this.switchState}
+										/>
+										Data window
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="openPositions"> 
+										<input 
+											type="checkbox" 
+											id="openPositions" 
+											value="openPositions"	
+											checked={this.state.openPositions}	
+											onChange={this.switchState} 
+										/>
+										Open positions
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="pendingOrders"> 
+										<input 
+											type="checkbox" 
+											id="pendingOrders" 
+											value="pendingOrders"	
+											checked={this.state.pendingOrders}	
+											onChange={this.switchState}
+										/>
+										Pending orders
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="accountHistory"> 
+										<input 
+											type="checkbox" 
+											id="accountHistory" 
+											value="accountHistory"	
+											checked={this.state.accountHistory}	
+											onChange={this.switchState} 
+										/>
+										Account history
+									</label>
+								</li>
+								<li>	
+									<label htmlFor="journal"> 
+										<input 
+											type="checkbox" 
+											id="journal"
+											value="journal"
+											checked={this.state.journal}	
+											onChange={this.switchState} 
+										/>
+										Journal
+									</label>
+								</li>
 
-		   	 		</div>
+								<li>	
+									<label htmlFor="news"> 
+										<input 
+											type="checkbox" 
+											id="news" 
+											value="news"	
+											checked={this.state.news}	
+											onChange={this.switchState} 
+										/>
+										News
+									</label>
+								</li>
+
+								<li>	
+									<label htmlFor="notes"> 
+										<input 
+											type="checkbox" 
+											id="notes" 
+											value="notes"	
+											checked={this.state.notes}	
+											onChange={this.switchState} 
+										/>
+										Notes
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div className="nav-item">
+					<div className="nav-item__main d-flex flex-row">
+					
+						<button type="button" >
+								<FontAwesomeIcon icon={faCartPlus} size="2x" />
+								<p>Default <br/> orders</p>
+							</button>
+							<button type="button" >
+								<FontAwesomeIcon icon={faKeyboard} size="2x" />
+								<p>Hot <br/> keys</p>
+							</button>
+							<button type="button" >
+								<FontAwesomeIcon icon={faMusic} size="2x" />
+								<p>Sounds</p>
+							</button>
+							<button type="button" >
+								<FontAwesomeIcon icon={faSyncAlt} size="2x" />
+								<p>Check <br/> for updates</p>
+							</button>
+						
 					</div>
 
-		   	 	<div className="nav-item">
-						<div className="nav-item__main d-flex flex-row">
+					<div className="nav-item__empty">
+						<p>Options</p>
+					</div>
+				</div>  
+
+				<div className="nav-item">
+					<div className="nav-item__main d-flex flex-row">
+					
+						<button type="button" >
+							<FontAwesomeIcon icon={faLanguage}  size="2x" />
+							<p>Language</p>
+						</button>
 						
-							<button type="button" >
-									<FontAwesomeIcon icon={faCartPlus} size="2x" />
-				   	 			<p>Default <br/> orders</p>
-				   	 		</button>
-				   	 		<button type="button" >
-									<FontAwesomeIcon icon={faKeyboard} size="2x" />
-				   	 			<p>Hot <br/> keys</p>
-				   	 		</button>
-			   	 			<button type="button" >
-									<FontAwesomeIcon icon={faMusic} size="2x" />
-				   	 			<p>Sounds</p>
-				   	 		</button>
-			   	 			<button type="button" >
-									<FontAwesomeIcon icon={faSyncAlt} size="2x" />
-				   	 			<p>Check <br/> for updates</p>
-				   	 		</button>
-			   	 		
-						</div>
+					</div>
 
-						<div className="nav-item__empty">
-		   	 			<p>Options</p>
-		   	 		</div>
-		   	 	</div>  
+					<div className="nav-item__empty">
+						<p>Change language</p>
+					</div>
+				</div>  
 
-		   	 	<div className="nav-item">
-						<div className="nav-item__main d-flex flex-row">
-						
-							<button type="button" >
-								<FontAwesomeIcon icon={faLanguage}  size="2x" />
-								<p>Language</p>
-							</button>
-			   	 		
-						</div>
-
-						<div className="nav-item__empty">
-		   	 			<p>Change language</p>
-		   	 		</div>
-		   	 	</div>  
-
-		   	 </div>
-	)}
+				</div>
+			)
+		}
 }
 
 export default TabTools

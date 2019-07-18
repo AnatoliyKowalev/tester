@@ -1,25 +1,50 @@
-import React from 'react'
-import { Table } from 'react-materialize';
+import React, { Component } from 'react'
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
-export default function Scripts() {
+export default class Scripts extends Component {
 
-  return (
-    <div className="Section" >
-    <div className="Section-name">Scripts</div>
-    <div className="Section__bottom">
-    <Table>
-      <tbody>
-        <tr>
-          <td className="w-75">Name</td>
-          <td>Hotkey</td>
-        </tr>
-       
-      </tbody>
-    </Table>
-    </div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      fixedIndex: false,
+      tableData: {
+        columns: [
+          {
+            label: 'Paramter',
+            field: 'paramter',
+            sort: 'asc'
+          },
+          {
+            label: 'Value',
+            field: 'value',
+            sort: 'asc'
+          }
+        ],
+        rows: []
+      }
+    };
+  }
 
-   
-  </div>
-  
-  )
+  render() {
+    return (
+      <div className="Section" >
+        <div className="Section-name">Scripts</div>
+        <div className="Section__bottom">
+          <div className="dataTables_wrapper">
+            <MDBTable
+              fixed
+              scrollY
+              striped
+              maxHeight='179px'
+              hover
+              bordered
+              small>
+              <MDBTableHead columns={this.state.tableData.columns} />
+              <MDBTableBody rows={this.state.tableData.rows} />
+            </MDBTable>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
