@@ -32,7 +32,7 @@ const bbAppearance = {
 		top: "#964B00",
 		middle: "#FF6600",
 		bottom: "#964B00",
-	},
+	}, 
 	fill: "#4682B4"
 };
 

@@ -1,6 +1,7 @@
 .leftBar {
+  font-size: $def-text-size;
   position: absolute;
-  top: 204px;
+  top: 200px;
   left: 0;
   bottom: 237px;
   width: 360px; 
@@ -31,6 +32,7 @@
       transition: all .2s;
       display: flex;
       flex-direction: column-reverse;
+      justify-content: space-between;
       position: relative;
       width: 100%;
       min-height: 23px;
@@ -77,6 +79,24 @@
           //   height: 100%;
           // }
         } 
+      }
+      .Tabs {
+        flex-basis: 10%;
+      }
+      .Section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-basis: 90%;
+        .Section-name {
+          flex-basis: 10%;
+        }
+        .Section__top {
+          flex-basis: 10%;
+        }
+        .Section__bottom {
+          flex-basis: 80%;
+        }
       }
   }
 

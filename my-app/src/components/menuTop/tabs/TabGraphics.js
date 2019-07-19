@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCheckSquare, faPlusSquare, faSortDown, faStickyNote, faVectorSquare, faCircle, faCaretLeft, faFont,
-	faChartLine, faList, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { 
+	faCaretDown, faCheckSquare, faPlusSquare, faSortDown, faStickyNote, faVectorSquare, faCircle, 
+	faCaretLeft, faFont, faChartLine, faList, faTrash 
+} from '@fortawesome/pro-solid-svg-icons';
 
 class TabGraphics extends Component {
 
@@ -20,7 +22,7 @@ class TabGraphics extends Component {
 	   
 	}
 
-	switchState = (e) => {
+	switchState = e => {
 		let value = e.target.value
 		this.setState({
 			[value] :  !this.state[value]
@@ -28,14 +30,12 @@ class TabGraphics extends Component {
 	}
 
     render () {
-	
-
 			return (
 				<div className="scroll">
 					<div className="nav-item">
 						<div className="nav-item__main d-flex flex-column align-items-start" >
 							<button>
-								<FontAwesomeIcon icon={faStickyNote} size="4x" />
+								<FontAwesomeIcon icon={faStickyNote} size="4x" className="mb-1" />
 								<p>Note</p>
 							</button>
 						</div>
@@ -105,15 +105,15 @@ class TabGraphics extends Component {
 					<div className="nav-item">
 						<div className="nav-item__main d-flex flex-column align-items-start">
 							<button type="button" className="d-flex flex-row align-items-center">
-								<FontAwesomeIcon icon={faVectorSquare} size="2x" />
+								<FontAwesomeIcon icon={faVectorSquare} size="2x" className="mr-2" />
 								<p>Rectangle</p>
 							</button>
 							<button type="button" className="d-flex flex-row align-items-center">
-								<FontAwesomeIcon icon={faCircle} size="2x" />
+								<FontAwesomeIcon icon={faCircle} size="2x" className="mr-2" />
 								<p>Ellipse</p>
 							</button>
 							<button type="button" className="d-flex flex-row align-items-center">   
-								<FontAwesomeIcon icon={faCaretLeft} size="2x" />
+								<FontAwesomeIcon icon={faCaretLeft} size="2x" className="mr-2" />
 								<p>Triangle</p>
 							</button>
 						</div>
@@ -125,9 +125,9 @@ class TabGraphics extends Component {
 
 					<div className="nav-item">
 						<div className="nav-item__main d-flex flex-column align-items-center">
-							<div className="dropDown">
+							<div className="dropDown vertical">
 								<button className="dropTarget">
-									<FontAwesomeIcon icon={faCheckSquare} size="2x" />
+									<FontAwesomeIcon icon={faCheckSquare} size="2x" className="mb-1" />
 									Add Icon
 									<FontAwesomeIcon icon={faSortDown} />
 								</button>
@@ -147,11 +147,13 @@ class TabGraphics extends Component {
 					</div> 
 
 					<div className="nav-item">
-						<div className="nav-item__main d-flex flex-column align-items-start" >
+						<div className="nav-item__main d-flex flex-column" >
 								<div className="dropDown">
 										<button className="dropTarget">
-											<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-											Add  Chanell 
+											<div className="d-flex flex-row align-items-center">
+											<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+											<p>Add  Chanell</p>
+											</div>
 											<FontAwesomeIcon icon={faCaretDown} />
 										</button>
 										<ul>
@@ -164,8 +166,11 @@ class TabGraphics extends Component {
 								</div>
 								<div className="dropDown">
 										<button className="dropTarget">
-											<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-											Add Fibonacci Tool 
+										<div className="d-flex flex-row align-items-center">
+										<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+											<p>Add Fibonacci Tool </p>
+										</div>
+										
 											<FontAwesomeIcon icon={faCaretDown} />
 										</button>
 										<ul>
@@ -178,8 +183,10 @@ class TabGraphics extends Component {
 								</div>
 								<div className="dropDown">
 										<button className="dropTarget">
-											<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-											Add Andrew's Pitchfork 
+										<div className="d-flex flex-row align-items-center">
+											<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+											<p>Add Andrew's Pitchfork</p> 
+											</div>
 											<FontAwesomeIcon icon={faCaretDown} />
 										</button>
 										<ul>
@@ -198,9 +205,9 @@ class TabGraphics extends Component {
 					</div>  
 
 					<div className="nav-item">
-						<div className="nav-item__main d-flex flex-column align-items-start">
-							<button type="button" className="d-flex flex-column align-items-center">
-								<FontAwesomeIcon icon={faFont} size="3x" />
+						<div className="nav-item__main d-flex flex-column ">
+							<button type="button" className="d-flex flex-column align-items-center justify-content-center">
+								<FontAwesomeIcon icon={faFont} size="3x" className="mb-2" />
 								<p>Text labels</p>
 							</button>
 						</div>
@@ -212,8 +219,8 @@ class TabGraphics extends Component {
 
 					<div className="nav-item">
 						<div className="nav-item__main d-flex flex-column align-items-start">
-							<button type="button" className="d-flex flex-column align-items-center">
-								<FontAwesomeIcon icon={faChartLine} size="3x" />
+							<button type="button" className="d-flex flex-column align-items-center justify-content-center">
+								<FontAwesomeIcon icon={faChartLine} size="3x" className="mb-2" />
 								<p>Wave <br/> Symbols</p>
 							</button>
 						</div>
@@ -224,9 +231,9 @@ class TabGraphics extends Component {
 					</div> 
 
 					<div className="nav-item">
-						<div className="nav-item__main d-flex flex-column align-items-start">
-							<button type="button" className="d-flex flex-column align-items-center">
-								<FontAwesomeIcon icon={faList} size="3x" />
+						<div className="nav-item__main d-flex flex-column">
+							<button type="button" className="d-flex flex-column align-items-center justify-content-center">
+								<FontAwesomeIcon icon={faList} size="3x" className="mb-2" />
 								<p>List of objects</p>
 							</button>
 						</div>
@@ -258,15 +265,15 @@ class TabGraphics extends Component {
 					<div className="nav-item">
 						<div className="nav-item__main d-flex flex-column align-items-start">
 							<button type="button" className="d-flex flex-row align-items-center">
-								<FontAwesomeIcon icon={faTrash} size="2x" />
+								<FontAwesomeIcon icon={faTrash} size="2x" className="mr-2" />
 								<p>Delete Most Recent Objects</p>
 							</button>
 							<button type="button" className="d-flex flex-row align-items-center">
-								<FontAwesomeIcon icon={faTrash} size="2x" />
+								<FontAwesomeIcon icon={faTrash} size="2x" className="mr-2" />
 									<p>Delete Selected</p>
 							</button>
 							<button type="button" className="d-flex flex-row align-items-center">
-								<FontAwesomeIcon icon={faTrash} size="2x" />
+								<FontAwesomeIcon icon={faTrash} size="2x" className="mr-2" />
 								<p>Delete All</p>
 							</button>
 						</div>

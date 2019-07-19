@@ -8,16 +8,12 @@
   svg {
     left: 0;
   }
-  // text {
-  //   background: red;
-  // }
 }
 .chartContainer {
-  // height: 54%;
   transition: background .2s ease-in-out;
-  bottom: 237px;
   position: absolute;
-  top: 204px;
+  top: 200px;
+  bottom: 237px;
   left: 360px;
   right: 0;
   text-align: center;

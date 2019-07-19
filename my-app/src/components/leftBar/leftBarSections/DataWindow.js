@@ -58,10 +58,13 @@ export default class DataWindow extends Component {
     };
   }
 
-  toggleContentDisplay = e => this.setState({ displayDataWindow: e.target.checked })
-
+  toggleContentDisplay = e => {
+    this.setState({ displayDataWindow: e.target.checked })
+  }
   render() {
 
+    
+    
     return (
       <div className="Section" >
         <div className="Section-name">Data window</div>
@@ -80,7 +83,7 @@ export default class DataWindow extends Component {
                 fixed
                 scrollY
                 striped
-                maxHeight='183px'
+                maxHeight='100px'
                 hover
                 bordered
                 small>

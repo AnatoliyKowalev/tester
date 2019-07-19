@@ -70,14 +70,14 @@ class MenuTop extends Component {
     const tabContent = getSelectedTab(this.state.activeTab);
 
     return (
-      <div className="menu-top">
+     <>
         <ul className="Tabs">
           {tabs}
         </ul>
         <div className="setOfTools">
           {tabContent}
         </div>
-      </div>
+     </>
     );
   }
 }

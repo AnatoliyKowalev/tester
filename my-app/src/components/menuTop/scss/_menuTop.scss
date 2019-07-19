@@ -1,21 +1,20 @@
 #topMenu {
-	height: 176px;
+	height: 200px;
 	top: 0;
 	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	position: absolute;
 	width: 100%;
-	flex-direction: column;
-	// top: 28px;
 	z-index: 45;
 	border-bottom: 1px solid $black-color;
-
+	font-size: $def-text-size;
 	.menuTabs { 
 		position: absolute;
 		top: 28px;
 		margin: 0;
 		height: 160px;
 		width: 100%;
-		// padding-top: 8px;
 		display: flex;
 		flex-direction: row;
 		background: $dark-color;
@@ -40,7 +39,6 @@
 			}
 		}
 	}
-	
 } 
 
 .scroll::-webkit-scrollbar {
@@ -50,16 +48,15 @@
 .scroll {
 	height: 100%;
 	display: flex;
-	padding: 10px 20px 3px;
+	padding: 7px 4px 4px 4px;
 	white-space: nowrap;
 	overflow-y: auto;
 	overflow-x: scroll;
-	// -webkit-overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
 	// -ms-overflow-style: -ms-autohiding-scrollbar; 
 }
 
 .setOfTools {
-	height: 176px;
 	background: $dark-color;
 	width: 100%;
 	color: $white-color;
@@ -91,7 +88,6 @@
 		align-items: center;
 		text-transform: initial;
 		position: relative;
-		// color: $black-color;
 		&:hover {
 			color: $menu-btn-vover-color;
 		}
@@ -100,7 +96,6 @@
 	      transform: translateY(-30%);
 		    position: absolute;
 		    right: 5%;
-		    // top: 50%;
 		}
 		i {
 			height: auto;
@@ -119,8 +114,6 @@
 		}
 		&.bottomList { 
 			padding: 3px 10px!important;
-			// bottom: 5%;
-			// background: rgba(66, 66, 66, .3);
 			width: 90%;
 		}
 		&.horizontalList {
@@ -135,17 +128,20 @@
 		}
 	}
 	&__main {
-		margin-bottom: 8px;
-		padding: 0 30px;
+		padding: 0 12px;
 		height: 100%;
-		align-items: center;
+		align-items: unset;
 		justify-content: center;
-		// font-size: 12px;
+		select {
+			margin: 0 auto;
+		}
 		.dropDown {
+			width: 100%;
 			margin-bottom: 4px;
 			.dropTarget {
 				display: flex;
 				flex-direction: row;
+				justify-content: space-between;
 				align-items: center;
 				font-size: 14px;
 				// svg {
@@ -155,17 +151,14 @@
 		}
 		i, svg {
 			color: $light-darker-color;
-			// margin: 5px;
 		}
 		.btn, button {
+			height: 100%;
 			font-size: $small-text-size;
 			color: $white-color;
-			padding: 5px;
+			padding: 4px;
 			min-width: 70px;
 			transition: all .3s;
-			p {
-				margin: 5px;
-			}
 		}
 		span {
 			&:hover {
@@ -173,43 +166,27 @@
 				color: $menu-btn-vover-color;
 			}
 		}
-		// label {
-		// 	cursor: pointer;
-		// 	margin-left: 5px;
-		// 	[type="checkbox"]+span:not(.lever) {
-		// 		line-height: 19px;
-		// 	}
-		// }
-	
-
-		// input[type=checkbox] {
-		// 	position: relative;
-		// 	opacity: 1;
-		// }
 		&:not(:last-child) button {
-			margin-right: 5px;
+			margin-right: 3px;
 		}  
-
-		// &.hiddenInput {
-		// 	input {
-		// 		opacity: 0;
-		// 		display: none;
-		// 	}
-		// }
 	} 
-	.columnDropTarget {
-		.dropTarget {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-	}
+
+	// .columnDropTarget {
+	// 	.dropTarget {
+	// 		display: flex;
+	// 		flex-direction: column;
+	// 		align-items: center;
+	// 	}
+	// }
 	&:not(:last-child) &__main {
 		border-right: 1px solid rgba($light-darker-color, .5); 
 	}  
 	&__bottom {
 		width: 100%;
 		margin: 0 30px; 
+		.dropDown {
+			margin: 0 auto;
+		}
 		.includePadding {
 			padding: 10px;
 		}
@@ -225,14 +202,6 @@
 			span {
 				color: $dark-darker-color;
 			}
-			// li {
-			// 	&:hover {
-			// 		span {
-			// 			color: $dark-lighter-color;
-			// 		}
-			// 		background: none;
-			// 	}
-			// }
 		}
 		.btn {
 			box-shadow: none;
@@ -290,18 +259,18 @@
 	}
 }
 
-.btn {
-	padding: 5px;
-	box-shadow: none;
-	&:focus {
-		background: $dark-color;
-	}
-	&:active {
-		background: $dark-color;
-	}
-	&:hover {
-		box-shadow: none;
-		color: $white-color;
-		background: $menu-btn-vover-color;
-	}
-}
+// .btn {
+// 	padding: 2px 6px;
+// 	box-shadow: none;
+// 	&:focus {
+// 		background: $dark-color;
+// 	}
+// 	&:active {
+// 		background: $dark-color;
+// 	}
+// 	&:hover {
+// 		box-shadow: none;
+// 		color: $white-color;
+// 		background: $menu-btn-vover-color;
+// 	}
+// }

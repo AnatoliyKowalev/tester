@@ -41,26 +41,34 @@ and (orientation : portrait) {
 
 /* Desktops and laptops ----------- */
 @media only screen 
-and (max-width : 1224px) {
+and (max-width : 1200px) {
+
   #main {
+    .extraMt {
+      &._30 {
+        margin-top: 27px;
+      }
+      // &._41 {
+      //   margin-top: 43px;
+      // }
+    }
+    #topMenu, .leftBar, .chartContainer, .bottomMenu,  table th, table td {
+      font-size: $small-text-size;
+    }
     #topMenu {
-      transition: all .2s;
-      height: 156px;
-      top: 24px;
+      
+      height: 180px;
       .nav-item {
+        height: 140px;
         min-height: 0;
-        .nav-item__main {
-          margin-bottom: 0;
-        }
       }
       .Tabs {
-        height: 25px;
-        top: -25px;
+        // height: 25px;
+        // top: -25px;
       }
       p, a, label>span {
         font-size: 10px;
       }
-     
       i, svg {
         transition: all .2s;
       }
@@ -76,8 +84,10 @@ and (max-width : 1224px) {
     }
     .leftBar, .chartContainer {
       top: 180px;
+      bottom: 200px;
     }
     .bottomMenu {
+      height: 227px;
       .tabs {
         .tab {
           line-height: 32px;
@@ -103,20 +113,46 @@ and (max-width : 1224px) {
  }
 }
 
-@media screen and (max-width: 600px) {
+// @media screen and (max-width: 600px) {
+//   #main {
+//    .leftBar {
+//     //  transition: all .2s;
+//     //  width: 0;
+//    }
+//    .chartContainer {
+//     bottom: 0;
+//   }
+//   .bottomMenu {
+//     display: none;
+//   }
+//  }
+// }
+
+@media screen and (max-height: 800px) {
   #main {
-   .leftBar {
-    //  transition: all .2s;
-    //  width: 0;
-   }
-   .chartContainer {
-    // transition: all .2s;
-    // left: 0;
-    bottom: 0;
-  }
-  .bottomMenu {
-    display: none;
-  }
+    .bottomMenu {
+      display: flex;
+      justify-content: space-between;
+      transition: all .2s;
+      height: 200px;
+    }
+    .chartContainer {
+      bottom: 200px;
+    }
+ }
+}
+
+@media screen and (max-height: 600px) {
+  #main {
+    .bottomMenu {
+      transition: all .2s;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+    }
+    .chartContainer, .leftBar {
+      bottom: 0;
+    }
  }
 }
 
@@ -128,36 +164,6 @@ and (max-width : 1224px) {
    .chartContainer {
      left: 0;
    }
- }
-}
-
-@media screen and (max-height: 600px) {
-  #main {
-  
-    .chartContainer {
-      left: 0;
-    }
-    .leftBar {
-    
-      width: 0;
-    }
- }
-}
-
-
-
-@media screen and (max-height: 800px) {
-  #main {
-    .bottomMenu {
-      transition: all .2s;
-      height: 0;
-    }
-    .chartContainer {
-      bottom: 0;
-    }
-    .leftBar {
-      bottom: 0;
-    }
  }
 }
 

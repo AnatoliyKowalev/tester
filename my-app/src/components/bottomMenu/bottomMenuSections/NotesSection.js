@@ -86,10 +86,10 @@ class NewsSection extends React.Component {
             <div className="filters-content">
               <div className="filters-content__item">
                 <p>Filter by date:</p>
-               
                 <input type="text" onChange={this.search} value={this.state.searchLine} />
-               
-                <span data-title="Cear search input"> <FontAwesomeIcon className="ml-1" icon={faWindowClose} onClick={this.clearSearch} /></span>
+                <span data-title="Cear search input"> 
+                  <FontAwesomeIcon className="ml-1" icon={faWindowClose} onClick={this.clearSearch} />
+                </span>
               </div>
               <div className="filters-content__item filterBtn">
                 <button disabled={true}>
@@ -106,20 +106,20 @@ class NewsSection extends React.Component {
             </div>
           </div>
         </div>
-        <div className="Section__bottom  extraMt _41">
+        <div className="Section__bottom  extraMt _43">
           <MDBDataTable
             className="w-50"
             searching={false}
             scrollY
             scrollX
-            maxHeight='114px'
+            maxHeight='109px'
             striped
             hover
             bordered
             small
             data={this.state.tableData}
           />
-          <div className="noteCaption w-50">
+          <div className="noteCaption w-50" style={{height: '109px'}}>
             <h4>Note caption</h4>
             <p>xxxx.xx.xx xx:xx</p>
             <p>Note text</p>

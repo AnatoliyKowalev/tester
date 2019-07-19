@@ -8,7 +8,7 @@
 @import "./../../node_modules/normalize.css/normalize.css";
 
 body {
-	font-size: $def-text-size;
+	// font-size: $def-text-size;
 	font-family: 'Sans', sans-serif;
 	text-align: center;
 	overflow: hidden;
@@ -29,6 +29,18 @@ body {
 	input {
 		color: $white-color;
 	}
+}
+
+.fa-2x {
+	font-size: 20px;
+}
+
+.fa-3x {
+	font-size: 30px;
+}
+
+.fa-4x {
+	font-size: 40px;
 }
 
 .select-wrapper input.select-dropdown:focus {
@@ -79,10 +91,6 @@ nav {
 	background: $white-color;
 } 
 
-// section {
-// 	height: 100vh;		
-// 	width: 100%;
-// }
 
 input, textarea, select {
 	background: #403740;
@@ -156,7 +164,7 @@ button {
 	background: none;
 	border: none;
 	box-shadow: none;
-	
+
 	i {
 		height: auto;
 	}
@@ -179,7 +187,7 @@ button {
 }
 
 input[type=range] {
-	margin: 8px 0;
+	margin: 0;
 	-webkit-appearance: none;
  	width: 100%;
   padding: 6px 10px;
@@ -321,9 +329,7 @@ input[type=range]+.thumb {
 }
 
 .Section {
-	// .Section__top, .Section__bottom {
-	// 	padding: 0 10px;
-	// }
+
 	height: 100%;
 	.Section__top {
 		display: flex;
@@ -343,6 +349,9 @@ input[type=range]+.thumb {
 				display: none
 			}
 		}
+	}
+	.Section__bottom {
+		// height: 100%;
 	}
 }
 
@@ -487,28 +496,30 @@ table.dataTable thead > tr > td.sorting {
   }
 }
 
-
-
 .darkTheme {
+	tspan {
+		fill: #fff;
+	}
+	.react-stockcharts-tooltip-label {
+    fill: #42f5e0;
+  }
 	background: #403740;
-}
-.react-stockcharts-tooltip {
-	fill: white;
-}
-.react-stockcharts-tooltip-label {
-	fill: #b0f542;
 }
 
 .dropDown {
+	width: fit-content;
 	transition: all .2s;
+	border-radius: 3px;
 	ul {
 		display: none;
+		opacity: 0;
 	}
 	.dropTarget {
+		border-radius: 10px;
 		color: $white-color;
-		width: fit-content;
-		padding: 0 10px;
-		svg, p {
+		width: inherit;
+		padding: 2px 5px;
+		svg, p, div {
 			pointer-events: none;
 		}
 		&:hover {
@@ -516,7 +527,13 @@ table.dataTable thead > tr > td.sorting {
 			cursor: pointer;
 		}
 		.fa-caret-down {
-			margin: 0 10px;
+			margin: 0 0 0 5px;
+		}
+	}
+
+	&.vertical {
+		.dropTarget {
+			flex-direction: column;
 		}
 	}
 	ul {
@@ -568,6 +585,7 @@ table.dataTable thead > tr > td.sorting {
 		}
 	}
 	&:hover {
+		background: #554c54;
 		.dropTarget {
 			color: $light-darker-color;
 		}
@@ -618,7 +636,6 @@ table.dataTable thead > tr > td.sorting {
 			}
 		}
 	}
-
 }
 
 label {
@@ -634,7 +651,6 @@ label {
 		cursor: pointer;
 	}
 }
-
 //SWITCHER---------
 .switch {
   position: relative;
@@ -645,7 +661,7 @@ label {
   width: 90px;
   height: auto;
 }
-/* Hide default HTML checkbox */
+
 .switch input {
   opacity: 0;
   width: 0;
@@ -692,10 +708,10 @@ input:checked + .slider:before {
 	height: 26px;
   border-radius: 50px;
 }
+
 .slider.round:before {
   border-radius: 50%;
 }
-
 
 [data-title] {  
   position: relative;
@@ -725,16 +741,11 @@ input:checked + .slider:before {
   border: 8px solid transparent;	
   border-bottom: 8px solid #000;
 }
-
-
-
-////@at-root
-
+////
 input[type="checkbox"]:checked + label{
   color: #FFF;
   background-color: #6e666c;
 }
-
 .check-item {
 	height: auto;
   vertical-align: middle;

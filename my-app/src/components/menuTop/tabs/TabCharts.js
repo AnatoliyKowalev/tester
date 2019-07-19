@@ -29,8 +29,12 @@ class TabCharts extends Component {
 					<div className="nav-item__main d-flex flex-column align-items-start">
 						<div className="dropDown">
 							<button className="dropTarget">
-								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-								Add New Chart
+								<div className="d-flex flex-row align-items-center">
+									<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+									<p>Add New Chart</p>
+								</div>
+
+
 								<FontAwesomeIcon icon={faCaretDown} />
 							</button>
 							<ul>
@@ -41,11 +45,12 @@ class TabCharts extends Component {
 								<li><button>Move Stop Loss to Breackeven</button></li>
 							</ul>
 						</div>
-
 						<div className="dropDown">
 							<button className="dropTarget">
-								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-								Add New Chart
+								<div className="d-flex flex-row align-items-center">
+									<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+									<p>Add New Chart</p>
+								</div>
 								<FontAwesomeIcon icon={faCaretDown} />
 							</button>
 							<ul>
@@ -56,11 +61,12 @@ class TabCharts extends Component {
 								<li><button>Move Stop Loss to Breackeven</button></li>
 							</ul>
 						</div>
-
 						<div className="dropDown">
 							<button className="dropTarget">
-								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-								Add New Chart
+								<div className="d-flex flex-row align-items-center">
+									<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+									<p>Add New Chart</p>
+								</div>
 								<FontAwesomeIcon icon={faCaretDown} />
 							</button>
 							<ul>
@@ -71,11 +77,12 @@ class TabCharts extends Component {
 								<li><button>Move Stop Loss to Breackeven</button></li>
 							</ul>
 						</div>
-
 						<div className="dropDown">
 							<button className="dropTarget">
-								<FontAwesomeIcon icon={faPlusSquare} size={'2x'} />
-								Add New Chart
+								<div className="d-flex flex-row align-items-center">
+									<FontAwesomeIcon icon={faPlusSquare} size={'2x'} className="mr-2" />
+									<p>Add New Chart</p>
+								</div>
 								<FontAwesomeIcon icon={faCaretDown} />
 							</button>
 							<ul>
@@ -87,15 +94,12 @@ class TabCharts extends Component {
 							</ul>
 						</div>
 					</div>
-
 					<div className="nav-item__empty">
 						<p>New Charts</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
-					<div className="nav-item__main hiddenInput d-flex flex-column align-items-start" >
-
+					<div className="nav-item__main d-flex flex-column align-items-start" >
 						<label htmlFor="candleMode">
 							<input type="radio" id="candleMode" name="createProgect" value="candleMode" />
 							Candle Mode
@@ -108,165 +112,134 @@ class TabCharts extends Component {
 							<input type="radio" id="linesMode" name="createProgect" value="linesMode" />
 							Lines Mode
 						</label>
-
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Create Project</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
 					<div className="nav-item__main d-flex flex-row">
 						<button type="button">
-							<FontAwesomeIcon icon={faSearchPlus} size="3x" />
+							<FontAwesomeIcon icon={faSearchPlus} size="3x" className="mb-2" />
 							<p>Zoom in</p>
 						</button>
 						<button type="button">
-							<FontAwesomeIcon icon={faSearchMinus} size="3x" />
+							<FontAwesomeIcon icon={faSearchMinus} size="3x" className="mb-2" />
 							<p>Zoom Out</p>
 						</button>
 						<button type="button">
-							<FontAwesomeIcon icon={faSearch} size="3x" />
+							<FontAwesomeIcon icon={faSearch} size="3x" className="mb-2" />
 							<p>Search <br /> Date/Time</p>
 						</button>
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Zoom & Search</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
-					<div className="nav-item__main d-flex flex-column align-items-start">
-
+					<div className="nav-item__main d-flex flex-column">
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faSave} size="2x" />
+							<FontAwesomeIcon icon={faSave} size="2x" className="mr-2" />
 							<p>Save template</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faEdit} size="2x" />
+							<FontAwesomeIcon icon={faEdit} size="2x" className="mr-2" />
 							<p>Edit template</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faTable} size="2x" />
+							<FontAwesomeIcon icon={faTable} size="2x" className="mr-2" />
 							<p>Default template</p>
 						</button>
-
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Profiles</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
-					<div className="nav-item__main d-flex flex-column align-items-start" >
-
+					<div className="nav-item__main d-flex flex-column" >
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faDownload} size="2x" />
+							<FontAwesomeIcon icon={faDownload} size="2x" className="mr-2" />
 							<p>Load Project</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faSave} size="2x" />
+							<FontAwesomeIcon icon={faSave} size="2x" className="mr-2" />
 							<p>Save Project</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faSyncAlt} size="2x" />
+							<FontAwesomeIcon icon={faSyncAlt} size="2x" className="mr-2" />
 							<p>Restore Default Profile</p>
 						</button>
-
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Profiles</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
-					<div className="nav-item__main d-flex flex-column align-items-start">
+					<div className="nav-item__main d-flex flex-column">
 						<button type="button" >
-							<FontAwesomeIcon icon={faCamera} size="4x" />
+							<FontAwesomeIcon icon={faCamera} size="4x" className="mb-1" />
 							<p>Take a screenshot</p>
 						</button>
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Screenshot</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
-					<div className="nav-item__main d-flex flex-column align-items-start">
-
+					<div className="nav-item__main d-flex flex-column">
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faAlignCenter} size="1x" />
+							<FontAwesomeIcon icon={faAlignCenter} size="1x" className="mr-2" />
 							<p>Tile Vertically</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faAlignJustify} size="1x" />
+							<FontAwesomeIcon icon={faAlignJustify} size="1x" className="mr-2" />
 							<p>Tile Horizontally</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faAlignLeft} size="1x" />
+							<FontAwesomeIcon icon={faAlignLeft} size="1x" className="mr-2" />
 							<p>Minimize All</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faAlignRight} size="1x" />
+							<FontAwesomeIcon icon={faAlignRight} size="1x" className="mr-2" />
 							<p>Cascade</p>
 						</button>
-
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Window Settings</p>
 					</div>
 				</div>
-
 				<div className="nav-item">
-					<div className="nav-item__main d-flex flex-column align-items-start" >
-
+					<div className="nav-item__main d-flex flex-column">
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faAdjust} size="1x" />
+							<FontAwesomeIcon icon={faAdjust} size="1x" className="mr-2" />
 							<p>Autoscroll</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faAnchor} size="1x" />
+							<FontAwesomeIcon icon={faAnchor} size="1x" className="mr-2" />
 							<p>Chart Offset</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faMagnet} size="1x" />
+							<FontAwesomeIcon icon={faMagnet} size="1x" className="mr-2" />
 							<p>Magnet mode</p>
 						</button>
-
 						<button type="button" className="d-flex flex-row align-items-center">
-							<FontAwesomeIcon icon={faSyncAlt} size="1x" />
+							<FontAwesomeIcon icon={faSyncAlt} size="1x" className="mr-2" />
 							<p>Sync charts</p>
 						</button>
-
 					</div>
-
 					<div className="nav-item__empty">
 						<p>Charts</p>
 					</div>
 				</div>
 
 				<div className="nav-item">
-					<div className="nav-item__main d-flex flex-column align-items-start">
+					<div className="nav-item__main d-flex flex-column">
+						<button onClick={this.toggle} className="nav-item__toolsList flex-column justify-content-center">
+							<FontAwesomeIcon icon={faWrench} size="3x" className="mb-2" />
+							<p>Chart setting</p>
+						</button>
 						<MDBContainer>
-							<button onClick={this.toggle} className="nav-item__toolsList flex-column">
-								<FontAwesomeIcon icon={faWrench} size="3x" />
-								<p>Chart setting</p>
-							</button>
+
 							<MDBModal isOpen={this.state.modal} toggle={this.toggle}>
 								<MDBModalHeader toggle={this.toggle}>Chart settings</MDBModalHeader>
 								<MDBModalBody>
