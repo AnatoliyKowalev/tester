@@ -199,13 +199,14 @@ export default class OpenPositionsSection extends Component {
   render() {
     return (
       <div className="Section" >
-        <div className="Section-name">Open positions [{this.props.openPositionCount}]</div>
+        <div className="Section__name">Open positions [{this.props.openPositionCount}]</div>
+        {/* <div className="Section__top"></div> */}
         <div className="Section__bottom column">
           <MDBDataTable
             searching={false}
             scrollY
             scrollX
-            maxHeight='156px'
+            // maxHeight='156px'
             striped
             hover
             bordered

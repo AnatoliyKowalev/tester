@@ -4,7 +4,7 @@ import { format } from "d3-format";
 import { chartSettings } from '../../../utils/constants'
 import { ChartCanvas, Chart } from "react-stockcharts";
 import {
-	BarSeries,
+	// BarSeries,
 	BollingerSeries,
 	CandlestickSeries,
 	LineSeries,
@@ -32,7 +32,7 @@ const bbAppearance = {
 		top: "#964B00",
 		middle: "#FF6600",
 		bottom: "#964B00",
-	}, 
+	},
 	fill: "#4682B4"
 };
 
@@ -41,7 +41,7 @@ class CandleStickChartWithDarkTheme extends React.Component {
 		const chartHeight = document.getElementsByClassName('chartContainer')[0].clientHeight
 		const { type, data: initialData, width, ratio } = this.props;
 
-		const margin = { left: 50, right: 50, top: 20, bottom: 70 };
+		const margin = { left: 40, right: 50, top: 20, bottom: 70 };
 
 		// const gridHeight = chartHeight - margin.top - margin.bottom;
 		const gridWidth = width - margin.left - margin.right;
@@ -114,10 +114,10 @@ class CandleStickChartWithDarkTheme extends React.Component {
 					yExtents={[d => [d.high, d.low], bb.accessor(), ema20.accessor(), ema50.accessor()]}
 					padding={{ top: 10, bottom: 20 }}
 				>
-					<YAxis axisAt="right" orient="right" ticks={5} {...yGrid} inverted={true}
+					<YAxis axisAt="left" orient="left" ticks={5} {...yGrid} inverted={true}
 						tickStroke={activeChartSettings.linesColor}
 						stroke={activeChartSettings.textColor} />
-					<XAxis axisAt="bottom" orient="bottom" showTicks={false} outerTickSize={0}
+					<XAxis axisAt="bottom" orient="bottom" showTicks={true} outerTickSize={0}
 						stroke={activeChartSettings.textColor}
 						tickStroke={activeChartSettings.linesColor} />
 					opacity={0.5} />
@@ -141,11 +141,11 @@ class CandleStickChartWithDarkTheme extends React.Component {
 					<EdgeIndicator itemType="last" orient="right" edgeAt="right"
 						yAccessor={d => d.close} fill={d => d.close > d.open ? "#6BA583" : "#DB0000"} />
 
-					<OHLCTooltip origin={[20, -10]} />
+					<OHLCTooltip origin={[10, -10]} />
 
 					<GroupTooltip
 						layout="vertical"
-						origin={[20, 15]}
+						origin={[10, 15]}
 						verticalSize={20}
 						onClick={e => console.log(e)}
 						options={[
@@ -164,13 +164,13 @@ class CandleStickChartWithDarkTheme extends React.Component {
 						]}
 					/>
 					<BollingerBandTooltip
-						origin={[20, 60]}
+						origin={[10, 60]}
 						valueStroke='red'
 						yAccessor={d => d.bb}
 						options={bb.options()}
 					/>
 				</Chart>
-				<Chart id={2}
+				{/* <Chart id={2}
 					yExtents={d => d.volume}
 					height={chartHeight - 50}
 				// origin={(w, h) => [0, h - 475]}
@@ -191,7 +191,7 @@ class CandleStickChartWithDarkTheme extends React.Component {
 					<BarSeries
 						yAccessor={d => d.volume}
 						fill={d => d.close > d.open ? "#6BA583" : "#DB0000"} />
-				</Chart>
+				</Chart> */}
 
 				<CrossHairCursor stroke={chartSettings.mode ? chartSettings.light.textColor : chartSettings.dark.textColor} />
 			</ChartCanvas>

@@ -1,7 +1,9 @@
 .bottomMenu {
+  font-size: $def-text-size;
   position: absolute;
   bottom: 0;
   width: 100%;
+  z-index: 9;
   height: 237px;
   // height: 25vh;
   display: flex;
@@ -20,45 +22,44 @@
       line-height: 20px;
     }
   }
-  .tabs {
-    z-index: 100;
-    height: auto;
-    .indicator {
-      display: none;
+  .Tabs {
+    flex-basis: 12%;
+    * {
+      height: 100%;
     }
-    .tab {
-      float: left;
-      line-height: 26px;
-      width: auto;
-      height: fit-content;
-      padding-bottom: 2px;
-      a {
-        background: $dark-medium-color;
-        padding: 0px 15px;
-        color: $white-color;
-        font-size: $small-text-size;
-        text-transform: capitalize;
-        &:focus {
-          background: $dark-color;
-        }
-      }
-      .active {
-        background: $light-darker-color;
-      }
-      &:active {
-        background: $light-darker-color;
-      }
-    }
-  } 
+  }
+  // }
+  //   .tab {
+  //     float: left;
+  //     line-height: 26px;
+  //     width: auto;
+  //     height: fit-content;
+  //     padding-bottom: 2px;
+  //     a {
+  //       background: $dark-medium-color;
+  //       padding: 0px 15px;
+  //       color: $white-color;
+  //       font-size: $small-text-size;
+  //       text-transform: capitalize;
+  //       &:focus {
+  //         background: $dark-color;
+  //       }
+  //     }
+  //     .active {
+  //       background: $light-darker-color;
+  //     }
+  //     &:active {
+  //       background: $light-darker-color;
+  //     }
+  //   }
+  // }
   .datepicker-modal {
-   
     tr {
       &:nth-child(even) {
         background: $light-darker-color;
       }
     }
   }
-  
 
   .row {
     padding: 0;
@@ -66,7 +67,7 @@
     width: 100%;
     height: 100%;
     .Section {
-      height: 100%;  
+      height: 100%;
     }
     .col {
       padding: 0;
@@ -82,7 +83,7 @@
       max-width: 25px;
       max-height: 25px;
       cursor: pointer;
-     }
+    }
   }
   .dropdown-content {
     overflow: inherit;
@@ -101,14 +102,16 @@
   }
   .Section {
     // top: 0;
-    height: 88%;
-    .Section__bottom, .Section__top {
+    flex-basis: 88%;
+    overflow: hidden;
+    .Section__bottom,
+    .Section__top {
       padding: 0;
     }
     .Section__top {
       z-index: 50;
       width: 100%;
-      transition: all .2s;
+      transition: all 0.2s;
       position: absolute;
       justify-content: flex-start;
       background: $def-border-color;
@@ -117,18 +120,18 @@
         button {
           margin-left: 10px;
           height: auto;
-          padding: 5px 15px;
+          padding: 1px 11px 3px;
           background: $light-darker-color;
           color: $black-color;
           text-transform: capitalize;
-          svg{
+          svg {
             margin-left: 6px;
           }
           &:hover {
             background: $dark-lighter-color;
             color: $white-color;
           }
-        } 
+        }
       }
     }
     .Section__bottom {
@@ -138,17 +141,14 @@
       display: flex;
       flex-wrap: nowrap;
       justify-content: flex-start;
+
       &.column {
         flex-direction: column;
       }
       &.row {
         flex-direction: row;
       }
-      // .scrollWrapper {
-      //   position: relative;
-      //   height: 134px;
-      //   overflow: auto;
-      // }
+
       .noteCaption {
         padding: 0 5px;
         text-align: left;
@@ -158,7 +158,7 @@
             border: 1px solid $black-color;
           }
         }
-			}
+      }
     }
     .extraMt {
       &._30 {

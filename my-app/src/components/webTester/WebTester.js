@@ -13,7 +13,7 @@ class WebTester extends Component {
     };
   }
 
-  changeChartMode = checked => this.setState({chartMode: checked })
+  changeChartMode = checked => this.setState({ chartMode: checked })
 
   render() {
     return (
@@ -23,7 +23,7 @@ class WebTester extends Component {
             <MenuTop changeChartMode={this.changeChartMode} chartMode={this.state.chartMode} />
           </section>
           <LeftBar />
-          <section className={`chartContainer ${this.state.chartMode ? '' : 'darkTheme'}`}>
+          <section className={`chartContainer ${this.state.chartMode ? 'lightTheme' : 'darkTheme'}`}>
             <ChartComponent chartMode={this.state.chartMode} />
           </section>
           <BottomMenu />

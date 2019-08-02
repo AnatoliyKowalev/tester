@@ -61,36 +61,44 @@ export default class DataWindow extends Component {
   toggleContentDisplay = e => {
     this.setState({ displayDataWindow: e.target.checked })
   }
-  render() {
 
-    
-    
+  render() {
     return (
       <div className="Section" >
-        <div className="Section-name">Data window</div>
+        <div className="Section__name">Data window</div>
         <div className="Section__top">
           <label htmlFor="fixIndex">
-            <input type="checkbox" id="fixIndex" onChange={this.toggleContentDisplay}   />
+            <input type="checkbox" id="fixIndex" onChange={this.toggleContentDisplay} />
             Fix.index
           </label>
-          <input type="number" id="fixedIndex" disabled={this.state.displayDataWindow ? false : true}  />
+          <input type="number" id="fixedIndex" disabled={this.state.displayDataWindow ? false : true} />
         </div>
-        <div className="Section__bottom">
+        <div className="Section__bottom" >
           <div className="dataTables_wrapper">
             {this.state.displayDataWindow
               ? <MDBTable
-                id="dataWindowInfo"
                 fixed
                 scrollY
                 striped
-                maxHeight='100px'
                 hover
                 bordered
-                small>
+                small
+              >
                 <MDBTableHead columns={this.state.tableData.columns} />
                 <MDBTableBody rows={this.state.tableData.rows} />
               </MDBTable>
-              : ''
+              : <MDBTable
+                style={{ opacity: 0 }}
+                fixed
+                scrollY
+                striped
+                hover
+                bordered
+                small
+              >
+                <MDBTableHead />
+                <MDBTableBody />
+              </MDBTable>
             }
           </div>
         </div>

@@ -8,7 +8,7 @@ export default class NewsSection extends Component {
     super(props);
     this.state = {
       activeFilters: false,
-      tableData: { 
+      tableData: {
         columns: [
           {
             label: 'Date/Time',
@@ -213,32 +213,42 @@ export default class NewsSection extends Component {
     })
   }
 
-    //multiselect symbols
-    getSymbolsArr = (e) => {
-    
-      let ul = e.target.closest('ul'),
-          ulSize = ul.childElementCount,
-          checkedSymbols = [];
-  
-      for (let i = 0; i <= ulSize - 1; i++) {
-  
-        let input = ul.children[i].children[0]
-        if (input.checked) {
-          checkedSymbols.push(input.id + ';')
-        }
+  //multiselect symbols
+  getSymbolsArr = (e) => {
+
+    let ul = e.target.closest('ul'),
+      ulSize = ul.childElementCount,
+      checkedSymbols = [];
+
+    for (let i = 0; i <= ulSize - 1; i++) {
+
+      let input = ul.children[i].children[0]
+      if (input.checked) {
+        checkedSymbols.push(input.id + ';')
       }
-      this.setState({ filterParameters: {
+    }
+    this.setState({
+      filterParameters: {
         ...this.state.filterParameters,
         sellectedSymbols: checkedSymbols
-      } })
-    }
+      }
+    })
+  }
 
   render() {
     return (
       <div className="Section" >
-        <div className="Section-name">News</div>
-        <div className="Section__top">
-          <div className={`filters d-flex align-items-start justify-content-start ${this.state.activeFilters ? 'flex-column ' : 'flex-row'}`}>
+        <div className="Section__name">News</div>
+        <div className={`Section__top  ${this.state.activeFilters
+          ? 'filters--shown align-items-start'
+          : 'filters--hidden '}
+        `} >
+          <div
+            className={`filters d-flex  justify-content-start ${this.state.activeFilters
+              ? 'flex-column align-items-start'
+              : 'flex-row align-items-center'}`
+            }
+          >
 
             <button onClick={this.activeFilters}>
               {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
@@ -257,39 +267,39 @@ export default class NewsSection extends Component {
 
                   {this.state.byDate.option === 'Any date'
                     ? ''
-                    : 
-                      <>
-                        <p className="ml-2">Period from:</p>
-                        <input type="date" onChange={this.addOpenDateToFilterParameters} />
-                        <p className="ml-2">Period to:</p>
-                        <input type="date" onChange={this.addCloseDateToFilterParameters} />
-                      </>
+                    :
+                    <>
+                      <p className="ml-2">Period from:</p>
+                      <input type="date" onChange={this.addOpenDateToFilterParameters} />
+                      <p className="ml-2">Period to:</p>
+                      <input type="date" onChange={this.addCloseDateToFilterParameters} />
+                    </>
                   }
                 </div>
                 <div className="filters-content__item">
                   <p>Symbol:</p>
                   <div className="dropDown multiplySelect">
-                      <button className="dropTarget" >
-                        <p>{this.state.filterParameters.sellectedSymbols}</p>
-                     
-                        <FontAwesomeIcon icon={faCaretDown} />
-                      </button>
-                      <ul onClick={this.getSymbolsArr} >
-                        <li>
-                          <input id="EURUSD" type="checkbox" name="investment" value="stock" />
-                          <label htmlFor="EURUSD" className=' check-item'>EURUSD</label>
-                        </li>
-                        <li>
-                          <input id="YPJUSD" type="checkbox" name="investment" value="realestate" />
-                          <label htmlFor="YPJUSD" className='check-item'>JPYUSD</label>
-                        </li>
-                        <li>
-                          <input id="GBDJPY" type="checkbox" name="investment" value="mutualfund" />
-                          <label htmlFor="GBDJPY" className='check-item'>GBDJPY</label>
-                        </li>
+                    <button className="dropTarget" >
+                      <p>{this.state.filterParameters.sellectedSymbols}</p>
 
-                      </ul>
-                    </div>
+                      <FontAwesomeIcon icon={faCaretDown} />
+                    </button>
+                    <ul onClick={this.getSymbolsArr} >
+                      <li>
+                        <input id="EURUSD" type="checkbox" name="investment" value="stock" />
+                        <label htmlFor="EURUSD" className=' check-item'>EURUSD</label>
+                      </li>
+                      <li>
+                        <input id="YPJUSD" type="checkbox" name="investment" value="realestate" />
+                        <label htmlFor="YPJUSD" className='check-item'>JPYUSD</label>
+                      </li>
+                      <li>
+                        <input id="GBDJPY" type="checkbox" name="investment" value="mutualfund" />
+                        <label htmlFor="GBDJPY" className='check-item'>GBDJPY</label>
+                      </li>
+
+                    </ul>
+                  </div>
 
 
                 </div>

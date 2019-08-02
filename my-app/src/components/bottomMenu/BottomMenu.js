@@ -6,7 +6,10 @@ import LogSection from './bottomMenuSections/LogSection';
 import NewsSection from './bottomMenuSections/NewsSection';
 import NotesSection from './bottomMenuSections/NotesSection';
 
-import {bottomMenuTabs} from './../../utils/constants';
+// import AllFeaturesTable from './bottomMenuSections/AllFeaturesTable '
+
+import Slider from "react-slick";
+import { bottomMenuTabs } from './../../utils/constants';
 
 export default class BottomMenu extends Component {
   constructor(props) {
@@ -22,10 +25,28 @@ export default class BottomMenu extends Component {
     activeTab: +event.currentTarget.dataset.index
   });
 
-  
+
 
   render() {
-
+    var settings = {
+      dots: false,
+      infinite: false,
+      arrows: false,
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      variableWidth: true,
+      speed: 300,
+      responsive: [
+        {
+          breakpoint: 481,
+          settings: {
+            className: "Tabs small-screen-menu",
+            arrows: true,
+            slidesToShow: 3,
+          }
+        }
+      ]
+    };
     const getSelectedTab = tabIndex => {
       switch (tabIndex) {
         case 0:
@@ -35,9 +56,9 @@ export default class BottomMenu extends Component {
         case 2:
           return <AccountHistorySection />;
         case 3:
-          return <LogSection/>;
+          return <LogSection />;
         case 4:
-          return <NewsSection/>;
+          return <NewsSection />;
         case 5:
           return <NotesSection />;
         default:
@@ -63,37 +84,13 @@ export default class BottomMenu extends Component {
 
     return (
       <div className="bottomMenu">
-            <ul className="Tabs">
-              {tabs}
-            </ul>
-          
-              {tabContent}
-           
+        {/* <AllFeaturesTable /> */}
+        <Slider className="Tabs" {...settings}>
+          {tabs}
 
-
-        {/* <Tabs className="tab-demo z-depth-1">
-          <Tab title={`Open positions [${this.state.openedPositions}]`} active>
-            <OpenPositionsSection openPositionCount={this.state.openedPositions} />
-          </Tab>
-          <Tab title={`Pending Orders [${this.state.pendingOrders}]`}>
-            <PendingOrdersSection pendingOrders={this.state.pendingOrders} />
-          </Tab>
-          <Tab title="Account history">
-            <AccountHistorySection />
-          </Tab>
-          <Tab title="Log">
-            <LogSection />
-          </Tab>
-          <Tab title="News">
-            <NewsSection />
-          </Tab>
-          <Tab title="Notes">
-            <NotesSection />
-          </Tab>
-        </Tabs>
-     */}
+        </Slider>
+        {tabContent}
       </div>
     )
   }
 }
- 

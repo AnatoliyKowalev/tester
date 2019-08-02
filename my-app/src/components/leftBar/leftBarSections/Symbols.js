@@ -112,19 +112,23 @@ export default class Symbols extends Component {
   render() {
     return (
       <div className="Section" >
-        <div className="Section-name">Symbols</div>
+        <div className="Section__name">Symbols</div>
         <div className="Section__bottom">
-          <MDBDataTable
-            searching={false}
-            scrollY
-            scrollX
-            maxHeight='189px'
-            striped
-            hover
-            bordered
-            small
-            data={this.state.tableData}
-          />
+          <div className="dataTables_wrapper">
+            <MDBDataTable
+              searching={false}
+              sorting={'false'}
+              scrollY
+              scrollX
+              pagination={'false'}
+              // maxHeight='200px'
+              striped
+              hover
+              bordered
+              small
+              data={this.state.tableData}
+            />
+          </div>
         </div>
       </div>
     )

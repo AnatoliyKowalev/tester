@@ -1,169 +1,261 @@
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-/* Styles */
-}
-
 /* Smartphones (landscape) ----------- */
-@media only screen 
-and (min-width : 321px) {
-/* Styles */
+@media only screen and (min-width: 321px) {
+  /* Styles */
 }
 
 /* Smartphones (portrait) ----------- */
-@media only screen 
-and (max-width : 320px) {
-/* Styles */
+@media only screen and (max-width: 320px) {
+  /* Styles */
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-/* Styles */
+@media only screen and (min-width: 768px) {
 }
 
 /* iPads (landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) {
-
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 }
 
 /* iPads (portrait) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait) {
-/* Styles */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  /* Styles */
 }
 
 /* Desktops and laptops ----------- */
-@media only screen 
-and (max-width : 1200px) {
-
+@media only screen and (max-width: 1200px) {
   #main {
+    .h-100 {
+      height: auto !important;
+    }
     .extraMt {
       &._30 {
         margin-top: 27px;
       }
-      // &._41 {
-      //   margin-top: 43px;
-      // }
     }
-    #topMenu, .leftBar, .chartContainer, .bottomMenu,  table th, table td {
+    #topMenu,
+    .leftBar,
+    .chartContainer,
+    .bottomMenu,
+    table th,
+    table td,
+    ul,
+    p,
+    a,
+    input,
+    textarea,
+    button,
+    select,
+    label {
       font-size: $small-text-size;
     }
     #topMenu {
-      
-      height: 180px;
+      .scroll {
+        height: 120px;
+      }
       .nav-item {
-        height: 140px;
+        &__main {
+          width: 100%;
+          height: 90px;
+          flex-direction: row !important;
+          align-items: center !important;
+          justify-content: center;
+          flex-wrap: wrap;
+          button {
+            font-size: $small-text-size;
+          }
+          .dropDown {
+            button {
+              line-height: 12px;
+            }
+            .dropTarget {
+              p {
+                margin-left: 4px;
+              }
+            }
+          }
+          label,
+          .dropDown,
+          .dropTarget {
+            width: fit-content;
+          }
+          select {
+            width: 100%;
+            margin: 0 10px;
+          }
+          button {
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column !important;
+          }
+          .dropTarget {
+            flex-direction: row !important;
+          }
+        }
         min-height: 0;
       }
-      .Tabs {
-        // height: 25px;
-        // top: -25px;
+      i,
+      svg {
+        transition: all 0.2s;
       }
-      p, a, label>span {
-        font-size: 10px;
-      }
-      i, svg {
-        transition: all .2s;
-      }
-      .fa-4x {
-        width: 0.7em;
-      }
-      .fa-3x {
-        font-size: 2.4em;
-      }
-      .fa-2x {
-        font-size: 1.6em;
+      .fa-4x,
+      .fa-3x,
+      .fa-2x,
+      .fa-1x {
+        margin: 3px !important;
+        font-size: 2em;
       }
     }
-    .leftBar, .chartContainer {
-      top: 180px;
+    .leftBar {
+      .tabs-wrapper {
+        min-height: 20px;
+      }
+
+      .rolled {
+        height: 20px;
+      }
+    }
+    .leftBar,
+    .chartContainer {
+      top: 148px;
       bottom: 200px;
     }
     .bottomMenu {
-      height: 227px;
-      .tabs {
+      height: 200px;
+      .Tabs {
         .tab {
-          line-height: 32px;
+          font-size: 12px;
         }
-      } 
+      }
     }
   }
 }
 
-/* Large screens ----------- */
-
-
-@media screen and (max-width: 750px) {
-  #main {
-   .leftBar {
-     transition: all .2s;
-     width: 0;
-   }
-   .chartContainer {
-    transition: all .2s;
-    left: 0;
-  }
- }
-}
-
-// @media screen and (max-width: 600px) {
-//   #main {
-//    .leftBar {
-//     //  transition: all .2s;
-//     //  width: 0;
-//    }
-//    .chartContainer {
-//     bottom: 0;
-//   }
-//   .bottomMenu {
-//     display: none;
-//   }
-//  }
-// }
-
 @media screen and (max-height: 800px) {
   #main {
+    .leftBar {
+      bottom: 200px;
+    }
     .bottomMenu {
-      display: flex;
-      justify-content: space-between;
-      transition: all .2s;
+      .Section {
+        overflow: hidden;
+      }
       height: 200px;
+      bottom: 0;
     }
     .chartContainer {
       bottom: 200px;
     }
- }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #main {
+    .leftBar {
+      transition: all 0.2s;
+      transform: translateX(-100%);
+
+      // width: 0;
+      .swiper {
+        width: 30px;
+        height: 100%;
+        padding: 4px;
+      }
+    }
+    .chartContainer {
+      transition: all 0.2s;
+      left: 30px;
+      //  left: 0;
+    }
+  }
 }
 
 @media screen and (max-height: 600px) {
   #main {
     .bottomMenu {
-      transition: all .2s;
+      transition: all 0.2s;
       height: 0;
       width: 0;
       overflow: hidden;
     }
-    .chartContainer, .leftBar {
+    .chartContainer,
+    .leftBar {
       bottom: 0;
     }
- }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  body {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  #main {
+    .filters {
+      &--shown {
+        height: -webkit-fill-available;
+      }
+      .filters-content {
+        .filters-content__item {
+          flex-wrap: wrap;
+        }
+      }
+    }
+    #topMenu {
+      .clear-overflow {
+        transition: all 0.2s;
+        width: 100%;
+        background: $dark-color;
+      }
+      .scroll {
+        padding: 5px 0 0 0;
+        overflow: hidden;
+        height: 88px;
+      }
+      .nav-item {
+        &__main {
+          height: 58px;
+          max-width: 320px;
+        }
+        .fa-4x,
+        .fa-3x,
+        .fa-2x,
+        .fa-1x {
+          margin: 3px !important;
+          font-size: 1.2em;
+        }
+      }
+    }
+    .leftBar {
+      .close-panel {
+        height: 100%;
+        .close-panel__item {
+          height: 100%;
+        }
+      }
+    }
+    .leftBar {
+      top: 116px;
+    }
+    .chartContainer {
+      top: 116px;
+      text {
+        font-size: 9px;
+      }
+    }
+  }
 }
 
 @media screen and (max-height: 400px) {
   #main {
-   .leftBar {
-     width: 0;
-   }
-   .chartContainer {
-     left: 0;
-   }
- }
+    .leftBar {
+      width: 0;
+    }
+    .chartContainer {
+      left: 0;
+    }
+  }
 }
-

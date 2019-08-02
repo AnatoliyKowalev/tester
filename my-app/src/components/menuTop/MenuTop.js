@@ -8,7 +8,7 @@ import TabStrategies from './tabs/TabStrategies'
 import TabTools from './tabs/TabTools'
 import TabStore from './tabs/TabStore'
 import TabHelp from './tabs/TabHelp'
-
+import Slider from "react-slick";
 import { topMenuTabs } from './../../utils/constants';
 
 class MenuTop extends Component {
@@ -26,6 +26,25 @@ class MenuTop extends Component {
   changeChartMode = (checked) => this.props.changeChartMode(checked)
 
   render() {
+    var settings = {
+      dots: false,
+      infinite: false,
+      arrows: false,
+      slidesToShow: 9,
+      slidesToScroll: 1,
+      variableWidth: true,
+      speed: 300,
+      responsive: [
+        {
+          breakpoint: 481,
+          settings: {
+            className: "Tabs small-screen-menu",
+            arrows: true,
+            slidesToShow: 5,
+          }
+        }
+      ]
+    };
 
     const { chartMode } = this.props
 
@@ -70,14 +89,17 @@ class MenuTop extends Component {
     const tabContent = getSelectedTab(this.state.activeTab);
 
     return (
-     <>
-        <ul className="Tabs">
-          {tabs}
-        </ul>
-        <div className="setOfTools">
-          {tabContent}
+      <>
+        <div className="clear-overflow">
+          <Slider className="Tabs" {...settings}>
+            {tabs}
+          </Slider>
         </div>
-     </>
+
+        {/* <div className="setOfTools"> */}
+        {tabContent}
+        {/* </div> */}
+      </>
     );
   }
 }

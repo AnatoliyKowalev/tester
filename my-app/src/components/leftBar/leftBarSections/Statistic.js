@@ -119,7 +119,8 @@ export default class Statistic extends Component {
   render() {
     return (
       <div className="Section" >
-        <div className="Section-name">Statistic</div>
+        <div className="Section__name">Statistic</div>
+        <div className="Section__top" style={{flexBasis:0}}></div>
         <div className="Section__bottom">
           <div className="dataTables_wrapper">
             <MDBTable
@@ -127,7 +128,8 @@ export default class Statistic extends Component {
               fixed
               scrollY
               striped
-              maxHeight='219px'
+              // maxHeight='219px'
+              hover
               bordered
               small>
               <MDBTableHead columns={this.state.tableData.columns} />

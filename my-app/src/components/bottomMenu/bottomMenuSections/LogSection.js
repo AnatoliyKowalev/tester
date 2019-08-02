@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { MDBDataTable } from 'mdbreact';
 
 export default class LogSection extends Component {
 
@@ -55,8 +55,19 @@ export default class LogSection extends Component {
           {
             dateTime: '.2019.07.11 20:53:26',
             message: 'Indicator TimeBox.dll loaded'
-          }
-
+          },
+          {
+            dateTime: '.2019.07.11 20:53:26',
+            message: 'Indicator TimeBox.dll loaded'
+          },
+          {
+            dateTime: '.2019.07.11 20:53:26',
+            message: 'Indicator TimeBox.dll loaded'
+          },
+          {
+            dateTime: '.2019.07.11 20:53:26',
+            message: 'Indicator TimeBox.dll loaded'
+          },
         ]
       }
     }
@@ -64,19 +75,18 @@ export default class LogSection extends Component {
   render() {
     return (
       <div className="Section">
-        <div className="Section-name">Logs</div>
+        <div className="Section__name">Logs</div>
         <div className="Section__bottom column">
-          <MDBTable
-            fixed
+          <MDBDataTable
+            searching={false}
             scrollY
+            scrollX
             striped
-            maxHeight='185px'
             hover
             bordered
-            small>
-            <MDBTableHead columns={this.state.tableData.columns} />
-            <MDBTableBody rows={this.state.tableData.rows} />
-          </MDBTable>
+            small
+            data={this.state.tableData}
+          />
         </div>
       </div>
     )

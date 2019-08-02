@@ -20,22 +20,56 @@ export default class Scripts extends Component {
             sort: 'asc'
           }
         ],
-        rows: []
-      }
+        rows: [
+          // {
+          //   parameter: 'some 1',
+          //   value: 'value 1'
+          // },
+          // {
+          //   parameter: 'some 2',
+          //   value: 'value 2'
+          // },
+          // {
+          //   parameter: 'some 3',
+          //   value: 'value 3'
+          // },
+          // {
+          //   parameter: 'some 3',
+          //   value: 'value 3'
+          // },
+          // {
+          //   parameter: 'some 3',
+          //   value: 'value 3'
+          // },
+          // {
+          //   parameter: 'some 3',
+          //   value: 'value 3'
+          // },
+          // {
+          //   parameter: 'some 3',
+          //   value: 'value 3'
+          // },
+          // {
+          //   parameter: 'some 4',
+          //   value: 'value 4'
+          // },
+        ]
+      },
     };
   }
 
   render() {
     return (
       <div className="Section" >
-        <div className="Section-name">Scripts</div>
+        <div className="Section__name">Scripts</div>
+        <div className="Section__top" style={{ flexBasis: 0 }}></div>
         <div className="Section__bottom">
           <div className="dataTables_wrapper">
             <MDBTable
               fixed
               scrollY
               striped
-              maxHeight='179px'
+              // maxHeight='179px'
               hover
               bordered
               small>

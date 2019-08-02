@@ -1,6 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/pro-solid-svg-icons';
+import { faPlus, faMinus, faChevronRight, faChevronLeft } from '@fortawesome/pro-solid-svg-icons';
 import { leftBarWindows } from '../../utils/constants';
 
 const Symbols = lazy(() => import('./leftBarSections/Symbols'));
@@ -14,6 +14,7 @@ class LeftBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      leftBarFullscreen: false,
       topActiveTab: 'Scripts',
       bottomActiveTab: 'Symbols',
       topRolledWindow: false,
@@ -22,11 +23,11 @@ class LeftBar extends Component {
   }
 
   rollWindow = (e) => {
-    if(e.currentTarget.dataset.value === 'top') {
-      this.setState({topRolledWindow: !this.state.topRolledWindow})
+    if (e.currentTarget.dataset.value === 'top') {
+      this.setState({ topRolledWindow: !this.state.topRolledWindow })
     } else {
-      this.setState({bottomRolledWindow: !this.state.bottomRolledWindow})
-    }     
+      this.setState({ bottomRolledWindow: !this.state.bottomRolledWindow })
+    }
   }
 
   selectTopTab = event => this.setState({
@@ -37,6 +38,14 @@ class LeftBar extends Component {
     bottomActiveTab: event.currentTarget.getAttribute('datatabname')
   });
 
+  swipeLeftBar = (e) => {
+    this.setState({
+      leftBarFullscreen: !this.state.leftBarFullscreen
+    })
+    // e.target.parentElement.style.transform = "translateX(0)";
+    console.log()
+  }
+
   render() {
     const windowTabsWindowTop = leftBarWindows[0].map((tabName, index) => {
       let active = this.state.topActiveTab === tabName
@@ -46,7 +55,7 @@ class LeftBar extends Component {
         <button
           datatabname={tabName}
           onClick={this.selectTopTab}
-          className={`${active} tab`}
+          className={`tab ${active}`}
         >
           {tabName}
         </button>
@@ -69,13 +78,19 @@ class LeftBar extends Component {
 
     return (
       <Suspense fallback={<div>loading...</div>}>
-        <div className="leftBar">
-          <div className={`tabs-wrapper ${this.state.bottomRolledWindow? 'rolled' : 'unrolled' }`}>
+        <div className={`leftBar ${this.state.leftBarFullscreen ? 'fullScreen' : ''}`}  >
+          <div className="swiper" onClick={this.swipeLeftBar}>
+            {this.state.leftBarFullscreen
+              ? <FontAwesomeIcon icon={faChevronLeft} size={'2x'} color="black" />
+              : <FontAwesomeIcon icon={faChevronRight} size={'2x'} color="black" />}
+
+          </div>
+          <div className={`tabs-wrapper ${this.state.bottomRolledWindow ? 'rolled' : 'unrolled'}`}>
             <div className="close-panel">
               <div className="close-panel__item leftBarRollUp" data-value='top' onClick={this.rollWindow}>
                 {
                   this.state.topRolledWindow
-                    ? <FontAwesomeIcon icon={faMinus} /> 
+                    ? <FontAwesomeIcon icon={faMinus} />
                     : <FontAwesomeIcon icon={faPlus} />
                 }
               </div>
@@ -89,12 +104,12 @@ class LeftBar extends Component {
                 : <DataWindow />
             }
           </div>
-          <div className={`tabs-wrapper ${this.state.topRolledWindow? 'rolled' : 'unrolled' }`}>
+          <div className={`tabs-wrapper ${this.state.topRolledWindow ? 'rolled' : 'unrolled'}`}>
             <div className="close-panel">
               <div className="close-panel__item leftBarRollUp" data-value='bottom' onClick={this.rollWindow}>
                 {
                   this.state.bottomRolledWindow
-                    ? <FontAwesomeIcon icon={faMinus} /> 
+                    ? <FontAwesomeIcon icon={faMinus} />
                     : <FontAwesomeIcon icon={faPlus} />
                 }
               </div>
@@ -107,7 +122,7 @@ class LeftBar extends Component {
                 ? <Symbols />
                 : this.state.bottomActiveTab === 'Ticks'
                   ? <Ticks />
-                  : <Statistic/>
+                  : <Statistic />
             }
           </div>
         </div>

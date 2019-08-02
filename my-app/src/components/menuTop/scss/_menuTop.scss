@@ -1,276 +1,229 @@
 #topMenu {
-	height: 200px;
-	top: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	position: absolute;
-	width: 100%;
-	z-index: 45;
-	border-bottom: 1px solid $black-color;
-	font-size: $def-text-size;
-	.menuTabs { 
-		position: absolute;
-		top: 28px;
-		margin: 0;
-		height: 160px;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		background: $dark-color;
-		align-items: center;
-		justify-content: flex-start;
-		z-index: 4;
-	
-		li {
-			padding: 5px 0;
-			a {
-				color: $white-color;
-				z-index: 5;
-				border-right: 1px solid $menu-btn-vover-color;
-				background: $dark-medium-color;
-				margin-right: 1px;
-				text-decoration: none;
-				padding: 7px 10px;
-				cursor: pointer;
-				&:hover {
-					background: $dark-color;
-				}
-			}
-		}
-	}
-} 
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  width: 100%;
+  color: $white-color;
+  z-index: 10;
+  // border-bottom: 1px solid $black-color;
+  font-size: $def-text-size;
+
+  .slick-slider {
+    // overflow: hidden;
+    background: $dark-color;
+    .slick-list {
+      overflow: inherit;
+    }
+    .slick-list,
+    .slick-track,
+    .slick-slide {
+      height: 100%;
+    }
+    .slick-slide > div {
+      height: 88%;
+    }
+    .Tabs {
+      height: auto;
+    }
+    .nav-item {
+      // min-height: 160px;
+      height: 100%;
+      margin: 0 5px;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      font-size: $def-text-size;
+      vertical-align: middle;
+      border-right: 1px solid rgba($light-color, 0.5);
+      .dropdown-content {
+        a,
+        span {
+          font-size: $small-text-size;
+        }
+        overflow-y: inherit;
+      }
+
+      &__toolsList {
+        line-height: 16px;
+        height: auto;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-transform: initial;
+        position: relative;
+        &:hover {
+          color: $menu-btn-vover-color;
+        }
+        &.bottomList .fa-sort-down,
+        &.horizontalList .fa-sort-down {
+          transform: translateY(-30%);
+          position: absolute;
+          right: 5%;
+        }
+        i {
+          height: auto;
+        }
+        li {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 10px;
+          button {
+            width: 100%;
+            padding: 3px;
+          }
+        }
+        &.bottomList {
+          padding: 3px 10px !important;
+          width: 90%;
+        }
+        &.horizontalList {
+          margin: 0;
+          min-width: 170px;
+          padding: 2px 25px 2px 4px;
+          background: none;
+          width: 109%;
+          box-shadow: none;
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+      }
+
+      &__main {
+        padding: 0 12px;
+        height: 100%;
+        align-items: unset;
+        justify-content: center;
+        label {
+          display: flex;
+        }
+        select {
+          margin: 0 auto;
+        }
+        .dropDown {
+          width: 100%;
+          margin-bottom: 4px;
+          .dropTarget {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+          }
+        }
+        i,
+        svg {
+          color: $light-darker-color;
+        }
+        .btn,
+        button {
+          height: 100%;
+          font-size: $small-text-size;
+          // color: $white-color;
+          padding: 4px;
+          min-width: 70px;
+          transition: all 0.3s;
+        }
+        span {
+          &:hover {
+            transition: all 0.3s;
+            color: $menu-btn-vover-color;
+          }
+        }
+        &:not(:last-child) button {
+          margin-right: 3px;
+        }
+      }
+
+      &__bottom {
+        width: 100%;
+        .dropDown {
+          margin: 0 auto;
+          .dropTarget {
+            display: flex;
+          }
+        }
+        .includePadding {
+          padding: 10px;
+        }
+        [type="checkbox"] + span:not(.lever) {
+          padding-left: 25px;
+          line-height: 30px;
+        }
+        [type="checkbox"] + span:not(.lever) {
+          line-height: 22px;
+        }
+        ul {
+          padding: 0;
+          span {
+            color: $dark-darker-color;
+          }
+        }
+        .btn {
+          box-shadow: none;
+          color: $white-color;
+          background: none;
+          &:hover {
+            color: $menu-btn-vover-color;
+            background: none;
+          }
+          &:focus {
+            background: $dark-color;
+          }
+        }
+        ul {
+          li {
+            position: relative;
+            a {
+              text-decoration: none;
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              i {
+                width: 10px;
+                margin: 0;
+              }
+            }
+            ul {
+              top: 0 !important;
+              transform: translateX(-100%);
+            }
+          }
+        }
+      }
+      &__empty {
+        width: 100%;
+        button {
+          width: 100%;
+          box-shadow: none;
+        }
+        p,
+        svg {
+          color: $light-darker-color;
+        }
+        li:hover {
+          // background: none;
+          span {
+            color: $light-color;
+          }
+        }
+      }
+    }
+  }
+}
 
 .scroll::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 .scroll {
-	height: 100%;
-	display: flex;
-	padding: 7px 4px 4px 4px;
-	white-space: nowrap;
-	overflow-y: auto;
-	overflow-x: scroll;
-	-webkit-overflow-scrolling: touch;
-	// -ms-overflow-style: -ms-autohiding-scrollbar; 
+  padding: 10px 25px 2px;
+  height: 172px;
 }
-
-.setOfTools {
-	background: $dark-color;
-	width: 100%;
-	color: $white-color;
-}
-
-.nav-item {
-	min-height: 160px;
-	height: initial;
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	font-size: $def-text-size;
-	vertical-align: middle;  
-	
-	.dropdown-content {
-		a, span {
-			font-size: $small-text-size;
-		}
-		overflow-y: inherit;
-	}
-
-	&__toolsList {
-		line-height: 16px;
-		height: auto;
-		display: inline-flex;
-		flex-direction: row;
-		justify-content: space-around;
-		align-items: center;
-		text-transform: initial;
-		position: relative;
-		&:hover {
-			color: $menu-btn-vover-color;
-		}
-		&.bottomList .fa-sort-down,  
-		&.horizontalList .fa-sort-down {
-	      transform: translateY(-30%);
-		    position: absolute;
-		    right: 5%;
-		}
-		i {
-			height: auto;
-		}
-		li {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0 10px;
-			button {
-				width: 100%;
-				padding: 3px;
-			}
-		}
-		&.bottomList { 
-			padding: 3px 10px!important;
-			width: 90%;
-		}
-		&.horizontalList {
-			margin: 0;
-			min-width: 170px;
-			padding: 2px 25px 2px 4px;
-			background: none;
-			width: 109%;
-			box-shadow: none;
-			flex-direction: row;
-			justify-content: flex-start;
-		}
-	}
-	&__main {
-		padding: 0 12px;
-		height: 100%;
-		align-items: unset;
-		justify-content: center;
-		select {
-			margin: 0 auto;
-		}
-		.dropDown {
-			width: 100%;
-			margin-bottom: 4px;
-			.dropTarget {
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-				font-size: 14px;
-				// svg {
-				// 	font-size: 12px;
-				// }
-			}
-		}
-		i, svg {
-			color: $light-darker-color;
-		}
-		.btn, button {
-			height: 100%;
-			font-size: $small-text-size;
-			color: $white-color;
-			padding: 4px;
-			min-width: 70px;
-			transition: all .3s;
-		}
-		span {
-			&:hover {
-				transition: all .3s;
-				color: $menu-btn-vover-color;
-			}
-		}
-		&:not(:last-child) button {
-			margin-right: 3px;
-		}  
-	} 
-
-	// .columnDropTarget {
-	// 	.dropTarget {
-	// 		display: flex;
-	// 		flex-direction: column;
-	// 		align-items: center;
-	// 	}
-	// }
-	&:not(:last-child) &__main {
-		border-right: 1px solid rgba($light-darker-color, .5); 
-	}  
-	&__bottom {
-		width: 100%;
-		margin: 0 30px; 
-		.dropDown {
-			margin: 0 auto;
-		}
-		.includePadding {
-			padding: 10px;
-		}
-		[type=checkbox]+span:not(.lever) {
-			padding-left: 25px;
-			line-height: 30px;
-		}
-		[type=checkbox]+span:not(.lever) {
-			line-height: 22px;
-		}
-		ul {
-			padding: 0;
-			span {
-				color: $dark-darker-color;
-			}
-		}
-		.btn {
-			box-shadow: none;
-			color: $white-color;
-			// background: rgba(66, 66, 66, .3);
-			background: none;
-			&:hover {
-				color: $menu-btn-vover-color;
-				background: none;
-			}
-			&:focus {
-				background: $dark-color;
-			}
-			
-		}
-		ul {
-			li {
-				// min-height: 0;
-				position: relative;
-				a {
-					text-decoration: none;
-					width: 100%;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					i {
-						width: 10px;
-						margin: 0;
-					}
-				}
-				ul {
-					top: 0!important;
-					left: -100%!important;
-				}
-			}
-		}
-	}
-	&__empty {
-	
-		width: 100%;
-		button {
-			width: 100%;
-			box-shadow: none;
-		}
-	
-		p, svg { 
-			color: $light-darker-color;
-		}
-		li:hover {
-			// background: none;
-			span {
-				color: $light-color;
-			}
-		}
-	}
-}
-
-// .btn {
-// 	padding: 2px 6px;
-// 	box-shadow: none;
-// 	&:focus {
-// 		background: $dark-color;
-// 	}
-// 	&:active {
-// 		background: $dark-color;
-// 	}
-// 	&:hover {
-// 		box-shadow: none;
-// 		color: $white-color;
-// 		background: $menu-btn-vover-color;
-// 	}
-// }
