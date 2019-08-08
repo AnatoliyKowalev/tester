@@ -3,6 +3,7 @@ import { MDBDataTable } from 'mdbreact';
 import { faCaretDown } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { accountHistoryTable } from '../../../utils/constants'
+
 export default class AccountHistorySection extends Component {
   constructor(props) {
     super(props);
@@ -105,62 +106,48 @@ export default class AccountHistorySection extends Component {
         closeDate: ''
       },
       bySymbol: {
-        changed: false,
         symbolsArr: []
       },
       byType: {
-        option: '',
-        changed: false
+        option: 'All'
       },
       byProfitType: {
-        option: '',
-        changed: false
+        option: 'All'
       },
       filterParameters: {
         openDate: '',
         closeDate: '',
         sellectedSymbols: '',
+        sellectedType: '',
+        sellectedProfitType: '',
         filterString: ''
       }
     }
   }
 
   componentDidMount = () => {
-
-    let symbolOptions = this.state.tableData.defaultTableDataRows, symbolsName = [], symbols = []
-
-    symbolOptions.forEach(function (i) {
-      symbolsName.push(i.symbol)
-    })
+    let symbolOptions = this.state.tableData.defaultTableDataRows,
+      symbolsName = [],
+      symbols = []
+    symbolOptions.forEach((i) => symbolsName.push(i.symbol))
     const uniqueAges = [...new Set(symbolsName)]
-    uniqueAges.forEach(function (i) {
-      symbols.push({ option: i, checked: false })
-    })
+    uniqueAges.forEach((i) => symbols.push({ option: i, checked: true }))
+    let checkedSymbols = this.state.checkedSymbols
+    symbols.forEach(function (i) { if (i.checked) { checkedSymbols.push(i.option) } })
     this.setState({
       ...this.state,
-      // byDate: {
-      //   ...this.state.byDate,
-      //   option: 'Any date'
-      // },
-      byType: {
-        ...this.state.byType,
-        option: 'All'
-      },
-      byProfitType: {
-        ...this.state.byProfitType,
-        option: 'All'
-      },
       bySymbol: {
         ...this.state.bySymbol,
         symbolsArr: symbols
+      },
+      filterParameters: {
+        ...this.state.filterParameters,
+        sellectedSymbols: this.state.checkedSymbols.join('; ')
       }
     })
-
   }
   //Hide / show filters
-  activeFilters = (e) => {
-    this.setState({ activeFilters: !this.state.activeFilters })
-  }
+  activeFilters = () => this.setState({ activeFilters: !this.state.activeFilters })
   //Filter parameters-------------------
   //Add open date to filter parameters
   addOpenDateToFilterParameters = e => {
@@ -172,7 +159,7 @@ export default class AccountHistorySection extends Component {
       },
       filterParameters: {
         ...this.state.filterParameters,
-        openDate: 'Open date:' + openDate + ' | '
+        openDate: openDate
       }
     })
   }
@@ -186,7 +173,7 @@ export default class AccountHistorySection extends Component {
       },
       filterParameters: {
         ...this.state.filterParameters,
-        closeDate: 'Close date:' + closeDate + ' | '
+        closeDate: closeDate
       }
     })
   }
@@ -198,18 +185,17 @@ export default class AccountHistorySection extends Component {
       return {
         [filterParameter]: {
           ...this.state.byDate,
-          option: parameter,
-          changed: false
+          ...this.state.byType,
+          option: parameter
         }
       }
-    });
+    })
   }
   //Get multiselect symbols
   getSymbolsArr = e => {
     let symbol = e.target.id //symbol name
     let optionChecked
-
-    if (symbol.length > 0) { //checking if e.target has the id - "symbol name" 
+    if (symbol.length) { //checking if e.target has the id - "symbol name" 
       this.state.bySymbol.symbolsArr.forEach(function (item, index) { //getting index of symbol in array 
         if (item.option === symbol) { optionChecked = index }
       })
@@ -226,13 +212,36 @@ export default class AccountHistorySection extends Component {
         newSymbolState,
         filterParameters: {
           ...this.state.filterParameters,
-          sellectedSymbols: this.state.checkedSymbols.join(';')
+          sellectedSymbols: this.state.checkedSymbols.join('; ')
         }
       })
     }
   }
+  //Get type 
+  getType = e => {
+    this.getFiltersParameter(e)
+    this.setState({
+      filterParameters: {
+        ...this.state.filterParameters,
+        sellectedType: e.target.value
+      }
+    })
+  }
+  //Get profit type 
+  getProfitType = e => {
+    this.getFiltersParameter(e)
+    this.setState({
+      filterParameters: {
+        ...this.state.filterParameters,
+        sellectedProfitType: e.target.value
+      }
+    })
+  }
   //Clear filters
   clearFilters = () => {
+    this.state.bySymbol.symbolsArr.forEach(function (i) { i.checked = true })
+    let symbolInputs = document.querySelectorAll('.symbolInputs')
+    symbolInputs.forEach(function (i) { i.checked = true })
     this.setState({
       tableData: {
         ...this.state.tableData,
@@ -242,12 +251,22 @@ export default class AccountHistorySection extends Component {
         ...this.state.byDate,
         openDate: '',
         closeDate: ''
-      }
-      ,
+      },
+      byType: {
+        ...this.state.byType,
+        option: 'All'
+      },
+      byProfitType: {
+        ...this.state.byType,
+        option: 'All'
+      },
       filterParameters: {
         ...this.state.filterParameters,
         openDate: '',
         closeDate: '',
+        sellectedSymbols: '',
+        sellectedType: '',
+        sellectedProfitType: '',
         filterString: ''
       }
     })
@@ -256,53 +275,89 @@ export default class AccountHistorySection extends Component {
   applyFilters = () => {
     let openDate = this.state.filterParameters.openDate,
       closeDate = this.state.filterParameters.closeDate,
-      symbolsArr = this.state.filterParameters.sellectedSymbols
+      symbolsArr = this.state.filterParameters.sellectedSymbols,
+      tableDataRows = this.state.tableData.defaultTableDataRows,
+      type = this.state.filterParameters.sellectedType,
+      profitType = this.state.filterParameters.sellectedProfitType,
+      labels = [{ label: "Open date:", value: openDate },
+      { label: "Close date:", value: closeDate },
+      { label: "Symbols:", value: symbolsArr },
+      { label: "Type:", value: type },
+      { label: "Profit type:", value: profitType }], tempLabels = []
+    labels.forEach(function (item, i) {
+      if (item.value.length && item.value !== "All") {
+        tempLabels.push(item.label + item.value)
+      }
+    })
+    labels = tempLabels
+    let sortedRows = [], tempArr = [],
+      sortOpenDate = new Date(this.state.byDate.openDate.replace(/-/g, '.')),
+      sortCloseDate = new Date(this.state.byDate.closeDate.replace(/-/g, '.')),
+      checkedSymbols = this.state.checkedSymbols
 
+    // apply by date filter -----------
+    function sortedOpenDate(date) {
+      if (new Date(date.openTime.slice(0, 10)) >= sortOpenDate) return date
+    }
+    function sortedCloseDate(date) {
+      if (new Date(date.openTime.slice(0, 10)) <= sortCloseDate) return date
+    }
+    function sortedOpenCloseDate(date) {
+      if (new Date(date.openTime.slice(0, 10)) >= sortOpenDate
+        && new Date(date.openTime.slice(0, 10)) <= sortCloseDate) return date
+    }
+    function sortedNoneDate(date) { return date }
+
+    if (!this.state.byDate.closeDate.length && !this.state.byDate.openDate.length) {
+      sortedRows = tableDataRows.filter(sortedNoneDate)
+    }
+    if (this.state.byDate.openDate.length && !this.state.byDate.closeDate.length) {
+      sortedRows = tableDataRows.filter(sortedOpenDate)
+    }
+    if (this.state.byDate.closeDate.length && !this.state.byDate.openDate.length) {
+      sortedRows = tableDataRows.filter(sortedCloseDate)
+    }
+    if (this.state.byDate.closeDate.length && this.state.byDate.openDate.length) {
+      sortedRows = tableDataRows.filter(sortedOpenCloseDate)
+    }
+
+    // apply by symbols filter ----------
+    checkedSymbols.forEach(function (chi) {
+      sortedRows.forEach(function (item) {
+        if (item.symbol === chi && item.openTime) { tempArr.push(item) }
+      })
+    })
+    if (tempArr.length) sortedRows = tempArr
+    // apply by type filter ----------
+    let byType = this.state.byType.option
+    function sortedType(item) {
+      if (byType.toLowerCase() !== 'all') {
+        if (item.type.toLowerCase() === byType.toLowerCase()) return item
+      } else { return item }
+    }
+    tempArr = sortedRows.filter(sortedType)
+    sortedRows = tempArr
+
+    // apply by profit type filter ----------
+    let byProfitType = this.state.byProfitType.option
+    function sortedProfitType(item) {
+      if (byProfitType.toLowerCase() === 'profit') {
+        if (item.profit >= 0) return item
+      }
+      if (byProfitType.toLowerCase() === 'lesion') {
+        if (item.profit < 0) return item
+      }
+      if (byProfitType.toLowerCase() === 'all') { return item }
+    }
+    tempArr = sortedRows.filter(sortedProfitType)
+    sortedRows = tempArr
+
+    //changing the state with filters
     this.setState({
       filterParameters: {
         ...this.state.filterParameters,
-        filterString: openDate + closeDate + symbolsArr
-      }
-    })
-    //apply symbols filters
-    let tableDataRows = this.state.tableData.rows,
-      sortedRows = [],
-      sortOpenDate = this.state.byDate.openDate.replace(/-/g, '.')
-
-    this.state.checkedSymbols.forEach(function (chi, chx) {
-      tableDataRows.forEach(function (item, index) {
-        if (item.symbol === chi && item.openTime) {
-          sortedRows.push(item)
-        }
-      })
-    })
-
-
-    if (sortedRows.length <= 0) { sortedRows = this.state.tableData.defaultTableDataRows }
-    //apply filter by date
-    //TOLIK
-    sortedRows.forEach(function (item, index) {
-      if (item.openTime.slice(0, 10) < sortOpenDate) {
-
-        console.log('f')
-        sortedRows.splice(index, 1)
-      }
-    })
-
-    // function filtDate(date) {
-    //   if (date.openTime.slice(0, 10) === '2018.04.01') {
-    //     sortedRows.push(date)
-    //   }
-
-    //   // date => date.openDate.slice(0, 10) >= sortOpenDate
-    // }
-
-    // sortedRows.filter(filtDate)
-    console.log(sortedRows)
-
-
-
-    this.setState({
+        filterString: labels.join(' | ')
+      },
       tableData: {
         ...this.state.tableData,
         rows: sortedRows
@@ -311,6 +366,18 @@ export default class AccountHistorySection extends Component {
   }
 
   render() {
+    const symbols = this.state.bySymbol.symbolsArr.map((item, index) =>
+      <li key={index}>
+        <input
+          id={item.option}
+          type="checkbox"
+          className="symbolInputs"
+          defaultChecked={item.checked}
+        />
+        <label htmlFor={item.option} className='check-item'>{item.option}</label>
+      </li>
+    );
+
     return (
       <div className="Section" >
         <div className="Section__name">Account history</div>
@@ -319,26 +386,32 @@ export default class AccountHistorySection extends Component {
           : 'filters--hidden '}
         `} >
           <div
-            className={`filters d-flex justify-content-start ${this.state.activeFilters
-              ? 'flex-column  align-items-start'
-              : 'flex-row align-items-center'}`
+            className={`filters d-flex justify-content-start 
+            ${this.state.activeFilters
+                ? 'flex-column  align-items-start'
+                : 'flex-row align-items-center'}`
             }
           >
             <button onClick={this.activeFilters}>
               {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
             </button>
-            <p>{this.state.activeFilters
-              ? ''
-              : this.state.filterParameters.filterString === ''
-                ? "no filters applied"
-                : this.state.filterParameters.filterString}
+            <p className="longString">
+              {this.state.activeFilters
+                ? ''
+                : this.state.filterParameters.filterString === ''
+                  ? "no filters applied"
+                  : this.state.filterParameters.filterString}
             </p>
             {
               this.state.activeFilters
                 ? <div className="filters-content">
                   <div className="filters-content__item">
                     <p>Filter by date:</p>
-                    <select name="byDate" value={this.state.byDate.option} onChange={this.getFiltersParameter}>
+                    <select
+                      name="byDate"
+                      value={this.state.byDate.option}
+                      onChange={this.getFiltersParameter}
+                    >
                       <option>Any date</option>
                       <option>Open date</option>
                       <option>Close date</option>
@@ -346,41 +419,42 @@ export default class AccountHistorySection extends Component {
                       <option>Close date and open date</option>
                     </select>
                     {
-                      this.state.byDate.option === 'Any date'
-                        ? ''
-                        : <>
-                          <p className="ml-2">Period from:</p>
-                          <input type="date" value={this.state.byDate.openDate} onChange={this.addOpenDateToFilterParameters} />
-                          <p className="ml-2">Period to:</p>
-                          <input type="date" value={this.state.byDate.closeDate} onChange={this.addCloseDateToFilterParameters} />
-                        </>
+                      this.state.byDate.option !== 'Any date' && <>
+                        <p className="ml-2">Period from:</p>
+                        <input
+                          type="date" value={this.state.byDate.openDate}
+                          onChange={this.addOpenDateToFilterParameters}
+                        />
+                        <p className="ml-2">Period to:</p>
+                        <input
+                          type="date" value={this.state.byDate.closeDate}
+                          onChange={this.addCloseDateToFilterParameters}
+                        />
+                      </>
                     }
                   </div>
+
                   <div className="filters-content__item">
                     <p>Symbol:</p>
                     <div className="dropDown multiplySelect">
                       <button className="dropTarget" >
-                        <p>{this.state.filterParameters.sellectedSymbols !== '' ? this.state.filterParameters.sellectedSymbols : 'Choose symbols'}</p>
-
+                        <p>{this.state.filterParameters.sellectedSymbols.length
+                          ? this.state.filterParameters.sellectedSymbols
+                          : 'All symbols'}</p>
                         <FontAwesomeIcon icon={faCaretDown} />
                       </button>
                       <ul onClick={this.getSymbolsArr} >
-                        {this.state.bySymbol.symbolsArr.map(function (item, index) {
-                          return <li key={index}>
-                            <input
-                              id={item.option}
-                              type="checkbox"
-                              defaultChecked={item.checked}
-                            />
-                            <label htmlFor={item.option} className=' check-item'>{item.option}</label>
-                          </li>
-                        })}
+                        {symbols}
                       </ul>
                     </div>
                   </div>
                   <div className="filters-content__item">
                     <p>Type:</p>
-                    <select name="byType" onChange={this.getFiltersParameter}>
+                    <select
+                      name="byType"
+                      defaultValue={this.state.byType.option}
+                      onChange={this.getType}
+                    >
                       <option>All</option>
                       <option>Buy</option>
                       <option>Sale</option>
@@ -390,16 +464,14 @@ export default class AccountHistorySection extends Component {
                   </div>
                   <div className="filters-content__item">
                     <p>Type of profit:</p>
-                    <select name="byProfitType" onChange={this.getFiltersParameter}>
-                      <option>
-                        All
-                  </option>
-                      <option>
-                        Profit
-                  </option>
-                      <option>
-                        Lesion
-                  </option>
+                    <select
+                      name="byProfitType"
+                      defaultValue={this.state.byProfitType.option}
+                      onChange={this.getProfitType}
+                    >
+                      <option>All</option>
+                      <option>Profit</option>
+                      <option>Lesion</option>
                     </select>
                   </div>
                   <div className="filters-content__item filterBtn">
@@ -416,12 +488,10 @@ export default class AccountHistorySection extends Component {
           </div>
         </div>
         <div className="Section__bottom column extraMt _30">
-
           <MDBDataTable
             searching={true}
             scrollY
             scrollX
-            maxHeight='126px'
             striped
             hover
             bordered
@@ -432,5 +502,4 @@ export default class AccountHistorySection extends Component {
       </div>
     )
   }
-
 }

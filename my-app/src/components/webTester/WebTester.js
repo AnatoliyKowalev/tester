@@ -1,9 +1,10 @@
 import React, { Component, lazy, Suspense } from 'react'
-
 const MenuTop = lazy(() => import('../menuTop/MenuTop'));
 const LeftBar = lazy(() => import('../leftBar/LeftBar'));
 const BottomMenu = lazy(() => import('../bottomMenu/BottomMenu'));
 const ChartComponent = lazy(() => import('../chartContent/chart/ChartComponent'));
+// import {getData} from '...';
+
 
 class WebTester extends Component {
   constructor(props) {
@@ -13,9 +14,17 @@ class WebTester extends Component {
     };
   }
 
+  // componentDidMount() {
+  // this.props.getData()
+  // }
+
+
   changeChartMode = checked => this.setState({ chartMode: checked })
 
   render() {
+    // let {charts} = this.props;
+    // let {chartData} = charts;
+
     return (
       <Suspense fallback={<div>loading...</div>}>
         <div id="webTester">
@@ -34,4 +43,9 @@ class WebTester extends Component {
 
 }
 
+const mapStateToProps = state => ({
+  chart: state.chart
+})
+
 export default WebTester
+// export default connect(mapStateToProps, {getData})(WebTester)

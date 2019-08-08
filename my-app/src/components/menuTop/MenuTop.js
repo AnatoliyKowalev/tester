@@ -26,7 +26,7 @@ class MenuTop extends Component {
   changeChartMode = (checked) => this.props.changeChartMode(checked)
 
   render() {
-    var settings = {
+    let settings = {
       dots: false,
       infinite: false,
       arrows: false,
@@ -95,10 +95,7 @@ class MenuTop extends Component {
             {tabs}
           </Slider>
         </div>
-
-        {/* <div className="setOfTools"> */}
         {tabContent}
-        {/* </div> */}
       </>
     );
   }

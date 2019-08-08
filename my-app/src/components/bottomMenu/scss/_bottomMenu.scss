@@ -85,6 +85,9 @@
       cursor: pointer;
     }
   }
+  .dropDown {
+    z-index: 14;
+  }
   .dropdown-content {
     overflow: inherit;
     padding: 5px;

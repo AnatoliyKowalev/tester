@@ -6,8 +6,6 @@ import LogSection from './bottomMenuSections/LogSection';
 import NewsSection from './bottomMenuSections/NewsSection';
 import NotesSection from './bottomMenuSections/NotesSection';
 
-// import AllFeaturesTable from './bottomMenuSections/AllFeaturesTable '
-
 import Slider from "react-slick";
 import { bottomMenuTabs } from './../../utils/constants';
 
@@ -28,7 +26,7 @@ export default class BottomMenu extends Component {
 
 
   render() {
-    var settings = {
+    let settings = {
       dots: false,
       infinite: false,
       arrows: false,
@@ -67,7 +65,7 @@ export default class BottomMenu extends Component {
     };
 
     const tabs = bottomMenuTabs.map((tabName, index) => {
-      let active = this.state.activeTab === index ? 'activeTab' : '';
+      let active = this.state.activeTab === index && 'activeTab';
       return <li key={index}>
         <button
           data-index={index}
@@ -84,10 +82,8 @@ export default class BottomMenu extends Component {
 
     return (
       <div className="bottomMenu">
-        {/* <AllFeaturesTable /> */}
         <Slider className="Tabs" {...settings}>
           {tabs}
-
         </Slider>
         {tabContent}
       </div>

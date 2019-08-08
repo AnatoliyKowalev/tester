@@ -8,41 +8,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-// import { Provider } from 'react-redux';
-// import store from './store/store'; 
-// import {BrowserRouter as Router} from 'react-router-dom'
-// import {Route, Switch} from 'react-router-dom'
-import 'materialize-css'; // It installs the JS asset only 
-// import 'materialize-css/dist/css/materialize.min.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import './main.css';
 import './js/main.js'
 
-//     <Switch>
-//        <Route exact path="/" component={Home} /> 
-//        <Route exact path="/Home" component={Home} />
-//       {/* <Route component={Error} />*/}
-//      </Switch>
-
 class App extends React.Component {
-
-  switchChartTheme = () => {
-    this.setState({
-      theme: {
-        ...this.state.theme,
-        mode: !this.state.theme.mode,
-      }
-    })
-  }
 
   render() {
     return (
       <div id="main">
         <WebTester />
       </div>
-      // <Provider store={store}>
-
-      // </Provider>
     );
   }
 }

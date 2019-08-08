@@ -35,6 +35,13 @@ body.modal-open {
   }
 }
 
+.longString {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 1.2em;
+  white-space: nowrap;
+}
+
 .fa-2x {
   font-size: 20px;
 }
@@ -186,7 +193,11 @@ button {
   background: none;
   border: none;
   box-shadow: none;
-
+  p,
+  i,
+  svg {
+    pointer-events: none;
+  }
   i {
     height: auto;
   }
@@ -292,16 +303,10 @@ input[type="range"] + .thumb {
 .modal-backdrop {
   width: 100%;
   height: 100%;
-  // min-height: 100vh;
-  // min-width: 100vh;
 }
 .modal {
-  // min-height: 100vh;
-  // min-width: 100vh;
   background: rgba(255, 255, 255, 0.3);
   color: #000;
-  .modal-dialog {
-  }
   .modal-content {
     padding: 15px;
   }
@@ -316,7 +321,7 @@ input[type="range"] + .thumb {
     background: #000;
     span {
       margin: 0;
-      content: "X";
+      content: "Close";
     }
   }
 }
@@ -334,13 +339,11 @@ input[type="range"] + .thumb {
 ::-webkit-scrollbar-corner {
   background: $dark-lighter-color;
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 20px;
   background: $dark-medium-color;
 }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
@@ -375,9 +378,6 @@ input[type="range"] + .thumb {
       }
     }
   }
-  .Section__bottom {
-    // height: 100%;
-  }
 }
 
 .filters {
@@ -389,7 +389,6 @@ input[type="range"] + .thumb {
     height: 30px;
   }
   &--shown {
-    // height: auto;
     top: 0;
     bottom: 0;
     align-items: flex-start;
@@ -403,7 +402,6 @@ input[type="range"] + .thumb {
     flex-direction: row;
     align-items: center;
     .filters-content__item {
-      // margin-top: 6px;
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
@@ -464,9 +462,6 @@ table.dataTable thead > tr > td.sorting {
   padding-right: 0;
 }
 
-// .table-wrapper-scroll-y {
-// 	max-height: 0!important;
-// }
 .dataTables_wrapper,
 .dataTables_scroll,
 .table-wrapper-scroll-y {
@@ -555,7 +550,7 @@ table.dataTable thead > tr > td.sorting {
 
 .dropDown {
   width: fit-content;
-  z-index: 14;
+  // z-index: 14;
   transition: all 0.2s;
   border-radius: 3px;
   .dropTarget {
@@ -675,7 +670,6 @@ table.dataTable thead > tr > td.sorting {
     padding: 5px;
     max-height: 100px;
     overflow-y: scroll;
-
     li {
       display: flex;
       align-items: center;
@@ -717,8 +711,6 @@ label {
   height: 26px;
   flex-direction: row;
   justify-content: flex-end;
-  // // width: 90px;
-  // height: auto;
 }
 
 .switch input {
@@ -829,6 +821,7 @@ input[type="checkbox"]:checked + label {
     opacity: 1;
   }
 }
+
 .slick-prev {
   left: 0;
 }
@@ -845,3 +838,16 @@ input[type="checkbox"]:checked + label {
   content: "\f054";
   padding-left: 3px;
 }
+////@at-root
+// .ff {
+//   display: none;
+//   position: fixed;
+//   z-index: 300;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: $dark-darker-color;
+// }

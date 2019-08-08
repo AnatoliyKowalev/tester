@@ -2,20 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.body.addEventListener('click', (e) => {
     dropListToggle(e)
-    // swipeLeftbar(e)
     hideDropDown(e)
+    // showModalWindow(e)
+    // closeModalWindow(e)
     setTimeout(() => {
       tableResize()
     }, 200);
   });
 
-  setTimeout(function () {
-    tableResize()
-  }, 1500)
+  setTimeout(function () { tableResize() }, 1500)
 
-  window.onresize = function () {
-    tableResize()
-  }
+  window.onresize = function () { tableResize() }
 
   function tableResize() {
     let tables = document.querySelectorAll('.dataTables_wrapper')
@@ -26,8 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollY = item.querySelector('.table-wrapper-scroll-y'),
         sortingTh = scrollY.parentElement.parentElement.querySelector('.sorting'),
         height
-
-
       if (sectionTop !== null && sortingTh !== null) {
         height = section.clientHeight - sectionName.clientHeight - sortingTh.clientHeight - sectionTop.clientHeight - 3 + 'px'
       }
@@ -42,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
       item.style.maxHeight = height
     })
   }
-  let compareLastDropDown = []
 
+  let compareLastDropDown = []
   function dropListToggle(e) {
     //mobile screen dropdown show
     if (e.target.classList.contains('dropTarget')) {
@@ -101,7 +96,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   }
-}
-);
-
-// Я несколько дней назад решал проблему таблиц этих, которая заключается в следующем, у них есть атрибут maxHeight, без него они не скролятся, а когда его задаешь, то логично, что на разных экранах maxHeight каждой таблицы должен меняться,  
+})

@@ -11,12 +11,14 @@ class ChartComponent extends React.Component {
 		})
 	}
 	render() {
+		// const { chartData } = this.props
+
 		return (
 			!this.state
-				? <div>loading..</div> 
+				? <div>loading..</div>
 				: <TypeChooser id="chart">
-					{type => <Chart chartMode={this.props.chartMode}	type={type} data={this.state.data} />}
-					</TypeChooser>
+					{type => <Chart chartMode={this.props.chartMode} type={type} data={this.state.data} />}
+				</TypeChooser>
 		)
 	}
 }

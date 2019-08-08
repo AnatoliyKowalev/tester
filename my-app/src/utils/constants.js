@@ -1,3 +1,7 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar } from '@fortawesome/pro-solid-svg-icons';
+
 export const topMenuTabs = [
   'Home',
   'Project',
@@ -9,7 +13,7 @@ export const topMenuTabs = [
   'Store',
   'Help'
 ]
-
+//Tabs of bottom menu
 export const bottomMenuTabs = [
   'Open Positions',
   'Pending Orders',
@@ -18,7 +22,7 @@ export const bottomMenuTabs = [
   'News',
   'Notes'
 ]
-
+//windows of left bar component
 export const leftBarWindows = [
   [
     'Data Window',
@@ -30,7 +34,7 @@ export const leftBarWindows = [
     'Statistics'
   ]
 ]
-
+//settings of the chart theme
 export const chartSettings = {
   light: {
     textColor: '#403740',
@@ -41,31 +45,8 @@ export const chartSettings = {
     linesColor: '#dddadb'
   }
 }
-
-export const sortParameters = {
-  byDate: {
-    0: 'Any Date',
-    1: 'Open Date',
-    2: 'Close Date',
-    3: 'Close Date or Open Date',
-    4: 'Close Date and Open Date'
-  },
-  byType: {
-    0: 'All',
-    1: 'Buy',
-    2: 'Sale',
-    3: 'Deposit',
-    4: 'Withdrawal'
-  },
-  byProfitType: {
-    0: 'All',
-    1: 'Profit',
-    2: 'Lesion'
-  }
-};
-
-
-export let accountHistoryTable = [
+//data for the table of Account history in the bottom menu
+export const accountHistoryTable = [
   {
     order: '2',
     symbol: 'EURUSD',
@@ -96,7 +77,7 @@ export let accountHistoryTable = [
     swop: 0.00,
     commission: 0.00,
     points: 0,
-    profit: 11000.00
+    profit: -300.00
   },
   {
     order: '0',
@@ -112,7 +93,7 @@ export let accountHistoryTable = [
     swop: 0.00,
     commission: 0.00,
     points: 0,
-    profit: 11000.00
+    profit: -35.00
   },
   {
     order: '0',
@@ -145,5 +126,103 @@ export let accountHistoryTable = [
     commission: 0.00,
     points: 2,
     profit: 11000.00
+  }
+]
+//data for the table of news in the bottom menu
+export const newsTable = [
+  {
+    openTime: '2019.04.01 00:00',
+    symbol: 'USD',
+    action: 'Italian Bank Holiday',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} priority={'high'} size={'2x'} color={'red'} />],
+    current: '-0.6%',
+    prediction: '-',
+    previous: 0.1
+  },
+  {
+    openTime: '2019.04.02 00:00',
+    symbol: 'EUR',
+    action: 'Italian Bank Holiday',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'middle'} color={'orange'} />],
+    current: '-0.6%',
+    prediction: '-',
+    previous: 0.1
+  },
+  {
+    openTime: '2019.04.03 00:00',
+    symbol: 'JPY',
+    action: 'Italian Bank Holiday',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} priority={'high'} size={'2x'} color={'red'} />],
+    current: '-0.6%',
+    prediction: '-',
+    previous: 0.1
+  },
+  {
+    openTime: '2019.04.04 00:00',
+    symbol: 'EUR',
+    action: 'Italian Bank Holiday',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'low'} color={'green'} />],
+    current: '-0.6%',
+    prediction: '-',
+    previous: 0.1
+  },
+  {
+    openTime: '2019.04.05 00:00',
+    symbol: 'EUR',
+    action: 'Italian Bank Holiday',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'low'} color={'green'} />],
+    current: '-0.6%',
+    prediction: '-',
+    previous: 0.1
+  },
+  {
+    openTime: '2019.04.06 00:00',
+    symbol: 'EUR',
+    action: 'Italian Bank Holiday',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'low'} color={'green'} />],
+    current: '-0.6%',
+    prediction: '-',
+    previous: 0.1
+  },
+  {
+    openTime: '2019.04.07 00:00',
+    symbol: 'JPY',
+    action: 'Crube Oil Inventories',
+    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'middle'} color={'orange'} />],
+    current: '-0.3%',
+    prediction: '-',
+    previous: 0.1
+  }
+
+]
+//data for the table of notes in the bottom menu
+export const notesTable = [
+  {
+    notes: 'popline',
+    symbol: 'f',
+    headline: 'h'
+  },
+  {
+    notes: 'f',
+    symbol: 'f',
+    headline: 'f'
+  },
+  {
+    notes: 'f',
+    symbol: 'sunskripper',
+    headline: 'f'
+  },
+  {
+    notes: 'f',
+    symbol: 'f',
+    headline: 'profit good'
+  }, {
+    notes: 'f',
+    symbol: 'f',
+    headline: 'f'
+  }, {
+    notes: 'f',
+    symbol: 'f',
+    headline: 'f'
   }
 ]

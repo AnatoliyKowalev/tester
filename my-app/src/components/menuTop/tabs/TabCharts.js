@@ -279,14 +279,15 @@ class TabCharts extends Component {
 							</div>
 						</div>
 						<div className="nav-item">
+
 							<div className="nav-item__main d-flex flex-column">
-								<button onClick={this.toggle} className="nav-item__toolsList flex-column justify-content-center">
+								<button onClick={this.toggle} className="nav-item__toolsList modal-container flex-column justify-content-center">
 									<FontAwesomeIcon icon={faWrench} size="3x" className="mb-2" />
 									<p>Chart setting</p>
+									
 								</button>
 
 								<MDBContainer>
-
 									<MDBModal isOpen={this.state.modal} toggle={this.toggle}>
 										<MDBModalHeader toggle={this.toggle}>Chart settings</MDBModalHeader>
 										<MDBModalBody>

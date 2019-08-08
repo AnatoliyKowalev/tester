@@ -217,6 +217,17 @@ class TabHome extends Component {
 							</div>
 
 							<div className="nav-item__bottom">
+								{/* <div className="dropDown">
+									<button className="dropTarget">
+										<p>Timeframe</p>
+										<FontAwesomeIcon icon={faCaretDown} />
+									</button>
+									<ul onClick={this.testingSpeed}>
+										{testingOptionsArray.map(function (item, index) {
+											index++
+											return <li key={index}><button value={index}>{item}</button></li>
+										})}
+									</ul> */}
 								<div className="dropDown">
 									<button className="dropTarget"><p>Testing</p> <FontAwesomeIcon icon={faCaretDown} /> </button>
 									<ul>

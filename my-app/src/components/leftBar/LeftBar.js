@@ -21,7 +21,9 @@ class LeftBar extends Component {
       bottomRolledWindow: false,
     };
   }
-
+  swipeLeftBar = () => this.setState({
+    leftBarFullscreen: !this.state.leftBarFullscreen
+  })
   rollWindow = (e) => {
     if (e.currentTarget.dataset.value === 'top') {
       this.setState({ topRolledWindow: !this.state.topRolledWindow })
@@ -38,19 +40,9 @@ class LeftBar extends Component {
     bottomActiveTab: event.currentTarget.getAttribute('datatabname')
   });
 
-  swipeLeftBar = (e) => {
-    this.setState({
-      leftBarFullscreen: !this.state.leftBarFullscreen
-    })
-    // e.target.parentElement.style.transform = "translateX(0)";
-    console.log()
-  }
-
   render() {
     const windowTabsWindowTop = leftBarWindows[0].map((tabName, index) => {
-      let active = this.state.topActiveTab === tabName
-        ? 'activeTab'
-        : '';
+      let active = this.state.topActiveTab === tabName && 'activeTab';
       return <li key={index}>
         <button
           datatabname={tabName}
@@ -62,9 +54,7 @@ class LeftBar extends Component {
       </li>;
     });
     const windowTabsWindowBottom = leftBarWindows[1].map((tabName, index) => {
-      let active = this.state.bottomActiveTab === tabName
-        ? 'activeTab'
-        : '';
+      let active = this.state.bottomActiveTab === tabName && 'activeTab'
       return <li key={index}>
         <button
           datatabname={tabName}

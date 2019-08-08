@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/pro-solid-svg-icons';
 import { faFilePlus } from '@fortawesome/pro-light-svg-icons';
 import { MDBDataTable } from 'mdbreact';
+import { notesTable } from '../../../utils/constants'
 
 class NewsSection extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -31,53 +31,31 @@ class NewsSection extends React.Component {
             width: 300
           }
         ],
-        rows: [
-          {
-            notes: 'f',
-            symbol: 'f',
-            headline: 'f'
-          },
-          {
-            notes: 'f',
-            symbol: 'f',
-            headline: 'f'
-          },
-          {
-            notes: 'f',
-            symbol: 'f',
-            headline: 'f'
-          },
-          {
-            notes: 'f',
-            symbol: 'f',
-            headline: 'f'
-          }, {
-            notes: 'f',
-            symbol: 'f',
-            headline: 'f'
-          }, {
-            notes: 'f',
-            symbol: 'f',
-            headline: 'f'
-          }
-        ]
+        rows: notesTable
       }
     }
   }
 
-  search = (e) => {
-    if (e.target.value.length) {
-      this.setState({
-        searchLine: e.target.value
-      })
-    }
-  }
+  search = e => this.setState({ searchLine: e.target.value })
 
-  clearSearch = () => this.setState(() => {
-    return { searchLine: '' }
-  })
+
+  clearSearch = () => this.setState({ searchLine: '' })
 
   render() {
+
+    let { searchLine } = this.state;
+    let table = this.state.tableData
+    let filteredTable = {
+      ...table,
+      rows: this.state.searchLine.length
+        ? table.rows.filter(row =>
+          row.notes.includes(searchLine)
+          || row.symbol.includes(searchLine)
+          || row.headline.includes(searchLine)
+        )
+        : table.rows
+    };
+
     return (
       <div className="Section" >
         <div className="Section__name">News</div>
@@ -85,11 +63,9 @@ class NewsSection extends React.Component {
           <div className="filters">
             <div className="filters-content">
               <div className="filters-content__item">
-                <p>Filter by date:</p>
+                <p>Search:</p>
                 <input type="text" onChange={this.search} value={this.state.searchLine} />
-
                 <FontAwesomeIcon className="ml-1" icon={faWindowClose} onClick={this.clearSearch} />
-
               </div>
               <div className="filters-content__item filterBtn">
                 <button disabled={true}>
@@ -109,15 +85,14 @@ class NewsSection extends React.Component {
         <div className="Section__bottom  extraMt _30">
           <MDBDataTable
             className="w-50"
-            searching={false}
+            searching={true}
             scrollY
             scrollX
-            // maxHeight='109px'
             striped
             hover
             bordered
             small
-            data={this.state.tableData}
+            data={filteredTable}
           />
           <div className="noteCaption w-50" style={{ height: '109px' }}>
             <h4>Note caption</h4>
