@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Suspense } from 'react'
 import { MDBDataTable } from 'mdbreact';
 
-export default class PendingOrdersSection extends Component {
+class PendingOrdersSection extends React.Component {
 
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class PendingOrdersSection extends Component {
             label: 'Create time',
             field: 'openTime',
             sort: 'asc',
-            width: 150
+            width: 200
           },
           {
             label: 'Use Price',
@@ -66,7 +66,7 @@ export default class PendingOrdersSection extends Component {
             label: "Comment",
             field: 'comment',
             sort: 'asc',
-            width: 400
+            width: 500
           }
         ],
         rows: []
@@ -76,23 +76,28 @@ export default class PendingOrdersSection extends Component {
 
   render(props) {
     return (
-      <div className="Section" >
-        <div className="Section__name">Pending orders [{this.props.pendingOrders}]</div>
-        <div className="Section__top"></div>
-        <div className="Section__bottom">
-          <MDBDataTable
-            searching={false}
-            scrollY
-            scrollX
-            maxHeight='156px'
-            striped
-            hover
-            bordered
-            small
-            data={this.state.tableData}
-          />
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="Section" >
+          <div className="Section__name">
+            Pending orders [{this.props.pendingOrders}]
+          </div>
+          <div className="Section__top"></div>
+          <div className="Section__bottom">
+            <MDBDataTable
+              searching={false}
+              scrollY
+              scrollX
+              striped
+              hover
+              bordered
+              small
+              data={this.state.tableData}
+            />
+          </div>
         </div>
-      </div>
+      </Suspense>
     )
   }
 }
+
+export default PendingOrdersSection

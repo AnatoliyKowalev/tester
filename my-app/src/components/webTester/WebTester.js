@@ -5,7 +5,6 @@ const BottomMenu = lazy(() => import('../bottomMenu/BottomMenu'));
 const ChartComponent = lazy(() => import('../chartContent/chart/ChartComponent'));
 // import {getData} from '...';
 
-
 class WebTester extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +16,6 @@ class WebTester extends Component {
   // componentDidMount() {
   // this.props.getData()
   // }
-
 
   changeChartMode = checked => this.setState({ chartMode: checked })
 

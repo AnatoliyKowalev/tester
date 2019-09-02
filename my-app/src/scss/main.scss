@@ -4,10 +4,12 @@
 @import "../components/leftBar/scss/leftBar";
 @import "../components/chartContent/scss/chart";
 @import "../components/bottomMenu/scss/bottomMenu";
+@import "../components/pageNotFound/pageNotfound.scss";
 @import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./../../node_modules/normalize.css/normalize.css";
+@import "./../../node_modules/pretty-checkbox/src/pretty-checkbox.scss";
+
 body {
-  // font-size: $def-text-size;
   background: $dark-color;
   font-family: "Sans", sans-serif;
   text-align: center;
@@ -15,6 +17,71 @@ body {
 }
 body.modal-open {
   overflow: hidden;
+}
+
+.dropdown,
+.btn-group {
+  .pretty {
+    padding-left: 5px;
+    width: 100%;
+  }
+  .pretty.p-curve .state label:after,
+  .pretty.p-curve .state label:before {
+    left: 6px;
+  }
+  .btn-group {
+    width: 100%;
+    button {
+      &:after {
+        margin-left: auto;
+      }
+    }
+  }
+  // perspective: 400px;
+  button {
+    margin: 0;
+    width: 100%;
+    text-transform: capitalize;
+    font-size: $def-text-size;
+    display: flex;
+    padding: 0 1.6rem !important;
+    box-shadow: none;
+    perspective-origin: center bottom;
+    flex-direction: row;
+    align-items: center;
+    line-height: 16px;
+    transition: 0.2s all;
+    &:active {
+      background: none;
+      color: #000;
+    }
+    &:hover {
+      color: $dark-darker-color;
+      background: none;
+      transform: rotateX(20deg) translateZ(7px) scale(1.05);
+    }
+  }
+  & > :after {
+    margin-left: 10px;
+  }
+  .dropdown-menu {
+    z-index: 99;
+    padding: 5px;
+    button {
+      padding: 0 5px;
+      width: 100%;
+      margin: 4px 0;
+      border-radius: 0;
+      p {
+        text-align: left;
+        width: 100%;
+      }
+    }
+    .subDropdown {
+      font-size: $def-text-size;
+      color: #000 !important;
+    }
+  }
 }
 
 .dropdown-content li > a,
@@ -214,12 +281,6 @@ button {
   }
 }
 
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
-  position: relative;
-  opacity: 1;
-}
-
 input[type="range"] {
   margin: 0;
   -webkit-appearance: none;
@@ -400,11 +461,11 @@ input[type="range"] + .thumb {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     .filters-content__item {
       display: flex;
       flex-wrap: nowrap;
-      align-items: center;
+      align-items: flex-start;
       &:not(:first-child) {
         margin-left: 15px;
       }
@@ -547,100 +608,11 @@ table.dataTable thead > tr > td.sorting {
 .lightTheme {
   background: $white-color;
 }
-
-.dropDown {
-  width: fit-content;
-  // z-index: 14;
-  transition: all 0.2s;
-  border-radius: 3px;
-  .dropTarget {
-    border-radius: 10px;
-    color: $white-color;
-    width: inherit;
-    padding: 2px 5px;
-    svg,
-    p,
-    div {
-      pointer-events: none;
-    }
-    &:hover {
-      background: none;
-      cursor: pointer;
-    }
-    .fa-caret-down {
-      margin: 0 0 0 5px;
-    }
-  }
-  &.vertical {
-    .dropTarget {
-      flex-direction: column !important;
-    }
-  }
-  ul {
-    opacity: 0;
-    transition: all 0.2s;
-    background: $light-darker-color;
-    display: none;
-    color: $black-color;
-    position: absolute;
-
-    li {
-      button,
-      label {
-        display: flex;
-        color: $black-color;
-      }
-      label {
-        &:hover {
-          color: $white-color;
-        }
-      }
-      &:hover {
-        color: $dark-color;
-        background: $dark-medium-color;
-      }
-    }
-    .subList {
-      > button {
-        p,
-        svg {
-          pointer-events: none;
-        }
-      }
-      button {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-      ul {
-        background: $light-color;
-        button {
-          color: $black-color;
-          &:hover {
-            color: $white-color;
-          }
-        }
-        display: none;
-      }
-      &:hover {
-        ul {
-          display: block;
-          opacity: 1;
-        }
-      }
-    }
-    button {
-      &:hover {
-        background: $dark-color;
-        color: $white-color;
-      }
-    }
-  }
-  &:hover {
-    background: #554c54;
-    .dropTarget {
-      color: $light-darker-color;
+.vertical {
+  button {
+    flex-direction: column;
+    &:after {
+      margin: 6px 0 0 0;
     }
   }
 }
@@ -694,7 +666,7 @@ label {
   padding: 2px 10px;
   text-align: left;
   position: relative;
-  width: 100%;
+  width: max-content;
   input {
     left: 5px;
     margin-right: 10px;
@@ -702,106 +674,6 @@ label {
   &:hover {
     cursor: pointer;
   }
-}
-//SWITCHER---------
-.switch {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 26px;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #aaa4a7;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: #424242;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-input:checked + .slider {
-  background-color: #554c54;
-}
-input:focus + .slider {
-  box-shadow: 0 0 1px #554c54;
-}
-input:checked + .slider:before {
-  -webkit-transform: translateX(24px);
-  -ms-transform: translateX(24px);
-  transform: translateX(24px);
-  background-color: #dddadb;
-}
-/* Rounded sliders */
-.slider.round {
-  width: 50px;
-  height: 26px;
-  border-radius: 50px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-[data-title] {
-  position: relative;
-}
-
-[data-title]:hover::before {
-  content: attr(data-title);
-  position: absolute;
-  bottom: -36px;
-  display: inline-block;
-  padding: 5px 15px;
-  border-radius: 2px;
-  background: #000;
-  max-width: 350px;
-  color: #fff;
-  font-size: 12px;
-  font-family: sans-serif;
-  white-space: nowrap;
-}
-[data-title]:hover::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 8px;
-  display: inline-block;
-  color: #fff;
-  border: 8px solid transparent;
-  border-bottom: 8px solid #000;
-}
-////
-input[type="checkbox"]:checked + label {
-  color: #fff;
-  background-color: #6e666c;
-}
-.check-item {
-  height: auto;
-  vertical-align: middle;
-  font-size: 14px;
-  width: 100%;
 }
 // slider styles
 .slider:before {
@@ -838,16 +710,45 @@ input[type="checkbox"]:checked + label {
   content: "\f054";
   padding-left: 3px;
 }
-////@at-root
-// .ff {
-//   display: none;
-//   position: fixed;
-//   z-index: 300;
-//   top: 0;
-//   bottom: 0;
-//   right: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background: $dark-darker-color;
-// }
+////
+.pretty {
+  margin: 6px 0;
+  .state {
+    width: auto;
+    label {
+      padding: 0;
+    }
+  }
+}
+.pretty.p-switch .state {
+  padding-left: 50px;
+}
+.pretty.p-switch .state label {
+  text-indent: 0;
+}
+.pretty.p-switch .state:before {
+  left: 0;
+  border: 1px solid #bdc3c7;
+  border-radius: 60px;
+  width: 40px;
+  height: 20px;
+  top: -4px;
+}
+.pretty.p-switch.p-fill input:checked ~ .state:before {
+  background: #c3bec0 !important;
+}
+.pretty .state label:after,
+.pretty .state label:before {
+  width: 14px;
+  height: 14px;
+  top: 0;
+}
+.pretty.p-switch .state label:after {
+  left: 3px;
+}
+.pretty.p-switch.p-fill input:checked ~ .state label:after {
+  left: 25px;
+}
+.p-round {
+  // display: inline-flex;
+}

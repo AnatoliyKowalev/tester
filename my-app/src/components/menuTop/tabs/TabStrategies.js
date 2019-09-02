@@ -1,25 +1,25 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList, faChartBar, faBolt, faSyncAlt, faCubes } from '@fortawesome/pro-solid-svg-icons';
-import Slider from "react-slick";
+import {
+	faList, faChartBar, faBolt, faSyncAlt, faCubes
+} from '@fortawesome/pro-solid-svg-icons';
+
+const Slider = lazy(() => import('react-slick'));
 
 class TabStrategies extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
-			strategiesExecution: true,
+			strategiesExecution: false,
 		};
 	}
 
-	switchStrategiesExecution = (e) => {
-		this.setState({
-			strategiesExecution: !this.state.strategiesExecution
-		})
-	}
+	switchStrategiesExecution = () => this.setState({
+		strategiesExecution: !this.state.strategiesExecution
+	});
 
 	render() {
-		var settings = {
+		let settings = {
 			dots: false,
 			infinite: false,
 			slidesToShow: 3,
@@ -51,12 +51,19 @@ class TabStrategies extends Component {
 										<p>List of <br /> Strategies</p>
 									</button>
 								</div>
-								<div className="nav-item__main d-flex flex-column align-items-center">
-									<label className="switch mb-2" style={{ width: '100px' }}>
-										<p>{this.state.strategiesExecution ? 'off' : 'on'}</p>
-										<input type="checkbox" defaultChecked={this.state.strategiesExecution} onChange={this.switchStrategiesExecution} />
-										<span className="slider round"></span>
-									</label>
+								<div
+									className="nav-item__main d-flex flex-column align-items-center"
+								>
+									<div className="pretty p-switch p-fill">
+										<input
+											type="checkbox"
+											defaultChecked={this.state.strategiesExecution}
+											onChange={this.switchStrategiesExecution}
+										/>
+										<div className="state">
+											<label>{this.state.strategiesExecution ? 'off' : 'on'}</label>
+										</div>
+									</div>
 									<p>Enable/disable <br /> strategies' execution</p>
 								</div>
 							</div>
@@ -85,7 +92,11 @@ class TabStrategies extends Component {
 							<div className="d-flex flex-row align-items-start h-100">
 								<div className="nav-item__main d-flex">
 									<button type="button">
-										<FontAwesomeIcon icon={faSyncAlt} size="3x" className="mb-2" />
+										<FontAwesomeIcon
+											icon={faSyncAlt}
+											size="3x"
+											className="mb-2"
+										/>
 										<p>MT4 Strategies <br /> Converter</p>
 									</button>
 									<button type="button">
@@ -98,7 +109,6 @@ class TabStrategies extends Component {
 								<p>Strategies' tools</p>
 							</div>
 						</div>
-
 					</Slider>
 				</div>
 			</Suspense>

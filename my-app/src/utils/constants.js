@@ -134,7 +134,7 @@ export const newsTable = [
     openTime: '2019.04.01 00:00',
     symbol: 'USD',
     action: 'Italian Bank Holiday',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} priority={'high'} size={'2x'} color={'red'} />],
+    priority: [1, <FontAwesomeIcon key="#" icon={faChartBar} priority={"high"} size={'2x'} color={'red'} />],
     current: '-0.6%',
     prediction: '-',
     previous: 0.1
@@ -143,7 +143,7 @@ export const newsTable = [
     openTime: '2019.04.02 00:00',
     symbol: 'EUR',
     action: 'Italian Bank Holiday',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'middle'} color={'orange'} />],
+    priority: [2, <FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={"middle"} color={'orange'} />],
     current: '-0.6%',
     prediction: '-',
     previous: 0.1
@@ -152,7 +152,7 @@ export const newsTable = [
     openTime: '2019.04.03 00:00',
     symbol: 'JPY',
     action: 'Italian Bank Holiday',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} priority={'high'} size={'2x'} color={'red'} />],
+    priority: [1, <FontAwesomeIcon key="#" icon={faChartBar} priority={"high"} size={'2x'} color={'red'} />],
     current: '-0.6%',
     prediction: '-',
     previous: 0.1
@@ -161,7 +161,7 @@ export const newsTable = [
     openTime: '2019.04.04 00:00',
     symbol: 'EUR',
     action: 'Italian Bank Holiday',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'low'} color={'green'} />],
+    priority: [3, <FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={"low"} color={'green'} />],
     current: '-0.6%',
     prediction: '-',
     previous: 0.1
@@ -170,7 +170,7 @@ export const newsTable = [
     openTime: '2019.04.05 00:00',
     symbol: 'EUR',
     action: 'Italian Bank Holiday',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'low'} color={'green'} />],
+    priority: [3, <FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={"low"} color={'green'} />],
     current: '-0.6%',
     prediction: '-',
     previous: 0.1
@@ -179,7 +179,7 @@ export const newsTable = [
     openTime: '2019.04.06 00:00',
     symbol: 'EUR',
     action: 'Italian Bank Holiday',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'low'} color={'green'} />],
+    priority: [3, <FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={"low"} color={'green'} />],
     current: '-0.6%',
     prediction: '-',
     previous: 0.1
@@ -188,7 +188,7 @@ export const newsTable = [
     openTime: '2019.04.07 00:00',
     symbol: 'JPY',
     action: 'Crube Oil Inventories',
-    priority: [<FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={'middle'} color={'orange'} />],
+    priority: [2, <FontAwesomeIcon key="#" icon={faChartBar} size={'2x'} priority={"middle"} color={'orange'} />],
     current: '-0.3%',
     prediction: '-',
     previous: 0.1

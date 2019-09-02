@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import OpenPositionsSection from './bottomMenuSections/OpenPositionsSection';
-import PendingOrdersSection from './bottomMenuSections/PendingOrdersSection';
-import AccountHistorySection from './bottomMenuSections/AccountHistorySection';
-import LogSection from './bottomMenuSections/LogSection';
-import NewsSection from './bottomMenuSections/NewsSection';
-import NotesSection from './bottomMenuSections/NotesSection';
-
-import Slider from "react-slick";
+import React, { Component, Suspense, lazy } from 'react';
 import { bottomMenuTabs } from './../../utils/constants';
+
+const OpenPositionsSection = lazy(() => import('./bottomMenuSections/OpenPositionsSection'));
+const PendingOrdersSection = lazy(() => import('./bottomMenuSections/PendingOrdersSection'));
+const AccountHistorySection = lazy(() => import('./bottomMenuSections/AccountHistorySection'));
+const LogSection = lazy(() => import('./bottomMenuSections/LogSection'));
+const NewsSection = lazy(() => import('./bottomMenuSections/NewsSection'));
+const NotesSection = lazy(() => import('./bottomMenuSections/NotesSection'));
+const Slider = lazy(() => import('react-slick'));
 
 export default class BottomMenu extends Component {
   constructor(props) {
@@ -22,8 +22,6 @@ export default class BottomMenu extends Component {
   selectTab = event => this.setState({
     activeTab: +event.currentTarget.dataset.index
   });
-
-
 
   render() {
     let settings = {
@@ -81,12 +79,14 @@ export default class BottomMenu extends Component {
 
 
     return (
-      <div className="bottomMenu">
-        <Slider className="Tabs" {...settings}>
-          {tabs}
-        </Slider>
-        {tabContent}
-      </div>
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="bottomMenu">
+          <Slider className="Tabs" {...settings}>
+            {tabs}
+          </Slider>
+          {tabContent}
+        </div>
+      </Suspense>
     )
   }
 }

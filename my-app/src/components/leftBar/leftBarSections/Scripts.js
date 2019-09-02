@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
 export default class Scripts extends Component {
@@ -20,40 +20,7 @@ export default class Scripts extends Component {
             sort: 'asc'
           }
         ],
-        rows: [
-          // {
-          //   parameter: 'some 1',
-          //   value: 'value 1'
-          // },
-          // {
-          //   parameter: 'some 2',
-          //   value: 'value 2'
-          // },
-          // {
-          //   parameter: 'some 3',
-          //   value: 'value 3'
-          // },
-          // {
-          //   parameter: 'some 3',
-          //   value: 'value 3'
-          // },
-          // {
-          //   parameter: 'some 3',
-          //   value: 'value 3'
-          // },
-          // {
-          //   parameter: 'some 3',
-          //   value: 'value 3'
-          // },
-          // {
-          //   parameter: 'some 3',
-          //   value: 'value 3'
-          // },
-          // {
-          //   parameter: 'some 4',
-          //   value: 'value 4'
-          // },
-        ]
+        rows: []
       },
     };
   }
@@ -69,7 +36,6 @@ export default class Scripts extends Component {
               fixed
               scrollY
               striped
-              // maxHeight='179px'
               hover
               bordered
               small>

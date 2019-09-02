@@ -1,13 +1,19 @@
-import React, { Component, Suspense } from 'react'
+import React, { Component, Suspense, lazy } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faCaretDown, faPause, faPlay, faShoppingCart, faCartArrowDown, faExchange, faTimes,
-	faArrowDown, faArrowUp, faBackward, faForward, faCrosshairs, faAngleRight
+	faPause, faPlay, faShoppingCart, faCartArrowDown, faExchange, faTimes,
+	faArrowDown, faArrowUp, faBackward, faForward, faCrosshairs
 } from '@fortawesome/pro-solid-svg-icons';
-import Slider from "react-slick";
+import {
+	DropdownToggle, DropdownMenu, DropdownItem, UncontrolledButtonDropdown
+} from 'reactstrap';
 
-let timeFrameOptionsArray = ['1 min', '2 mins', '15 mins', '30 mins', '1 hour', '4 hours', '1 day', '1 week', '1 month']
-let testingOptionsArray = ['Every tick', '1 min', '5 mins', '15 mins', '30 mins', '1 hour', '4 hours', '1 day', '1 week', '1 month']
+const Slider = lazy(() => import('react-slick'));
+
+let timeFrameOptionsArray = ['1 min', '2 mins', '15 mins', '30 mins', '1 hour',
+	'4 hours', '1 day', '1 week', '1 month'];
+let testingOptionsArray = ['Every tick', '1 min', '5 mins', '15 mins', '30 mins',
+	'1 hour', '4 hours', '1 day', '1 week', '1 month'];
 
 class TabHome extends Component {
 	constructor(props) {
@@ -18,7 +24,6 @@ class TabHome extends Component {
 				selectedOption: 1,
 				optionsArr: timeFrameOptionsArray
 			},
-
 			testingSpeed: {
 				min: 1,
 				selectedOption: 1,
@@ -26,15 +31,20 @@ class TabHome extends Component {
 			}
 		};
 	}
+
 	//Status action BUTTON (PLAY \ PAUSE)
 	testActions = () => this.setState({ testActions: !this.state.testActions });
 	//changing testing speed ----------
-	testingSpeed = e => this.setState({
-		testingSpeed: {
-			...this.state.testingSpeed,
-			selectedOption: Number(e.target.value),
+	testingSpeed = e => {
+		if (e.target.value !== undefined) {
+			this.setState({
+				testingSpeed: {
+					...this.state.testingSpeed,
+					selectedOption: Number(e.target.value),
+				}
+			});
 		}
-	})
+	}
 	//testing back
 	testingBack = () => this.state.testingSpeed.selectedOption > 1 ?
 		this.setState({
@@ -42,15 +52,16 @@ class TabHome extends Component {
 				...this.state.testingSpeed,
 				selectedOption: this.state.testingSpeed.selectedOption - 1
 			}
-		}) : this.setState()
+		}) : this.setState();
 	//testing forward
-	testingForward = () => this.state.testingSpeed.selectedOption < testingOptionsArray.length ?
-		this.setState({
-			testingSpeed: {
-				...this.state.testingSpeed,
-				selectedOption: this.state.testingSpeed.selectedOption + 1
-			}
-		}) : this.setState()
+	testingForward = () =>
+		this.state.testingSpeed.selectedOption < testingOptionsArray.length ?
+			this.setState({
+				testingSpeed: {
+					...this.state.testingSpeed,
+					selectedOption: this.state.testingSpeed.selectedOption + 1
+				}
+			}) : this.setState();
 	// set timeframes -----------------
 	setTimeframe = e => this.setState({
 		timeFrame: {
@@ -59,26 +70,26 @@ class TabHome extends Component {
 		}
 	})
 	//increase timeframe to 1
-	timeframeUp = () => this.state.timeFrame.selectedOption < timeFrameOptionsArray.length
-		? this.setState({
-			timeFrame: {
-				...this.state.timeFrame,
-				selectedOption: this.state.timeFrame.selectedOption + 1
-			}
-		})
-		: this.setState()
+	timeframeUp = () =>
+		this.state.timeFrame.selectedOption < timeFrameOptionsArray.length - 1
+			? this.setState({
+				timeFrame: {
+					...this.state.timeFrame,
+					selectedOption: this.state.timeFrame.selectedOption + 1
+				}
+			})
+			: this.setState();
 	//decrease timeframe to 1
-	timeframeDown = () => this.state.timeFrame.selectedOption > 1
+	timeframeDown = () => this.state.timeFrame.selectedOption >= 1
 		? this.setState({
 			timeFrame: {
 				...this.state.timeFrame,
 				selectedOption: this.state.timeFrame.selectedOption - 1
 			}
 		})
-		: this.setState()
+		: this.setState();
 
 	render() {
-
 		let settings = {
 			dots: false,
 			infinite: false,
@@ -118,7 +129,11 @@ class TabHome extends Component {
 						<div className="nav-item">
 							<div className="d-flex nav-item__main">
 								<button type="button" onClick={this.testActions}>
-									<FontAwesomeIcon icon={this.state.testActions ? faPlay : faPause} size="4x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={this.state.testActions ? faPlay : faPause}
+										size="4x"
+										className="mb-2"
+									/>
 									<p>Sart/Pause Test</p>
 								</button>
 							</div>
@@ -129,15 +144,27 @@ class TabHome extends Component {
 						<div className="nav-item">
 							<div className="d-flex nav-item__main">
 								<button type="button">
-									<FontAwesomeIcon icon={faShoppingCart} size="2x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faShoppingCart}
+										size="2x"
+										className="mb-2"
+									/>
 									<p>Market Order</p>
 								</button>
 								<button type="button" >
-									<FontAwesomeIcon icon={faCartArrowDown} size="2x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faCartArrowDown}
+										size="2x"
+										className="mb-2"
+									/>
 									<p>Pending Order</p>
 								</button>
 								<button type="button" >
-									<FontAwesomeIcon icon={faExchange} size="2x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faExchange}
+										size="2x"
+										className="mb-2"
+									/>
 									<p>Modify Order</p>
 								</button>
 								<button type="button" >
@@ -146,25 +173,29 @@ class TabHome extends Component {
 								</button>
 							</div>
 							<div className="nav-item__bottom">
-								<div className="dropDown">
-									<button className="dropTarget"><p>Actions w/ orders</p> <FontAwesomeIcon icon={faCaretDown} /> </button>
-									<ul>
-										<li><button>Close All Positions and Orders</button></li>
-										<li><button>Open group of orders</button></li>
-										<li><button>Duplicate Position</button></li>
-										<hr />
-										<li><button>Move Stop Loss to Breackeven</button></li>
-									</ul>
-								</div>
+								<UncontrolledButtonDropdown>
+									<DropdownToggle caret size="sm" color="">
+										Actions w/ orders
+  								</DropdownToggle>
+									<DropdownMenu>
+										<DropdownItem >Close All Positions and Orders</DropdownItem>
+										<DropdownItem >Open group of orders</DropdownItem>
+										<DropdownItem>Duplicate Position</DropdownItem>
+										<DropdownItem divider />
+										<DropdownItem>Move Stop Loss to Breackeven</DropdownItem>
+									</DropdownMenu>
+								</UncontrolledButtonDropdown>
 							</div>
 						</div>
 						<div className="nav-item">
 							<div className="nav-item__main d-flex flex-column">
-								<select className="mb-1" value={this.state.timeFrame.selectedOption} onChange={this.setTimeframe}>
-									{this.state.timeFrame.optionsArr.map(function (item, index) {
-										index++
-										return <option key={index} value={index}>{item}</option>
-									})}
+								<select
+									className="mb-1"
+									value={this.state.timeFrame.selectedOption}
+									onChange={this.setTimeframe}>
+									{this.state.timeFrame.optionsArr.map((item, index) =>
+										<option key={index} value={index} > {item}</option>
+									)}
 								</select>
 								<div>
 									<button type="button" onClick={this.timeframeUp} >
@@ -175,29 +206,39 @@ class TabHome extends Component {
 									</button>
 								</div>
 							</div>
-
 							<div className="nav-item__bottom">
-								<div className="dropDown">
-									<button className="dropTarget">
-										<p>Timeframe</p>
-										<FontAwesomeIcon icon={faCaretDown} />
-									</button>
-									<ul>
-										<li><button>Manage timeframes</button></li>
-									</ul>
-								</div>
+								<UncontrolledButtonDropdown>
+									<DropdownToggle caret size="sm" color="">
+										Timeframe
+  								</DropdownToggle>
+									<DropdownMenu>
+										<DropdownItem >Manage timeframes</DropdownItem>
+										<DropdownItem >Manage timeframes</DropdownItem>
+									</DropdownMenu>
+								</UncontrolledButtonDropdown>
 							</div>
 						</div>
-
 						<div className="nav-item">
 							<div className="d-flex nav-item__main flex-column">
-								<div>
-									<button type="button" onClick={this.testingBack}>
-										<FontAwesomeIcon icon={faBackward} size="2x" className="mb-2" />
+								<div className="d-flex flex-row justify-content-between">
+									<button
+										className="w-100"
+										type="button"
+										onClick={this.testingBack}>
+										<FontAwesomeIcon
+											icon={faBackward}
+											size="2x"
+											className="mb-2" />
 										<p>Step back <br /> 1 bar</p>
 									</button>
-									<button type="button" onClick={this.testingForward} >
-										<FontAwesomeIcon icon={faForward} size="2x" className="mb-2" />
+									<button
+										className="w-100"
+										type="button"
+										onClick={this.testingForward} >
+										<FontAwesomeIcon
+											icon={faForward}
+											size="2x"
+											className="mb-2" />
 										<p>Step Forward <br /> 1 bar</p>
 									</button>
 								</div>
@@ -215,46 +256,47 @@ class TabHome extends Component {
 									<p>Testing speed</p>
 								</div>
 							</div>
-
 							<div className="nav-item__bottom">
-								{/* <div className="dropDown">
-									<button className="dropTarget">
-										<p>Timeframe</p>
-										<FontAwesomeIcon icon={faCaretDown} />
-									</button>
-									<ul onClick={this.testingSpeed}>
-										{testingOptionsArray.map(function (item, index) {
-											index++
-											return <li key={index}><button value={index}>{item}</button></li>
-										})}
-									</ul> */}
-								<div className="dropDown">
-									<button className="dropTarget"><p>Testing</p> <FontAwesomeIcon icon={faCaretDown} /> </button>
-									<ul>
-										<li><button>Step by 1 tick</button></li>
-										<hr />
-										<li className="subList" >
-											<button className="ff"><p>Step size</p> <FontAwesomeIcon icon={faAngleRight} /></button>
-											<ul onClick={this.testingSpeed}>
-												{testingOptionsArray.map(function (item, index) {
-													index++
-													return <li key={index}><button value={index}>{item}</button></li>
-												})}
-											</ul>
-										</li>
-									</ul>
-								</div>
+								<UncontrolledButtonDropdown>
+									<DropdownToggle caret size="sm" color="">
+										Testing
+  								</DropdownToggle>
+									<DropdownMenu>
+										<DropdownItem>Step by 1 tick</DropdownItem>
+										<DropdownItem divider />
+										<UncontrolledButtonDropdown>
+											<DropdownToggle caret size="sm" className="subDropdown" color="">
+												Step size
+  										</DropdownToggle>
+											<DropdownMenu onClick={this.testingSpeed}>
+												{testingOptionsArray.map((item, index) =>
+													<DropdownItem
+														key={index}
+														value={index + 1}
+													>
+														{item}
+													</DropdownItem >)}
+											</DropdownMenu>
+										</UncontrolledButtonDropdown>
+									</DropdownMenu>
+								</UncontrolledButtonDropdown>
 							</div>
 						</div>
-
 						<div className="nav-item">
 							<div className="nav-item__main d-flex">
 								<button type="button">
-									<FontAwesomeIcon icon={faCrosshairs} size="3x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faCrosshairs}
+										size="3x"
+										className="mb-2"
+									/>
 									<p>Crosshair pointer</p>
 								</button>
 								<button type="button" >
-									<FontAwesomeIcon icon={faCrosshairs} size="3x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faCrosshairs}
+										size="3x"
+										className="mb-2" />
 									<p>Crosshair sync</p>
 								</button>
 							</div>
@@ -264,8 +306,8 @@ class TabHome extends Component {
 							</div>
 						</div>
 					</Slider>
-				</div>
-			</Suspense>
+				</div >
+			</Suspense >
 		)
 	}
 }

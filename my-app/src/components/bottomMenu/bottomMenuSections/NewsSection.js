@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/pro-solid-svg-icons';
 import { MDBDataTable } from 'mdbreact';
-import { newsTable } from '../../../utils/constants'
+import { newsTable } from '../../../utils/constants';
+import {
+  DropdownToggle, DropdownMenu, DropdownItem, UncontrolledButtonDropdown
+} from 'reactstrap';
 
 export default class NewsSection extends Component {
   constructor(props) {
@@ -31,6 +34,7 @@ export default class NewsSection extends Component {
             width: 110
           },
           {
+            className: 'fff',
             label: 'Priority',
             field: 'priority',
             sort: 'asc',
@@ -80,7 +84,9 @@ export default class NewsSection extends Component {
   }
 
   componentDidMount = () => {
-    let symbolOptions = this.state.tableData.defaultTableDataRows, symbolsName = [], symbols = []
+    let symbolOptions = this.state.tableData.defaultTableDataRows,
+      symbolsName = [],
+      symbols = []
     symbolOptions.forEach(function (i) { symbolsName.push(i.symbol) })
     const uniqueAges = [...new Set(symbolsName)]
     uniqueAges.forEach(function (i) { symbols.push({ option: i, checked: true }) })
@@ -96,6 +102,12 @@ export default class NewsSection extends Component {
         ...this.state.filterParameters,
         sellectedSymbols: this.state.checkedSymbols.join('; ')
       }
+    })
+
+
+    let gg = this.state.tableData.rows
+    gg.forEach(function (item, index) {
+      console.log(item.priority)
     })
 
   }
@@ -208,7 +220,6 @@ export default class NewsSection extends Component {
         filterString: ''
       }
     })
-
   }
   //apply filters
   applyFilters = () => {
@@ -257,7 +268,6 @@ export default class NewsSection extends Component {
     if (this.state.byDate.closeDate.length && this.state.byDate.openDate.length) {
       sortedRows = tableDataRows.filter(sortedOpenCloseDate)
     }
-
     // apply by symbols filter ----------
     checkedSymbols.forEach(function (chi, chx) {
       sortedRows.forEach(function (item, index) {
@@ -269,7 +279,8 @@ export default class NewsSection extends Component {
     let byPriority = this.state.byPriority.option
     function sortedType(item) {
       if (byPriority.toLowerCase() !== 'all') {
-        if (item.priority[0].props.priority === byPriority.toLowerCase()) return item
+        if (item.priority[0].props.priority === byPriority.toLowerCase())
+          return item
       } else { return item }
     }
     tempArr = sortedRows.filter(sortedType)
@@ -289,111 +300,131 @@ export default class NewsSection extends Component {
 
   render() {
     return (
-      <div className="Section" >
-        <div className="Section__name">News</div>
-        <div className={`Section__top  ${this.state.activeFilters
-          ? 'filters--shown align-items-start'
-          : 'filters--hidden '}
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="Section" >
+          <div className="Section__name">News</div>
+          <div className={`Section__top  ${this.state.activeFilters
+            ? 'filters--shown align-items-start'
+            : 'filters--hidden '}
         `} >
-          <div
-            className={`filters d-flex  justify-content-start ${this.state.activeFilters
-              ? 'flex-column align-items-start'
-              : 'flex-row align-items-center'}`
-            }
-          >
-            <button onClick={this.activeFilters}>
-              {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
-            </button>
+            <div
+              className={`filters d-flex  justify-content-start 
+            ${this.state.activeFilters
+                  ? 'flex-column align-items-start'
+                  : 'flex-row align-items-center'}`
+              }
+            >
+              <button onClick={this.activeFilters}>
+                {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
+              </button>
 
-            <p>{this.state.activeFilters
-              ? ''
-              : this.state.filterParameters.filterString === ''
-                ? "no filters applied"
-                : this.state.filterParameters.filterString}
-            </p>
-            {this.state.activeFilters ?
-              <div className="filters-content">
-                <div className="filters-content__item">
-                  <p>Filter by date:</p>
-                  <select name="byDate" defaultValue={this.state.byDate.option} onChange={this.getFiltersParameter}>
-                    <option>Any date</option>
-                    <option>News date</option>
-                  </select>
+              <p>{this.state.activeFilters
+                ? ''
+                : this.state.filterParameters.filterString === ''
+                  ? "no filters applied"
+                  : this.state.filterParameters.filterString}
+              </p>
+              {this.state.activeFilters ?
+                <div className="filters-content">
+                  <div className="filters-content__item">
+                    <p>Filter by date:</p>
+                    <select
+                      name="byDate"
+                      defaultValue={this.state.byDate.option}
+                      onChange={this.getFiltersParameter}
+                    >
+                      <option>Any date</option>
+                      <option>News date</option>
+                    </select>
 
-                  {this.state.byDate.option === 'Any date'
-                    ? ''
-                    :
-                    <>
-                      <p className="ml-2">Period from:</p>
-                      <input type="date" value={this.state.byDate.openDate} onChange={this.addOpenDateToFilterParameters} />
-                      <p className="ml-2">Period to:</p>
-                      <input type="date" value={this.state.byDate.closeDate} onChange={this.addCloseDateToFilterParameters} />
-                    </>
-                  }
-                </div>
-                <div className="filters-content__item">
-                  <p>Symbol:</p>
-                  <div className="dropDown multiplySelect">
-                    <button className="dropTarget" >
-                      {/* <p>{this.state.filterParameters.sellectedSymbols !== '' ? this.state.filterParameters.sellectedSymbols : 'All symbols'}</p> */}
-                      <p>{this.state.filterParameters.sellectedSymbols !== '' ? this.state.filterParameters.sellectedSymbols : 'All symbols'}</p>
-                      <FontAwesomeIcon icon={faCaretDown} />
-                    </button>
-                    <ul onClick={this.getSymbolsArr} className="symbolDropDown">
-                      {this.state.bySymbol.symbolsArr.map(function (item, index) {
-                        return <li key={index}>
-                          <input
-                            id={item.option}
-                            className="symbolInputs"
-                            type="checkbox"
-                            defaultChecked={item.checked}
-                          // defaultChecked={this.state.bySymbol.symbolsArr[index]}
-                          />
-                          <label htmlFor={item.option} className='check-item'>{item.option}</label>
-                        </li>
-                      })}
-                    </ul>
+                    {this.state.byDate.option === 'Any date'
+                      ? ''
+                      :
+                      <>
+                        <p className="ml-2">Period from:</p>
+                        <input
+                          type="date"
+                          value={this.state.byDate.openDate}
+                          onChange={this.addOpenDateToFilterParameters}
+                        />
+                        <p className="ml-2">Period to:</p>
+                        <input
+                          type="date"
+                          value={this.state.byDate.closeDate}
+                          onChange={this.addCloseDateToFilterParameters}
+                        />
+                      </>
+                    }
                   </div>
-
-
-                </div>
-                <div className="filters-content__item">
-                  <p>Priority:</p>
-                  <select name="byPriority" defaultValue={this.state.byPriority.option} onChange={this.getPriority}>
-                    <option>All</option>
-                    <option>High</option>
-                    <option>Middle</option>
-                    <option>Low</option>
-                  </select>
-                </div>
-                <div className="filters-content__item filterBtn">
-                  <button onClick={this.applyFilters}>
-                    Apply
+                  <div className="filters-content__item">
+                    <p>Symbol:</p>
+                    <UncontrolledButtonDropdown>
+                      <DropdownToggle caret size="sm" color="">
+                        <p>
+                          {this.state.filterParameters.sellectedSymbols.length
+                            ? this.state.filterParameters.sellectedSymbols
+                            : 'All symbols'}
+                        </p>
+                      </DropdownToggle>
+                      <DropdownMenu onClick={this.getSymbolsArr}>
+                        {this.state.bySymbol.symbolsArr.map(function (item, index) {
+                          return <li key={index} className="pretty p-default p-curve">
+                            <input
+                              id={item.option}
+                              className="symbolInputs"
+                              type="checkbox"
+                              defaultChecked={item.checked}
+                            />
+                            <div className="state">
+                              <label>{item.option}</label>
+                            </div>
+                          </li>
+                        })}
+                      </DropdownMenu>
+                    </UncontrolledButtonDropdown>
+                  </div>
+                  <div className="filters-content__item">
+                    <p>Priority:</p>
+                    <select
+                      name="byPriority"
+                      defaultValue={this.state.byPriority.option}
+                      onChange={this.getPriority}
+                    >
+                      <option>All</option>
+                      <option>High</option>
+                      <option>Middle</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                  <div className="filters-content__item filterBtn">
+                    <button onClick={this.applyFilters}>
+                      Apply
                   </button>
-                  <button onClick={this.clearFilters}>
-                    Clear
+                    <button onClick={this.clearFilters}>
+                      Clear
                   </button>
+                  </div>
                 </div>
-              </div>
-              : ''
-            }
+                : ''
+              }
+            </div>
+          </div>
+          <div className="Section__bottom column extraMt _30">
+            <MDBDataTable
+              id="news-table"
+              className="tableTextCenter"
+              searching={false}
+              scrollY
+              scrollX
+              striped
+              hover
+              bordered
+              small
+              data={this.state.tableData}
+            />
           </div>
         </div>
-        <div className="Section__bottom column extraMt _30">
-          <MDBDataTable
-            className="tableTextCenter"
-            searching={false}
-            scrollY
-            scrollX
-            // maxHeight='125px'
-            striped
-            hover
-            bordered
-            small
-            data={this.state.tableData}
-          />
-        </div>
-      </div>
+      </Suspense>
     )
   }
 }

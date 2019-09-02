@@ -1,13 +1,14 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faSync, faPlusSquare, faFolderOpen, faTimesCircle, faSave, faDownload, faInfoCircle,
 	faArrowUp, faArrowDown, faMoneyBillAlt
 } from '@fortawesome/pro-solid-svg-icons';
-import Slider from "react-slick";
+import { MDBInput } from 'mdbreact';
+
+const Slider = lazy(() => import('react-slick'));
 
 class TabProject extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -15,10 +16,10 @@ class TabProject extends Component {
 		};
 	}
 
-	switchTestingPreferences = e => this.setState({ testingPreferences: !this.state.testingPreferences })
+	switchTestingPreferences = e => this.setState({ testingPreferences: !this.state.testingPreferences });
 
 	render() {
-		var settings = {
+		let settings = {
 			dots: false,
 			infinite: false,
 			slidesToShow: 6,
@@ -27,12 +28,6 @@ class TabProject extends Component {
 			draggable: false,
 			speed: 300,
 			responsive: [
-				// {
-				// 	breakpoint: 1201,
-				// 	settings: {
-				// 		slidesToShow: 6,
-				// 	}
-				// },
 				{
 					breakpoint: 1025,
 					settings: {
@@ -143,15 +138,18 @@ class TabProject extends Component {
 						</div>
 						<div className="nav-item">
 							<div className="nav-item__main d-flex align-items-center">
-								<input
-									label="Set pause when test started"
-									value="testing"
-									checked={this.state.testingPreferences}
-									type="checkbox"
-									id="testingCheckbox"
-									onChange={this.switchTestingPreferences}
-								/>
-								<label htmlFor="testingCheckbox">Set pause when test started</label>
+								<div className="pretty p-default p-curve">
+									<input
+										value="testing"
+										checked={this.state.testingPreferences}
+										type="checkbox"
+										id="testingCheckbox"
+										onChange={this.switchTestingPreferences}
+									/>
+									<div className="state">
+										<label>Default</label>
+									</div>
+								</div>
 							</div>
 							<div className="nav-item__empty">
 								<p>Testing Preferences</p>

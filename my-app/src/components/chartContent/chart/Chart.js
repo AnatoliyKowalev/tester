@@ -33,9 +33,6 @@ import {
 	saveInteractiveNodes,
 	getInteractiveNodes
 } from "./interactiveutils";
-const style = {
-	iconBgColor: { backgroundColor: "#969696" }
-};
 
 class CandleStickChartWithStandardDeviationChannel extends React.Component {
 	constructor(props) {
@@ -150,7 +147,6 @@ class CandleStickChartWithStandardDeviationChannel extends React.Component {
 		std_channels_1
 	});
 	onKeyPress = (e) => {
-		// console.log(e.keyCode)
 		const keyCode = e.which;
 		switch (keyCode) {
 			case 90: {
@@ -234,9 +230,7 @@ class CandleStickChartWithStandardDeviationChannel extends React.Component {
 			displayXAccessor,
 		} = xScaleProvider(calculatedData);
 
-		const color = this.state.enableTrendLine ? style.iconBgColor : null;
-		const fibColor = this.state.enableFib ? style.iconBgColor : null;
-		const fanColor = this.state.enableFans ? style.iconBgColor : null;
+
 		const start = xAccessor(last(data));
 		const end = xAccessor(data[Math.max(0, data.length - 150)]);
 		const xExtents = [start, end];
@@ -246,6 +240,7 @@ class CandleStickChartWithStandardDeviationChannel extends React.Component {
 		return (
 			<>
 				<ChartCanvas
+
 					ref={this.saveCanvasNode}
 					height={chartHeight - 50}
 					width={width}
@@ -260,15 +255,27 @@ class CandleStickChartWithStandardDeviationChannel extends React.Component {
 					xExtents={xExtents}
 				>
 					<Chart
+
 						id={1}
 						height={chartHeight - 100}
-						yExtents={[d => [d.high, d.low], bb.accessor(), ema20.accessor(), ema50.accessor()]}
+						yExtents={[d => [d.high, d.low],
+						bb.accessor(),
+						ema20.accessor(),
+						ema50.accessor()]}
 						padding={{ top: 10, bottom: 20 }}
 					>
-						<YAxis axisAt="right" orient="right" ticks={5} {...yGrid} inverted={true}
+						<YAxis
+							axisAt="right"
+							orient="right"
+							ticks={5} {...yGrid}
+							inverted={true}
 							tickStroke={activeChartSettings.linesColor}
 							stroke={activeChartSettings.textColor} />
-						<XAxis axisAt="bottom" orient="bottom" showTicks={true} outerTickSize={0}
+						<XAxis
+							axisAt="bottom"
+							orient="bottom"
+							showTicks={true}
+							outerTickSize={0}
 							stroke={activeChartSettings.textColor}
 							tickStroke={activeChartSettings.linesColor} />
 						<MouseCoordinateY
@@ -456,23 +463,23 @@ class CandleStickChartWithStandardDeviationChannel extends React.Component {
 				< button onClick={this.onDash} >
 					dash
 				</button >
-				< button onClick={this.buttonClick} style={{ color: 'red' }} >
+				< button onClick={this.buttonClick}  >
 					TrendLine
 				</button >
 
-				<button onClick={this.fibClick} style={fibColor}>
+				<button onClick={this.fibClick} >
 					Fib Retracement
 				</button>
 
-				<button onClick={this.fanClick} style={fanColor}>
+				<button onClick={this.fanClick} >
 					Gann Fan
 				</button>
 
-				<button onClick={this.equidistantChannelClick} style={fanColor}>
+				<button onClick={this.equidistantChannelClick} >
 					Equidistant Channel
 				</button>
 
-				<button onClick={this.stdClick} style={fanColor}>
+				<button onClick={this.stdClick}>
 					Standard Deviation Channel
 				</button>
 			</>

@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import TabHome from './tabs/TabHome'
-import TabProject from './tabs/TabProject'
-import TabCharts from './tabs/TabCharts'
-import TabGraphics from './tabs/TabGraphics'
-import TabIndicators from './tabs/TabIndicators'
-import TabStrategies from './tabs/TabStrategies'
-import TabTools from './tabs/TabTools'
-import TabStore from './tabs/TabStore'
-import TabHelp from './tabs/TabHelp'
-import Slider from "react-slick";
+import React, { Component, lazy, Suspense } from 'react';
 import { topMenuTabs } from './../../utils/constants';
+
+const Slider = lazy(() => import('react-slick'));
+const TabHelp = lazy(() => import('./tabs/TabHelp'));
+const TabStore = lazy(() => import('./tabs/TabStore'));
+const TabTools = lazy(() => import('./tabs/TabTools'));
+const TabStrategies = lazy(() => import('./tabs/TabStrategies'));
+const TabIndicators = lazy(() => import('./tabs/TabIndicators'));
+const TabGraphics = lazy(() => import('./tabs/TabGraphics'));
+const TabCharts = lazy(() => import('./tabs/TabCharts'));
+const TabProject = lazy(() => import('./tabs/TabProject'));
+const TabHome = lazy(() => import('./tabs/TabHome'));
 
 class MenuTop extends Component {
   constructor(props) {
@@ -89,14 +90,16 @@ class MenuTop extends Component {
     const tabContent = getSelectedTab(this.state.activeTab);
 
     return (
-      <>
-        <div className="clear-overflow">
-          <Slider className="Tabs" {...settings}>
-            {tabs}
-          </Slider>
-        </div>
-        {tabContent}
-      </>
+      <Suspense fallback={<div>loading...</div>}>
+        <>
+          <div className="clear-overflow">
+            <Slider className="Tabs" {...settings}>
+              {tabs}
+            </Slider>
+          </div>
+          {tabContent}
+        </>
+      </Suspense>
     );
   }
 }

@@ -100,21 +100,29 @@
         height: 100%;
         align-items: unset;
         justify-content: center;
-        label {
-          display: flex;
-        }
+        // label {
+        //   display: flex;
+        //   flex-direction: row;
+        //   align-items: center;
+        // }
         select {
           margin: 0 auto;
         }
-        .dropDown {
-          width: 100%;
-          margin-bottom: 4px;
-          .dropTarget {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
+        .dropdown,
+        .btn-group {
+          button {
+            font-size: $def-text-size;
+            box-shadow: none;
+            color: $white-color;
+            &:active {
+              background: none;
+              color: #000;
+            }
+          }
+          .dropdown-menu {
+            button {
+              color: $black-color;
+            }
           }
         }
         i,
@@ -127,7 +135,7 @@
           font-size: $small-text-size;
           // color: $white-color;
           padding: 4px;
-          min-width: 70px;
+          min-width: 50px;
           transition: all 0.3s;
         }
         span {
@@ -143,11 +151,11 @@
 
       &__bottom {
         width: 100%;
-        .dropDown {
-          margin: 0 auto;
-          .dropTarget {
-            display: flex;
-          }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .btn- {
+          color: $white-color;
         }
         .includePadding {
           padding: 10px;
@@ -167,14 +175,13 @@
         }
         .btn {
           box-shadow: none;
-          color: $white-color;
           background: none;
           &:hover {
             color: $menu-btn-vover-color;
             background: none;
           }
           &:focus {
-            background: $dark-color;
+            background: none;
           }
         }
         ul {
@@ -209,7 +216,6 @@
           color: $light-darker-color;
         }
         li:hover {
-          // background: none;
           span {
             color: $light-color;
           }
@@ -226,4 +232,17 @@
 .scroll {
   padding: 10px 25px 2px;
   height: 172px;
+}
+
+.subList {
+  // position: relative;
+  .dropdown-menu {
+    transform: translate3d(-100%, 0, 0);
+    // display: none;
+  }
+  &:hover {
+    .dropdown-me {
+      display: block;
+    }
+  }
 }

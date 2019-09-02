@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react';
 import { MDBDataTable } from 'mdbreact';
 
 export default class LogSection extends Component {
@@ -74,21 +74,23 @@ export default class LogSection extends Component {
   }
   render() {
     return (
-      <div className="Section">
-        <div className="Section__name">Logs</div>
-        <div className="Section__bottom column">
-          <MDBDataTable
-            searching={false}
-            scrollY
-            scrollX
-            striped
-            hover
-            bordered
-            small
-            data={this.state.tableData}
-          />
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="Section">
+          <div className="Section__name">Logs</div>
+          <div className="Section__bottom column">
+            <MDBDataTable
+              searching={false}
+              scrollY
+              scrollX
+              striped
+              hover
+              bordered
+              small
+              data={this.state.tableData}
+            />
+          </div>
         </div>
-      </div>
+      </Suspense>
     )
   }
 }

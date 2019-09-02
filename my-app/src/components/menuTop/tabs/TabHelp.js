@@ -1,15 +1,16 @@
-import React, { Component, Suspense } from 'react';
-
+import React, { Component, Suspense, lazy } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faBook, faVideo, faFileAlt, faFilePdf, faEnvelope, faMedkit, faAmbulance, faQuestionCircle, faDollarSign
+	faBook, faVideo, faFileAlt, faFilePdf, faEnvelope, faMedkit, faAmbulance,
+	faQuestionCircle, faDollarSign
 } from '@fortawesome/pro-solid-svg-icons';
-import Slider from "react-slick";
+
+const Slider = lazy(() => import('react-slick'));
 
 class TabHelp extends Component {
 
 	render() {
-		var settings = {
+		let settings = {
 			dots: false,
 			infinite: false,
 			slidesToShow: 6,
@@ -18,7 +19,6 @@ class TabHelp extends Component {
 			draggable: false,
 			speed: 300,
 			responsive: [
-
 				{
 					breakpoint: 1025,
 					settings: {
@@ -41,7 +41,9 @@ class TabHelp extends Component {
 				<div className="clear-overflow">
 					<Slider {...settings} className="scroll">
 						<div className="nav-item">
-							<div className="nav-item__main d-flex flex-row align-items-center">
+							<div
+								className="nav-item__main d-flex flex-row align-items-center"
+							>
 								<button type="button" >
 									<FontAwesomeIcon icon={faBook} size="4x" className="mb-2" />
 									<p>Quick Start <br /> Guide</p>
@@ -56,7 +58,9 @@ class TabHelp extends Component {
 							</div>
 						</div>
 						<div className="nav-item">
-							<div className="nav-item__main d-flex flex-row align-items-center">
+							<div
+								className="nav-item__main d-flex flex-row align-items-center"
+							>
 								<button type="button">
 									<FontAwesomeIcon icon={faFileAlt} size="4x" className="mb-2" />
 									<p>F.A.Q.</p>
@@ -71,9 +75,15 @@ class TabHelp extends Component {
 							</div>
 						</div>
 						<div className="nav-item">
-							<div className="nav-item__main d-flex flex-row align-items-center">
+							<div
+								className="nav-item__main d-flex flex-row align-items-center"
+							>
 								<button type="button">
-									<FontAwesomeIcon icon={faEnvelope} size="4x" className="mb-1" />
+									<FontAwesomeIcon
+										icon={faEnvelope}
+										size="4x"
+										className="mb-1"
+									/>
 									<p>Contact us</p>
 								</button>
 								<button type="button">
@@ -86,9 +96,15 @@ class TabHelp extends Component {
 							</div>
 						</div>
 						<div className="nav-item">
-							<div className="nav-item__main d-flex flex-row align-items-center" >
+							<div
+								className="nav-item__main d-flex flex-row align-items-center"
+							>
 								<button type="button" >
-									<FontAwesomeIcon icon={faDollarSign} size="4x" className="mb-1" />
+									<FontAwesomeIcon
+										icon={faDollarSign}
+										size="4x"
+										className="mb-1"
+									/>
 									<p>Partenrship <br /> Programs</p>
 								</button>
 							</div>
@@ -97,13 +113,19 @@ class TabHelp extends Component {
 							</div>
 						</div>
 						<div className="nav-item">
-							<div className="nav-item__main d-flex flex-row align-items-center">
+							<div
+								className="nav-item__main d-flex flex-row align-items-center"
+							>
 								<button type="button">
 									<FontAwesomeIcon icon={faMedkit} size="4x" className="mb-1" />
 									<p>Forex Tester Help</p>
 								</button>
 								<button type="button">
-									<FontAwesomeIcon icon={faAmbulance} size="4x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faAmbulance}
+										size="4x"
+										className="mb-2"
+									/>
 									<p>API Help</p>
 								</button>
 							</div>
@@ -112,9 +134,15 @@ class TabHelp extends Component {
 							</div>
 						</div>
 						<div className="nav-item">
-							<div className="nav-item__main d-flex flex-row align-items-center">
+							<div
+								className="nav-item__main d-flex flex-row align-items-center"
+							>
 								<button type="button">
-									<FontAwesomeIcon icon={faQuestionCircle} size="4x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faQuestionCircle}
+										size="4x"
+										className="mb-2"
+									/>
 									<p>About Program</p>
 								</button>
 							</div>

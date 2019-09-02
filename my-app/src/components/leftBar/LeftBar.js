@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react'
+import React, { Component, lazy, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faChevronRight, faChevronLeft } from '@fortawesome/pro-solid-svg-icons';
 import { leftBarWindows } from '../../utils/constants';
@@ -21,6 +21,7 @@ class LeftBar extends Component {
       bottomRolledWindow: false,
     };
   }
+
   swipeLeftBar = () => this.setState({
     leftBarFullscreen: !this.state.leftBarFullscreen
   })

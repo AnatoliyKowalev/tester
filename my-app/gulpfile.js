@@ -1,16 +1,16 @@
-var gulp         = require('gulp');
-var browserSync  = require('browser-sync').create();
-var sass         = require('gulp-sass');
-var reload       = browserSync.reload;
-var rename       = require('gulp-rename');
-var cssmin       = require('gulp-minify-css');
-var sourcemaps      = require('gulp-sourcemaps');
-var postcss      = require('gulp-postcss');
+var gulp = require('gulp');
+var browserSync = require('browser-sync').create();
+var sass = require('gulp-sass');
+var reload = browserSync.reload;
+var rename = require('gulp-rename');
+var cssmin = require('gulp-minify-css');
+var sourcemaps = require('gulp-sourcemaps');
+var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
- 
-gulp.task('sass', function() {
+
+gulp.task('sass', function () {
     return gulp.src("./src/scss/*.scss")
-         .pipe(sass({
+        .pipe(sass({
             sourceMap: false,
             errLogToConsole: true,
             includePaths: ['node_modules']
@@ -18,15 +18,15 @@ gulp.task('sass', function() {
         .pipe(cssmin())
         .pipe(postcss(
             [autoprefixer({
-                remove:false
-                })
+                remove: false
+            })
             ]
         ))
         .pipe(gulp.dest("./src/"))
         .pipe(browserSync.stream())
 });
-  
- 
+
+
 // gulp.task('prefixM', function() {
 //   return gulp.src("./node_modules/materialize-css/dist/css/materialize.css")
 //     .pipe(rename({ suffix: '.min' }))
@@ -52,7 +52,7 @@ gulp.task('sass', function() {
 // });
 
 // Static server
-gulp.task('server', function() {
+gulp.task('server', function () {
 
     browserSync.init({
         server: {

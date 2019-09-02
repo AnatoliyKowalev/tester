@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
 
 export default class Symbols extends Component {

@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { faCaretDown } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { accountHistoryTable } from '../../../utils/constants'
+import { accountHistoryTable } from '../../../utils/constants';
+import {
+  DropdownToggle, DropdownMenu, DropdownItem, UncontrolledButtonDropdown
+} from 'reactstrap';
 
 export default class AccountHistorySection extends Component {
   constructor(props) {
@@ -179,6 +182,7 @@ export default class AccountHistorySection extends Component {
   }
   //Getting filter parameters
   getFiltersParameter = e => {
+    console.log(e.target.name)
     let filterParameter = e.currentTarget.name;
     let parameter = e.target.value;
     this.setState(() => {
@@ -367,139 +371,144 @@ export default class AccountHistorySection extends Component {
 
   render() {
     const symbols = this.state.bySymbol.symbolsArr.map((item, index) =>
-      <li key={index}>
+      <li key={index} className="pretty p-default p-curve">
         <input
           id={item.option}
           type="checkbox"
           className="symbolInputs"
           defaultChecked={item.checked}
         />
-        <label htmlFor={item.option} className='check-item'>{item.option}</label>
+        <div className="state">
+          <label>{item.option}</label>
+        </div>
       </li>
     );
 
     return (
-      <div className="Section" >
-        <div className="Section__name">Account history</div>
-        <div className={`Section__top  ${this.state.activeFilters
-          ? 'filters--shown align-items-start'
-          : 'filters--hidden '}
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="Section" >
+          <div className="Section__name">Account history</div>
+          <div className={`Section__top  ${this.state.activeFilters
+            ? 'filters--shown align-items-start'
+            : 'filters--hidden '}
         `} >
-          <div
-            className={`filters d-flex justify-content-start 
+            <div
+              className={`filters d-flex justify-content-start 
             ${this.state.activeFilters
-                ? 'flex-column  align-items-start'
-                : 'flex-row align-items-center'}`
-            }
-          >
-            <button onClick={this.activeFilters}>
-              {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
-            </button>
-            <p className="longString">
-              {this.state.activeFilters
-                ? ''
-                : this.state.filterParameters.filterString === ''
-                  ? "no filters applied"
-                  : this.state.filterParameters.filterString}
-            </p>
-            {
-              this.state.activeFilters
-                ? <div className="filters-content">
-                  <div className="filters-content__item">
-                    <p>Filter by date:</p>
-                    <select
-                      name="byDate"
-                      value={this.state.byDate.option}
-                      onChange={this.getFiltersParameter}
-                    >
-                      <option>Any date</option>
-                      <option>Open date</option>
-                      <option>Close date</option>
-                      <option>Close date or open date</option>
-                      <option>Close date and open date</option>
-                    </select>
-                    {
-                      this.state.byDate.option !== 'Any date' && <>
-                        <p className="ml-2">Period from:</p>
-                        <input
-                          type="date" value={this.state.byDate.openDate}
-                          onChange={this.addOpenDateToFilterParameters}
-                        />
-                        <p className="ml-2">Period to:</p>
-                        <input
-                          type="date" value={this.state.byDate.closeDate}
-                          onChange={this.addCloseDateToFilterParameters}
-                        />
-                      </>
-                    }
-                  </div>
+                  ? 'flex-column  align-items-start'
+                  : 'flex-row align-items-center'}`
+              }
+            >
+              <button onClick={this.activeFilters}>
+                {this.state.activeFilters ? 'Hide filters' : 'Show filters'}
+              </button>
+              <p className="longString">
+                {this.state.activeFilters
+                  ? ''
+                  : this.state.filterParameters.filterString === ''
+                    ? "no filters applied"
+                    : this.state.filterParameters.filterString}
+              </p>
+              {
+                this.state.activeFilters
+                  ? <div className="filters-content">
+                    <div className="filters-content__item">
+                      <p>Filter by date:</p>
+                      <select
+                        name="byDate"
+                        value={this.state.byDate.option}
+                        onChange={this.getFiltersParameter}
+                      >
+                        <option>Any date</option>
+                        <option>Open date</option>
+                        <option>Close date</option>
+                        <option>Close date or open date</option>
+                        <option>Close date and open date</option>
+                      </select>
+                      {
+                        this.state.byDate.option !== 'Any date' && <>
+                          <p className="ml-2">Period from:</p>
+                          <input
+                            type="date" value={this.state.byDate.openDate}
+                            onChange={this.addOpenDateToFilterParameters}
+                          />
+                          <p className="ml-2">Period to:</p>
+                          <input
+                            type="date" value={this.state.byDate.closeDate}
+                            onChange={this.addCloseDateToFilterParameters}
+                          />
+                        </>
+                      }
+                    </div>
 
-                  <div className="filters-content__item">
-                    <p>Symbol:</p>
-                    <div className="dropDown multiplySelect">
-                      <button className="dropTarget" >
-                        <p>{this.state.filterParameters.sellectedSymbols.length
-                          ? this.state.filterParameters.sellectedSymbols
-                          : 'All symbols'}</p>
-                        <FontAwesomeIcon icon={faCaretDown} />
+                    <div className="filters-content__item">
+                      <p>Symbol:</p>
+                      <UncontrolledButtonDropdown>
+                        <DropdownToggle caret size="sm" color="">
+                          <p>
+                            {this.state.filterParameters.sellectedSymbols.length
+                              ? this.state.filterParameters.sellectedSymbols
+                              : 'All symbols'}
+                          </p>
+                        </DropdownToggle>
+                        <DropdownMenu onClick={this.getSymbolsArr}>
+                          {symbols}
+                        </DropdownMenu>
+                      </UncontrolledButtonDropdown>
+                    </div>
+                    <div className="filters-content__item">
+                      <p>Type:</p>
+                      <select
+                        name="byType"
+                        defaultValue={this.state.byType.option}
+                        onChange={this.getType}
+                      >
+                        <option>All</option>
+                        <option>Buy</option>
+                        <option>Sale</option>
+                        <option>Deposit</option>
+                        <option>WithDrawal</option>
+                      </select>
+                    </div>
+                    <div className="filters-content__item">
+                      <p>Type of profit:</p>
+                      <select
+                        name="byProfitType"
+                        defaultValue={this.state.byProfitType.option}
+                        onChange={this.getProfitType}
+                      >
+                        <option>All</option>
+                        <option>Profit</option>
+                        <option>Lesion</option>
+                      </select>
+                    </div>
+                    <div className="filters-content__item filterBtn">
+                      <button onClick={this.applyFilters}>
+                        <p>Apply</p>
                       </button>
-                      <ul onClick={this.getSymbolsArr} >
-                        {symbols}
-                      </ul>
+                      <button onClick={this.clearFilters}>
+                        <p>Clear</p>
+                      </button>
                     </div>
                   </div>
-                  <div className="filters-content__item">
-                    <p>Type:</p>
-                    <select
-                      name="byType"
-                      defaultValue={this.state.byType.option}
-                      onChange={this.getType}
-                    >
-                      <option>All</option>
-                      <option>Buy</option>
-                      <option>Sale</option>
-                      <option>Deposit</option>
-                      <option>WithDrawal</option>
-                    </select>
-                  </div>
-                  <div className="filters-content__item">
-                    <p>Type of profit:</p>
-                    <select
-                      name="byProfitType"
-                      defaultValue={this.state.byProfitType.option}
-                      onChange={this.getProfitType}
-                    >
-                      <option>All</option>
-                      <option>Profit</option>
-                      <option>Lesion</option>
-                    </select>
-                  </div>
-                  <div className="filters-content__item filterBtn">
-                    <button onClick={this.applyFilters}>
-                      <p>Apply</p>
-                    </button>
-                    <button onClick={this.clearFilters}>
-                      <p>Clear</p>
-                    </button>
-                  </div>
-                </div>
-                : ''
-            }
+                  : ''
+              }
+            </div>
+          </div>
+          <div className="Section__bottom column extraMt _30">
+            <MDBDataTable
+              searching={true}
+              scrollY
+              scrollX
+              striped
+              hover
+              bordered
+              small
+              data={this.state.tableData}
+            />
           </div>
         </div>
-        <div className="Section__bottom column extraMt _30">
-          <MDBDataTable
-            searching={true}
-            scrollY
-            scrollX
-            striped
-            hover
-            bordered
-            small
-            data={this.state.tableData}
-          />
-        </div>
-      </div>
+      </Suspense>
     )
   }
 }

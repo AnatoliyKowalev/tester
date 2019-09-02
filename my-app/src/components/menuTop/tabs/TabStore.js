@@ -1,13 +1,24 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faChartBar, faDollarSign, faRegistered, faCoins, faUpload, faClone, faCopy, faBook, faCaretDown
+	faDollarSign, faRegistered, faCoins, faUpload, faClone, faCopy, faBook
 } from '@fortawesome/pro-solid-svg-icons';
-import Slider from "react-slick";
+import {
+	DropdownToggle, DropdownMenu, DropdownItem, UncontrolledButtonDropdown
+} from 'reactstrap';
+
+const Slider = lazy(() => import('react-slick'));
 
 class TabStore extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+
+		};
+	}
+
 	render() {
-		var settings = {
+		let settings = {
 			dots: false,
 			infinite: false,
 			slidesToShow: 5,
@@ -16,12 +27,6 @@ class TabStore extends Component {
 			draggable: false,
 			speed: 300,
 			responsive: [
-				// {
-				// 	breakpoint: 1201,
-				// 	settings: {
-				// 		slidesToShow: 3,
-				// 	}
-				// },
 				{
 					breakpoint: 1025,
 					settings: {
@@ -45,11 +50,19 @@ class TabStore extends Component {
 						<div className="nav-item">
 							<div className="nav-item__main d-flex flex-row">
 								<button type="button" >
-									<FontAwesomeIcon icon={faDollarSign} size="3x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faDollarSign}
+										size="3x"
+										className="mb-2"
+									/>
 									<p>Upgrate <br /> to FT4</p>
 								</button>
 								<button type="button" >
-									<FontAwesomeIcon icon={faRegistered} size="3x" className="mb-2" />
+									<FontAwesomeIcon
+										icon={faRegistered}
+										size="3x"
+										className="mb-2"
+									/>
 									<p>Register <br /> Program</p>
 								</button>
 							</div>
@@ -59,40 +72,36 @@ class TabStore extends Component {
 						</div>
 						<div className="nav-item">
 							<div className="d-flex h-100" >
-								<div className="nav-item__main d-flex flex-row align-items-center">
-									<div className="dropDown vertical mr-2">
-										<button className="dropTarget">
-											<FontAwesomeIcon icon={faChartBar} size="2x" className="mb-2" />
-											<p>Indicators</p>
-											<FontAwesomeIcon icon={faCaretDown} />
-										</button>
-										<ul>
-											<li><button>Close All Positions and Orders</button></li>
-											<li><button>Open group of orders</button></li>
-										</ul>
-									</div>
-									<div className="dropDown vertical mr-2">
-										<button className="dropTarget">
-											<FontAwesomeIcon icon={faChartBar} size="2x" className="mb-2" />
-											<p>Strategies</p>
-											<FontAwesomeIcon icon={faCaretDown} />
-										</button>
-										<ul>
-											<li><button>Close All Positions and Orders</button></li>
-											<li><button>Open group of orders</button></li>
-										</ul>
-									</div>
-									<div className="dropDown vertical">
-										<button className="dropTarget">
-											<FontAwesomeIcon icon={faChartBar} size="2x" className="mb-2" />
-											<p>Utilities</p>
-											<FontAwesomeIcon icon={faCaretDown} />
-										</button>
-										<ul>
-											<li><button>Close All Positions and Orders</button></li>
-											<li><button>Open group of orders</button></li>
-										</ul>
-									</div>
+								<div
+									className="nav-item__main d-flex flex-row align-items-center"
+								>
+									<UncontrolledButtonDropdown className="vertical">
+										<DropdownToggle caret size="sm" color="">
+											Indicators
+  								</DropdownToggle>
+										<DropdownMenu>
+											<DropdownItem >some 1</DropdownItem>
+											<DropdownItem >some 2</DropdownItem>
+										</DropdownMenu>
+									</UncontrolledButtonDropdown>
+									<UncontrolledButtonDropdown className="vertical">
+										<DropdownToggle caret size="sm" color="">
+											Strategies
+  								</DropdownToggle>
+										<DropdownMenu>
+											<DropdownItem >some 1</DropdownItem>
+											<DropdownItem >some 2</DropdownItem>
+										</DropdownMenu>
+									</UncontrolledButtonDropdown>
+									<UncontrolledButtonDropdown className="vertical">
+										<DropdownToggle caret size="sm" color="">
+											Utilities
+  								</DropdownToggle>
+										<DropdownMenu>
+											<DropdownItem >some 1</DropdownItem>
+											<DropdownItem >some 2</DropdownItem>
+										</DropdownMenu>
+									</UncontrolledButtonDropdown>
 								</div>
 							</div>
 							<div className="nav-item__empty">

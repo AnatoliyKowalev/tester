@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
 export default class Statistic extends Component {
@@ -120,7 +120,7 @@ export default class Statistic extends Component {
     return (
       <div className="Section" >
         <div className="Section__name">Statistic</div>
-        <div className="Section__top" style={{flexBasis:0}}></div>
+        <div className="Section__top" style={{ flexBasis: 0 }}></div>
         <div className="Section__bottom">
           <div className="dataTables_wrapper">
             <MDBTable

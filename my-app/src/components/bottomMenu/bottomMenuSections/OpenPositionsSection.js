@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Suspense } from 'react'
 import { MDBDataTable } from 'mdbreact';
 
-export default class OpenPositionsSection extends Component {
+class OpenPositionsSection extends React.Component {
 
   constructor(props) {
     super(props);
@@ -189,8 +189,7 @@ export default class OpenPositionsSection extends Component {
             commission: 0.00,
             points: 2,
             profit: 11000.00
-          },
-
+          }
         ]
       }
     }
@@ -198,24 +197,27 @@ export default class OpenPositionsSection extends Component {
 
   render() {
     return (
-      <div className="Section" >
-        <div className="Section__name">Open positions [{this.props.openPositionCount}]</div>
-        {/* <div className="Section__top"></div> */}
-        <div className="Section__bottom column">
-          <MDBDataTable
-            searching={false}
-            scrollY
-            scrollX
-            // maxHeight='156px'
-            striped
-            hover
-            bordered
-            small
-            data={this.state.tableData}
-          />
+      <Suspense fallback={<div>loading...</div>}>
+        <div className="Section" >
+          <div className="Section__name">
+            Open positions [{this.props.openPositionCount}]
+          </div>
+          <div className="Section__bottom column">
+            <MDBDataTable
+              searching={false}
+              scrollY
+              scrollX
+              striped
+              hover
+              bordered
+              small
+              data={this.state.tableData}
+            />
+          </div>
         </div>
-      </div>
+      </Suspense>
     )
   }
 }
 
+export default OpenPositionsSection

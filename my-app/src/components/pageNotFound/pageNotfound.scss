@@ -1,0 +1,103 @@
+.notPagefound {
+  padding: 50px;
+  .error-container {
+    font-size: 100px;
+    width: 100%;
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 800;
+    margin: 20px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .gohomePage {
+    margin: 50px 0 10px;
+    padding: 20px;
+    font-size: 20px;
+    border: 1px solid #c3bec0;
+  }
+  h1 {
+    font-family: "Arial Black", sans-serif;
+    color: #c3bec0;
+    margin-bottom: 50px;
+  }
+  .error-container > span {
+    text-shadow: 9px 9px 9px #403740, 0 0 0.4em #403740;
+    display: inline-block;
+    line-height: 100px;
+    position: relative;
+    color: #ffb485;
+  }
+  .error-container > span {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+  }
+  .error-container > span:nth-of-type(1) {
+    color: #d1f2a5;
+    animation: colordancing 14s infinite;
+  }
+  .error-container > span:nth-of-type(3) {
+    color: #f56991;
+    animation: colordancing2 14s infinite;
+  }
+  .error-container > span:nth-of-type(2) {
+    margin: 0 15px;
+    color: #d1f2a5;
+    animation: colordancing3 10s infinite;
+  }
+
+  @keyframes colordancing {
+    0% {
+      color: #242121;
+    }
+    25% {
+      color: #5ac496;
+    }
+    50% {
+      color: #1c9963;
+    }
+    75% {
+      color: #474747;
+    }
+    100% {
+      color: #363636;
+    }
+  }
+  @keyframes colordancing2 {
+    0% {
+      color: #616bb8;
+    }
+    25% {
+      color: #f67280;
+    }
+    50% {
+      color: #c06c84;
+    }
+    75% {
+      color: #6c5b7b;
+    }
+    100% {
+      color: #355c7d;
+    }
+  }
+  @keyframes colordancing3 {
+    0% {
+      color: #565682;
+    }
+    25% {
+      color: #6d6dc7;
+    }
+    50% {
+      color: #7878e3;
+    }
+    75% {
+      color: #9090e0;
+    }
+    100% {
+      color: #7c7ca3;
+    }
+  }
+}
